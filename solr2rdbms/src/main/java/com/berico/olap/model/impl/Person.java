@@ -4,11 +4,13 @@
 package com.berico.olap.model.impl;
 
 import com.berico.olap.model.Dimension;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Id;
 
-/**
- * 
- *
- */
+@Entity
+@Table(name="person")
 public class Person implements Dimension<String> {
 	private String id;
 	private String person;

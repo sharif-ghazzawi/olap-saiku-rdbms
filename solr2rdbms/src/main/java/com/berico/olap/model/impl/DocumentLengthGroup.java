@@ -35,6 +35,7 @@ public class DocumentLengthGroup implements Dimension<Integer> {
 	public void setUpperBound(int upperBound) {
 		this.upperBound = upperBound;
 	}
+	
 	@Column(name="docLengthLower")
 	public int getLowerBound() {
 		return lowerBound;
@@ -43,29 +44,32 @@ public class DocumentLengthGroup implements Dimension<Integer> {
 	public void setLowerBound(int lowerBound) {
 		this.lowerBound = lowerBound;
 	}
+	
+	@Column(name="docLengthGroupCoarsId")
 	public String getCoarseId() {
 		return coarseId;
 	}
+	
 	public void setCoarseId(String coarseId) {
 		this.coarseId = coarseId;
 	}
+	
+	@Column(name="docLengthCoarseUpper")
 	public int getCoarseUpperBound() {
 		return coarseUpperBound;
 	}
+	
 	public void setCoarseUpperBound(int coarseUpperBound) {
 		this.coarseUpperBound = coarseUpperBound;
 	}
+	
+	@Column(name="docLengthCoarseLower")
 	public int getCoarseLowerBound() {
 		return coarseLowerBound;
 	}
+	
 	public void setCoarseLowerBound(int coarseLowerBound) {
 		this.coarseLowerBound = coarseLowerBound;
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	
-	
 
 }

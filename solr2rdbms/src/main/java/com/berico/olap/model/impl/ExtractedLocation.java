@@ -1,7 +1,13 @@
 package com.berico.olap.model.impl;
 
 import com.berico.olap.model.Dimension;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Id;
 
+@Entity
+@Table(name="extracted_location")
 public class ExtractedLocation implements Dimension<String> {
 	private String id;
 	private String locationName;
@@ -12,6 +18,8 @@ public class ExtractedLocation implements Dimension<String> {
 	private float lattitude;
 	private float longitude;
 	
+	@Id
+	@Column(name="locationId")
 	public String getId() {
 		return this.id;
 	}
@@ -21,6 +29,7 @@ public class ExtractedLocation implements Dimension<String> {
 		
 	}
 
+	@Column(name="locationName")
 	public String getLocationName() {
 		return locationName;
 	}
@@ -29,6 +38,7 @@ public class ExtractedLocation implements Dimension<String> {
 		this.locationName = locationName;
 	}
 
+	@Column(name="countryId")
 	public String getCountryId() {
 		return countryId;
 	}
@@ -37,6 +47,7 @@ public class ExtractedLocation implements Dimension<String> {
 		this.countryId = countryId;
 	}
 
+	@Column(name="countryName")
 	public String getCountryName() {
 		return countryName;
 	}
@@ -45,6 +56,7 @@ public class ExtractedLocation implements Dimension<String> {
 		this.countryName = countryName;
 	}
 
+	@Column(name="commandId")
 	public String getCommandid() {
 		return commandid;
 	}
@@ -53,6 +65,7 @@ public class ExtractedLocation implements Dimension<String> {
 		this.commandid = commandid;
 	}
 
+	@Column(name="commandName")
 	public String getCommmandName() {
 		return commmandName;
 	}
@@ -61,6 +74,7 @@ public class ExtractedLocation implements Dimension<String> {
 		this.commmandName = commmandName;
 	}
 
+	@Column(name="latitude")
 	public float getLattitude() {
 		return lattitude;
 	}
@@ -69,6 +83,7 @@ public class ExtractedLocation implements Dimension<String> {
 		this.lattitude = lattitude;
 	}
 
+	@Column(name="longitude")
 	public float getLongitude() {
 		return longitude;
 	}
