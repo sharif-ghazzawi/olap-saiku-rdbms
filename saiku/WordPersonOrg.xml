@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<Schema name="WordPersonOrg">
+  <Dimension name="document">
+    <Hierarchy hasAll="true" primaryKey="documentId">
+      <Table name="document"/>
+      <Level name="title" column="documentTitle"/>
+      <Level name="full text" column="docfulltext"/>
+    </Hierarchy>
+  </Dimension>
+  <Dimension name="location">
+    <Hierarchy hasAll="true" primaryKey="locationId">
+      <Table name="extracted_location"/>
+      <Level name="location name" column="locationName">
+        <Property name="Latitude" column="latitude"/>
+        <Property name="Longitude" column="longitude"/>
+      </Level>
+      <Level name="country" column="countryName"/>
+      <Level name="command" column="commandName"/>
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension name="publication date" type="TimeDimension">
+    <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="pubDateId">
+      <Table name="publication_date"/>
+      <Level name="Year" column="pubDateYear" uniqueMembers="true" levelType="TimeYears" type="Numeric"/>
+      <Level name="Month" column="pubDateMonth" uniqueMembers="false" levelType="TimeMonths" type="Numeric"/>
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension name="ingestion date" type="TimeDimension">
+    <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="ingDateId">
+      <Table name="ingest_date"/>
+      <Level name="Year" column="ingDateYear" uniqueMembers="true" levelType="TimeYears" type="Numeric"/>
+      <Level name="Month" column="ingDateMonth" uniqueMembers="false" levelType="TimeMonths" type="Numeric"/>
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension name="extraction date" type="TimeDimension">
+    <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="dateId">
+      <Table name="extracted_date"/>
+      <Level name="Year" column="exDateYear" uniqueMembers="true" levelType="TimeYears" type="Numeric"/>
+      <Level name="Month" column="exDateMonth" uniqueMembers="false" levelType="TimeMonths" type="Numeric"/>
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension name="collection date" type="TimeDimension">
+    <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="colDateId">
+      <Table name="collection_date"/>
+      <Level name="Year" column="colDateYear" uniqueMembers="true" levelType="TimeYears" type="Numeric"/>
+      <Level name="Month" column="colDateMonth" uniqueMembers="false" levelType="TimeMonths" type="Numeric"/>
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension name="classification">
+    <Hierarchy hasAll="true" primaryKey="classificationId">
+      <Table name="classification"/>
+      <Level name="classification" column="classification"/>
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension name="source">
+    <Hierarchy hasAll="true" primaryKey="sourceId">
+      <Table name="source"/>
+      <Level name="source" column="source"/>
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension name="document length group">
+    <Hierarchy hasAll="true" primaryKey="groupId">
+      <Table name="document_length_group"/>
+      <Level name="lower bound" column="docLengthLower"/>
+      <Level name="upper bound" column="docLengthUpper"/>
+      <Level name="coarse lower bound" column="docLengthCoarseLower"/>
+      <Level name="coarse upper bound" column="docLengthCoarseUpper"/>
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension name="document length percentile">
+    <Hierarchy hasAll="true" primaryKey="percentileId">
+      <Table name="document_length_percentile"/>
+      <Level name="lower bound" column="docLengthPercentileLower"/>
+      <Level name="upper bound" column="docLengthPercentileUpper"/>
+      <Level name="coarse lower bound" column="docLengthPercentileCoarseLower"/>
+      <Level name="coarse upper bound" column="docLengthPercentileCoarseUpper"/>
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension name="word stem percentile">
+    <Hierarchy hasAll="true" primaryKey="percentileId">
+      <Table name="word_stem_percentile"/>
+      <Level name="lower bound" column="wordStemPercentileLower"/>
+      <Level name="upper bound" column="wordStemPercentileUpper"/>
+      <Level name="coarse lower bound" column="wordStemPercentileCoarseLower"/>
+      <Level name="coarse upper bound" column="wordStemPercentileCoarseUpper"/>
+    </Hierarchy>
+  </Dimension>
+
+  <Cube name="words">
+    <Table name="wordfact"/>
+    <Dimension name="word" foreignKey="wordId">
+      <Hierarchy hasAll="true" primaryKey="wordId">
+        <Table name="word"/>
+        <Level name="word" column="word" uniqueMembers="false"/>
+        <Level name="stem" column="stem" uniqueMembers="false"/>
+        <Level name="fine" column="fine" uniqueMembers="false"/>
+        <Level name="meduim" column="medium" uniqueMembers="false"/>
+        <Level name="coarse" column="coarse" uniqueMembers="false"/> 
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage name="document" source="document" foreignKey="documentId"/>
+    <DimensionUsage name="location" source="location" foreignKey="exLocationId"/>
+    <DimensionUsage name="source" source="source" foreignKey="sourceId"/>
+    <DimensionUsage name="classification" source="classification" foreignKey="classificationId"/>
+    <DimensionUsage name="document length group" source="document length group" foreignKey="docLengthGroup"/>
+    <DimensionUsage name="document length percentile" source="document length percentile" foreignKey="docLengthPercentile"/>
+    <DimensionUsage name="word stem percentile" source="word stem percentile" foreignKey="wordStemPercentile"/>
+    <DimensionUsage name="extraction date" source="extraction date" foreignKey="exDateId"/>
+    <DimensionUsage name="publication date" source="publication date" foreignKey="pubDateId"/>
+    <DimensionUsage name="ingestion date" source="ingestion date" foreignKey="ingDateId"/>
+    <DimensionUsage name="collection date" source="collection date" foreignKey="colDateId"/>
+    <Measure name="count" column="wordId" aggregator="count" formatString="Standard"/>
+  </Cube>
+  <Cube name="people">
+    <Table name="personfact"/>
+    <Dimension name="person" foreignKey="personId">
+      <Hierarchy hasAll="true" primaryKey="personId">
+        <Table name="person"/>
+        <Level name="person" column="person" uniqueMembers="false"/>
+        <Level name="fine" column="fine" uniqueMembers="false"/>
+        <Level name="meduim" column="medium" uniqueMembers="false"/>
+        <Level name="coarse" column="coarse" uniqueMembers="false"/> 
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage name="document" source="document" foreignKey="documentId"/>
+    <DimensionUsage name="location" source="location" foreignKey="exLocationId"/>
+    <DimensionUsage name="source" source="source" foreignKey="sourceId"/>
+    <DimensionUsage name="classification" source="classification" foreignKey="classificationId"/>
+    <DimensionUsage name="document length group" source="document length group" foreignKey="docLengthGroup"/>
+    <DimensionUsage name="document length percentile" source="document length percentile" foreignKey="docLengthPercentile"/>
+    <DimensionUsage name="word stem percentile" source="word stem percentile" foreignKey="wordStemPercentile"/>
+    <DimensionUsage name="extraction date" source="extraction date" foreignKey="exDateId"/>
+    <DimensionUsage name="publication date" source="publication date" foreignKey="pubDateId"/>
+    <DimensionUsage name="ingestion date" source="ingestion date" foreignKey="ingDateId"/>
+    <DimensionUsage name="collection date" source="collection date" foreignKey="colDateId"/>
+    <Measure name="count" column="personId" aggregator="count" formatString="Standard"/>
+  </Cube>
+  <Cube name="organizations">
+    <Table name="organizationfact"/>
+    <Dimension name="organization" foreignKey="organizationId">
+      <Hierarchy hasAll="true" primaryKey="organizationId">
+        <Table name="organization"/>
+        <Level name="organization" column="organization" uniqueMembers="false"/>
+        <Level name="fine" column="fine" uniqueMembers="false"/>
+        <Level name="meduim" column="medium" uniqueMembers="false"/>
+        <Level name="coarse" column="coarse" uniqueMembers="false"/> 
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage name="document" source="document" foreignKey="documentId"/>
+    <DimensionUsage name="location" source="location" foreignKey="exLocationId"/>
+    <DimensionUsage name="source" source="source" foreignKey="sourceId"/>
+    <DimensionUsage name="classification" source="classification" foreignKey="classificationId"/>
+    <DimensionUsage name="document length group" source="document length group" foreignKey="docLengthGroup"/>
+    <DimensionUsage name="document length percentile" source="document length percentile" foreignKey="docLengthPercentile"/>
+    <DimensionUsage name="word stem percentile" source="word stem percentile" foreignKey="wordStemPercentile"/>
+    <DimensionUsage name="extraction date" source="extraction date" foreignKey="exDateId"/>
+    <DimensionUsage name="publication date" source="publication date" foreignKey="pubDateId"/>
+    <DimensionUsage name="ingestion date" source="ingestion date" foreignKey="ingDateId"/>
+    <DimensionUsage name="collection date" source="collection date" foreignKey="colDateId"/>
+    <Measure name="count" column="organizationId" aggregator="count" formatString="Standard"/>
+  </Cube>
+</Schema>
