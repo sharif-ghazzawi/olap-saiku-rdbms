@@ -1,8 +1,16 @@
 package com.berico.olap.model.impl;
 
+import javax.persistence.Column;
+
 import com.berico.olap.model.Cube;
 import com.berico.olap.model.Dimension;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Id;
 
+@Entity
+@Table(name="wordfact")
 public class WordFact implements Cube {
 
 	private String factId;
@@ -51,6 +59,8 @@ public class WordFact implements Cube {
 		}
 	}
 
+	@Id
+	@Column(name="factId")
 	public String getFactId() {
 		return factId;
 	}
@@ -59,6 +69,7 @@ public class WordFact implements Cube {
 		this.factId = factId;
 	}
 
+	@Column(name="wordId")
 	public String getWordId() {
 		return wordId;
 	}
@@ -67,6 +78,7 @@ public class WordFact implements Cube {
 		this.wordId = wordId;
 	}
 
+	@Column(name="documentId")
 	public String getDocumentId() {
 		return documentId;
 	}
@@ -75,6 +87,7 @@ public class WordFact implements Cube {
 		this.documentId = documentId;
 	}
 
+	@Column(name="exLocationId")
 	public String getExLocationId() {
 		return exLocationId;
 	}
@@ -83,6 +96,7 @@ public class WordFact implements Cube {
 		this.exLocationId = exLocationId;
 	}
 
+	@Column(name="exDateId")
 	public String getExDateId() {
 		return exDateId;
 	}
@@ -91,6 +105,7 @@ public class WordFact implements Cube {
 		this.exDateId = exDateId;
 	}
 
+	@Column(name="pubDateId")
 	public String getPubDateId() {
 		return pubDateId;
 	}
@@ -99,6 +114,7 @@ public class WordFact implements Cube {
 		this.pubDateId = pubDateId;
 	}
 
+	@Column(name="ingDateId")
 	public String getIngDateId() {
 		return ingDateId;
 	}
@@ -107,6 +123,7 @@ public class WordFact implements Cube {
 		this.ingDateId = ingDateId;
 	}
 
+	@Column(name="colDateId")
 	public String getColDateId() {
 		return colDateId;
 	}
@@ -115,6 +132,7 @@ public class WordFact implements Cube {
 		this.colDateId = colDateId;
 	}
 
+	@Column(name="classification")
 	public String getClassificationId() {
 		return classificationId;
 	}
@@ -123,6 +141,7 @@ public class WordFact implements Cube {
 		this.classificationId = classificationId;
 	}
 
+	@Column(name="source")
 	public String getSourceId() {
 		return sourceId;
 	}
@@ -131,6 +150,7 @@ public class WordFact implements Cube {
 		this.sourceId = sourceId;
 	}
 
+	@Column(name="docLengthGroup")
 	public Integer getDocLengthGroupId() {
 		return docLengthGroupId;
 	}
@@ -139,6 +159,7 @@ public class WordFact implements Cube {
 		this.docLengthGroupId = docLengthGroupId;
 	}
 
+	@Column(name="docLengthPercentile")
 	public Integer getDocLengthPercentileId() {
 		return docLengthPercentileId;
 	}
@@ -147,6 +168,7 @@ public class WordFact implements Cube {
 		this.docLengthPercentileId = docLengthPercentileId;
 	}
 
+	@Column(name="wordStemPercentile")
 	public Integer getWordStemPercentileId() {
 		return wordStemPercentileId;
 	}
@@ -155,6 +177,7 @@ public class WordFact implements Cube {
 		this.wordStemPercentileId = wordStemPercentileId;
 	}
 
+	@Column(name="wordDocCount")
 	public int getWordDocCount() {
 		return wordDocCount;
 	}
@@ -163,6 +186,7 @@ public class WordFact implements Cube {
 		this.wordDocCount = wordDocCount;
 	}
 
+	@Column(name="wordDocCountShare")
 	public int getWordDocCountShare() {
 		return wordDocCountShare;
 	}
@@ -171,6 +195,7 @@ public class WordFact implements Cube {
 		this.wordDocCountShare = wordDocCountShare;
 	}
 
+	@Column(name="position")
 	public int getPosition() {
 		return position;
 	}
@@ -179,6 +204,7 @@ public class WordFact implements Cube {
 		this.position = position;
 	}
 
+	@Column(name="position_percentile")
 	public int getPosition_percentile() {
 		return position_percentile;
 	}

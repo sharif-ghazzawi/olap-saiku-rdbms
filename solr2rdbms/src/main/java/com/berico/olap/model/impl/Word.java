@@ -21,6 +21,7 @@ public class Word implements Dimension<String> {
 	}
 
 	@Id
+	@Column(name="wordId")
 	public String getId(){
 		return id;
 	}

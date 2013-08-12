@@ -18,6 +18,8 @@ public class Person implements Dimension<String> {
 	private String medium;
 	private String coarse;
 	
+	@Id
+	@Column(name="personId")
 	public String getId() {
 		return this.id;
 	}
@@ -27,6 +29,7 @@ public class Person implements Dimension<String> {
 		
 	}
 
+	@Column(name="person")
 	public String getPerson() {
 		return person;
 	}
@@ -35,6 +38,7 @@ public class Person implements Dimension<String> {
 		this.person = person;
 	}
 
+	@Column(name="fine")
 	public String getFine() {
 		return fine;
 	}
@@ -43,6 +47,7 @@ public class Person implements Dimension<String> {
 		this.fine = fine;
 	}
 
+	@Column(name="medium")
 	public String getMedium() {
 		return medium;
 	}
@@ -51,6 +56,7 @@ public class Person implements Dimension<String> {
 		this.medium = medium;
 	}
 
+	@Column(name="coarse")
 	public String getCoarse() {
 		return coarse;
 	}
