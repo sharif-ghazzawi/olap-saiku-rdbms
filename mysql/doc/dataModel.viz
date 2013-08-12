@@ -1,0 +1,57 @@
+digraph OLAP {
+  graph [rankdir = "LR"];
+  node [fontsize = 14, style=bold];
+  WordFact [label="<tb>wordfact | &lt;&lt;PK&gt;&gt;factId:UUID |<wordid>wordId:UUID | <docid> documentId:UUID | <exlocid> exLocationId:UUID | <exdatid> exDateId:UUID | <pubdatid> pubDateId:UUID | <ingdatid> ingDateId:UUID | <coldatid> colDateId:UUID | <classid> classificationId:UUID | <sourceid> sourceId:UUID | <doclengthgroup> docLengthGroup:UNSIGNED_TINYINT |<doclengthpercentile> docLengthPercentile:UNSIGNED_TINYINT| <wordstempercentile> wordStemPercentile:UNSIGNED_TINYINT | wordDocCount:UNSIGNED_INT | wordDocCountShare:UNSIGNED_TINYINT | position:UNSIGNED_INT | position_percentile:UNSIGNED_TINYINT" shape = "record"];
+  PersonFact [label="<tb>personfact | &lt;&lt;PK&gt;&gt;factId:UUID |<personid>personId:UUID | <docid> documentId:UUID | <exlocid> exLocationId:UUID | <exdatid> exDateId:UUID | <pubdatid> pubDateId:UUID | <ingdatid> ingDateId:UUID | <coldatid> colDateId:UUID | <classid> classificationId:UUID | <sourceid> sourceId:UUID | <doclengthgroup> docLengthGroup:UNSIGNED_TINYINT |<doclengthpercentile> docLengthPercentile:UNSIGNED_TINYINT| <wordstempercentile> wordStemPercentile:UNSIGNED_TINYINT | wordDocCount:UNSIGNED_INT | wordDocCountShare:UNSIGNED_TINYINT | position:UNSIGNED_INT | position_percentile:UNSIGNED_TINYINT" shape = "record"];
+  OrganizationFact [label="<tb>organizationfact | &lt;&lt;PK&gt;&gt;factId:UUID |<organizationid>organizationId:UUID | <docid> documentId:UUID | <exlocid> exLocationId:UUID | <exdatid> exDateId:UUID | <pubdatid> pubDateId:UUID | <ingdatid> ingDateId:UUID | <coldatid> colDateId:UUID | <classid> classificationId:UUID | <sourceid> sourceId:UUID | <doclengthgroup> docLengthGroup:UNSIGNED_TINYINT |<doclengthpercentile> docLengthPercentile:UNSIGNED_TINYINT| <wordstempercentile> wordStemPercentile:UNSIGNED_TINYINT | wordDocCount:UNSIGNED_INT | wordDocCountShare:UNSIGNED_TINYINT | position:UNSIGNED_INT | position_percentile:UNSIGNED_TINYINT" shape = "record"];
+  Word [label="<tb>word | <id>&lt;&lt;PK&gt;&gt; wordId:UUID | word:varchar(40) | stem:varchar(40) | fine:varchar(40)| medium:varchar(40)| coarse:varchar(40)" shape="record"]
+  Person [label="<tb>person | <id>&lt;&lt;PK&gt;&gt; personId:UUID | person:varchar(40) | fine:varchar(40)| medium:varchar(40)| coarse:varchar(40)" shape="record"]
+  Organization [label="<tb>organization | <id>&lt;&lt;PK&gt;&gt; organizationId:UUID | organization:varchar(40) | fine:varchar(40)| medium:varchar(40)| coarse:varchar(40)" shape="record"]
+  Document [label="<tb>document | <id> &lt;&lt;PK&gt;&gt; documentId:UUID | documentTitle:varchar(40)| fulltext:TEXT" shape = "record"];
+  ExLocation [label="<tb>extracted_location | <id> &lt;&lt;PK&gt;&gt; locationId:UUID | locationName:varchar(100) | countryId:UUID | countryName:varchar(100) | commandId:UUID | commandName:varchar(20) | latitude:FLOAT | longitude:FLOAT" shape="record"];
+  ExDate [label="<tb>extracted_date | <id> &lt;&lt;PK&gt;&gt; dateId:UUID |exDateMonth:UNSIGNED_TINYINT| exDateYear:UNSIGNED_SMALLINT" shape="record"];
+  PubDate [label="<tb>publication_date | <id> &lt;&lt;PK&gt;&gt; pubDateId:UUID | pubDateMonth:UNSIGNED_TINYINT | pubDateYear:UNSIGNED_SMALLINT" shape="record"];
+  IngDate [label="<tb>ingest_date | <id> &lt;&lt;PK&gt;&gt; ingDateId:UUID | ingDateMonth:UNSIGNED_TINYINT | ingDateYear:UNSIGNED_SMALLINT" shape="record"];
+  ColDate [label="<tb>collection_date | <id> &lt;&lt;PK&gt;&gt; colDateId:UUID | colDateMonth:UNSIGNED_TINYINT | colDateYear:UNSIGNED_SMALLINT" shape="record"];
+  Classification [label="<tb>classification | <id>&lt;&lt;PK&gt;&gt; classificationId:UUID | classification:varchar(50)" shape="record"];
+  Source [label="<tb>source | <id>&lt;&lt;PK&gt;&gt; sourceid:UUID | source:varchar(60) | sourceType:varchar(60)" shape="record"];
+  DocLengthGroup [label="<tb> document_length_group | <id>&lt;&lt;PK&gt;&gt; groupId:UNSIGNED_TINYINT| docLengthLower:UNSIGNED_TINYINT| docLengthUpper:UNSIGNED_TINYINT| docLengthGroupCoarseId:UUID |docLengthCoarseLower:UNSIGNED_TINYINT| docLengthCoarseUpper:UNSIGNED_TINYINT" shape="record"];
+  DocLengthPercentile [label="<tb> document_length_percentile | <id>&lt;&lt;PK&gt;&gt; percentileId:UNSIGNED_TINYINT| docLengthPercentileLower:UNSIGNED_TINYINT| docLengthPercentileUpper:UNSIGNED_TINYINT| docLengthPercentileCoarseId:UUID | docLengthPercentileCoarseLower:UNSIGNED_TINYINT | docLengthPercentileCoarseUpper:UNSIGNED_TINYINT" shape="record"];
+  WordStemPercentile [label="<tb> word_stem_percentile | <id>&lt;&lt;PK&gt;&gt; percentileId:UNSIGNED_TINYINT| wordStemPercentileLower:UNSIGNED_TINYINT| wordStemPercentileUpper:UNSIGNED_TINYINT| wordStemPercentileCoarseId:UUID | wordStemPercentileCoarseLower:UNSIGNED_TINYINT| wordStemPercentileCoarseUpper:UNSIGNED_TINYINT " shape="record"];
+  WordFact:wordid -> Word:id [arrowhead="crow"]
+  WordFact:docid -> Document:id [arrowhead="crow"]
+  WordFact:exlocid -> ExLocation:id [arrowhead="crow"]
+  WordFact:exdatid -> ExDate:id [arrowhead="crow"]
+  WordFact:pubdatid -> PubDate:id [arrowhead="crow"]
+  WordFact:ingdatid -> IngDate:id [arrowhead="crow"]
+  WordFact:coldatid -> ColDate:id [arrowhead="crow"]
+  WordFact:classid -> Classification:id [arrowhead="crow"]
+  WordFact:sourceid -> Source:id [arrowhead="crow"]
+  WordFact:doclengthgroup -> DocLengthGroup:id [arrowhead="crow"]
+  WordFact:doclengthpercentile -> DocLengthPercentile:id [arrowhead="crow"]
+  WordFact:wordstempercentile -> WordStemPercentile:id [arrowhead="crow"]
+  PersonFact:personid -> Person:id [arrowhead="crow"]
+  PersonFact:docid -> Document:id [arrowhead="crow"]
+  PersonFact:exlocid -> ExLocation:id [arrowhead="crow"]
+  PersonFact:exdatid -> ExDate:id [arrowhead="crow"]
+  PersonFact:pubdatid -> PubDate:id [arrowhead="crow"]
+  PersonFact:ingdatid -> IngDate:id [arrowhead="crow"]
+  PersonFact:coldatid -> ColDate:id [arrowhead="crow"]
+  PersonFact:classid -> Classification:id [arrowhead="crow"]
+  PersonFact:sourceid -> Source:id [arrowhead="crow"]
+  PersonFact:doclengthgroup -> DocLengthGroup:id [arrowhead="crow"]
+  PersonFact:doclengthpercentile -> DocLengthPercentile:id [arrowhead="crow"]
+  PersonFact:wordstempercentile -> WordStemPercentile:id [arrowhead="crow"]
+  OrganizationFact:organizationid -> Organization:id [arrowhead="crow"]
+  OrganizationFact:docid -> Document:id [arrowhead="crow"]
+  OrganizationFact:exlocid -> ExLocation:id [arrowhead="crow"]
+  OrganizationFact:exdatid -> ExDate:id [arrowhead="crow"]
+  OrganizationFact:pubdatid -> PubDate:id [arrowhead="crow"]
+  OrganizationFact:ingdatid -> IngDate:id [arrowhead="crow"]
+  OrganizationFact:coldatid -> ColDate:id [arrowhead="crow"]
+  OrganizationFact:classid -> Classification:id [arrowhead="crow"]
+  OrganizationFact:sourceid -> Source:id [arrowhead="crow"]
+  OrganizationFact:doclengthgroup -> DocLengthGroup:id [arrowhead="crow"]
+  OrganizationFact:doclengthpercentile -> DocLengthPercentile:id [arrowhead="crow"]
+  OrganizationFact:wordstempercentile -> WordStemPercentile:id [arrowhead="crow"]
+}
