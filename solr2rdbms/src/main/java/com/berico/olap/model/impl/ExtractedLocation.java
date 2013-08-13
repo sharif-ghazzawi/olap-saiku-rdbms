@@ -1,95 +1,96 @@
 package com.berico.olap.model.impl;
 
 import com.berico.olap.model.Dimension;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.Id;
 
 @Entity
-@Table(name="extracted_location")
+@Table(name = "extracted_location")
 public class ExtractedLocation implements Dimension<String> {
-	private String id;
-	private String locationName;
-	private String countryId;
-	private String countryName;
-	private String commandid;
-	private String commmandName;
-	private float lattitude;
-	private float longitude;
-	
-	@Id
-	@Column(name="locationId")
-	public String getId() {
-		return this.id;
-	}
+    private String id;
+    private String locationName;
+    private String countryId;
+    private String countryName;
+    private String commandid;
+    private String commmandName;
+    private float lattitude;
+    private float longitude;
 
-	public void setId(String id) {
-		this.id=id;
-		
-	}
+    @Id
+    @Column(name = "locationId")
+    public String getId() {
+        return this.id;
+    }
 
-	@Column(name="locationName")
-	public String getLocationName() {
-		return locationName;
-	}
+    public void setId(String id) {
+        this.id = id;
 
-	public void setLocationName(String locationName) {
-		this.locationName = locationName;
-	}
+    }
 
-	@Column(name="countryId")
-	public String getCountryId() {
-		return countryId;
-	}
+    @Column(name = "locationName")
+    public String getLocationName() {
+        return locationName;
+    }
 
-	public void setCountryId(String countryId) {
-		this.countryId = countryId;
-	}
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
+    }
 
-	@Column(name="countryName")
-	public String getCountryName() {
-		return countryName;
-	}
+    @Column(name = "countryId")
+    public String getCountryId() {
+        return countryId;
+    }
 
-	public void setCountryName(String countryName) {
-		this.countryName = countryName;
-	}
+    public void setCountryId(String countryId) {
+        this.countryId = countryId;
+    }
 
-	@Column(name="commandId")
-	public String getCommandid() {
-		return commandid;
-	}
+    @Column(name = "countryName")
+    public String getCountryName() {
+        return countryName;
+    }
 
-	public void setCommandid(String commandid) {
-		this.commandid = commandid;
-	}
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
+    }
 
-	@Column(name="commandName")
-	public String getCommmandName() {
-		return commmandName;
-	}
+    @Column(name = "commandId")
+    public String getCommandid() {
+        return commandid;
+    }
 
-	public void setCommmandName(String commmandName) {
-		this.commmandName = commmandName;
-	}
+    public void setCommandid(String commandid) {
+        this.commandid = commandid;
+    }
 
-	@Column(name="latitude")
-	public float getLattitude() {
-		return lattitude;
-	}
+    @Column(name = "commandName")
+    public String getCommmandName() {
+        return commmandName;
+    }
 
-	public void setLattitude(float lattitude) {
-		this.lattitude = lattitude;
-	}
+    public void setCommmandName(String commmandName) {
+        this.commmandName = commmandName;
+    }
 
-	@Column(name="longitude")
-	public float getLongitude() {
-		return longitude;
-	}
+    @Column(name = "latitude")
+    public float getLattitude() {
+        return lattitude;
+    }
 
-	public void setLongitude(float longitude) {
-		this.longitude = longitude;
-	}
+    public void setLattitude(float lattitude) {
+        this.lattitude = lattitude;
+    }
+
+    @Column(name = "longitude")
+    public float getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
+    }
 
 }

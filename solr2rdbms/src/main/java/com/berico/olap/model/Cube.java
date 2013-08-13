@@ -1,5 +1,5 @@
 package com.berico.olap.model;
 
 public interface Cube {
-	public void addDimension(String name, Dimension d);
+    public void addDimension(String name, Dimension d);
 }
