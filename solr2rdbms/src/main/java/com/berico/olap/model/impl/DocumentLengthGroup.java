@@ -25,7 +25,6 @@ public class DocumentLengthGroup implements Dimension<Integer> {
 
     public void setId(Integer id) {
         this.id = id;
-
     }
 
     @Column(name = "docLengthUpper")
@@ -46,7 +45,7 @@ public class DocumentLengthGroup implements Dimension<Integer> {
         this.lowerBound = lowerBound;
     }
 
-    @Column(name = "docLengthGroupCoarsId")
+    @Column(name = "docLengthGroupCoarseId")
     public String getCoarseId() {
         return coarseId;
     }

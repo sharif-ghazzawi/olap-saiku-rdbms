@@ -14,9 +14,9 @@ public class ExtractedLocation implements Dimension<String> {
     private String locationName;
     private String countryId;
     private String countryName;
-    private String commandid;
-    private String commmandName;
-    private float lattitude;
+    private String commandId;
+    private String commandName;
+    private float latitude;
     private float longitude;
 
     @Id
@@ -27,7 +27,6 @@ public class ExtractedLocation implements Dimension<String> {
 
     public void setId(String id) {
         this.id = id;
-
     }
 
     @Column(name = "locationName")
@@ -58,30 +57,30 @@ public class ExtractedLocation implements Dimension<String> {
     }
 
     @Column(name = "commandId")
-    public String getCommandid() {
-        return commandid;
+    public String getCommandId() {
+        return commandId;
     }
 
-    public void setCommandid(String commandid) {
-        this.commandid = commandid;
+    public void setCommandId(String commandId) {
+        this.commandId = commandId;
     }
 
     @Column(name = "commandName")
-    public String getCommmandName() {
-        return commmandName;
+    public String getCommandName() {
+        return commandName;
     }
 
-    public void setCommmandName(String commmandName) {
-        this.commmandName = commmandName;
+    public void setCommandName(String commandName) {
+        this.commandName = commandName;
     }
 
     @Column(name = "latitude")
-    public float getLattitude() {
-        return lattitude;
+    public float getLatitude() {
+        return latitude;
     }
 
-    public void setLattitude(float lattitude) {
-        this.lattitude = lattitude;
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
     }
 
     @Column(name = "longitude")

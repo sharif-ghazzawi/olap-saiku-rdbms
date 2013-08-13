@@ -21,7 +21,6 @@ public class Classification implements Dimension<String> {
 
     public void setId(String id) {
         this.id = id;
-
     }
 
     @Column(name = "classification")

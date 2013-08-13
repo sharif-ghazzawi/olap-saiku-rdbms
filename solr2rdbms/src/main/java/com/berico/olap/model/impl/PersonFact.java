@@ -1,5 +1,6 @@
 package com.berico.olap.model.impl;
 
+import com.berico.olap.model.Constants;
 import com.berico.olap.model.Dimension;
 
 import javax.persistence.Column;
@@ -13,29 +14,29 @@ public class PersonFact extends FactCube {
     private String personId;
 
     public void addDimension(String name, Dimension d) {
-        if (name.equals("person")) {
+        if (name.equals(Constants.PERSON)) {
             setPersonId(((Person) d).getId());
-        } else if (name.equals("document")) {
+        } else if (name.equals(Constants.DOCUMENT)) {
             setDocumentId(((Document) d).getId());
-        } else if (name.equals("exLocation")) {
+        } else if (name.equals(Constants.EXTRACTED_LOCATION)) {
             setExLocationId(((ExtractedLocation) d).getId());
-        } else if (name.equals("exDate")) {
+        } else if (name.equals(Constants.EXTRACTED_DATE)) {
             setExDateId(((ExtractedDate) d).getId());
-        } else if (name.equals("pubDate")) {
+        } else if (name.equals(Constants.PUBLICATION_DATE)) {
             setPubDateId(((PublicationDate) d).getId());
-        } else if (name.equals("ingDate")) {
+        } else if (name.equals(Constants.INGESTION_DATE)) {
             setIngDateId(((IngestionDate) d).getId());
-        } else if (name.equals("colDate")) {
+        } else if (name.equals(Constants.COLLECTION_DATE)) {
             setColDateId(((CollectionDate) d).getId());
-        } else if (name.equals("classification")) {
+        } else if (name.equals(Constants.CLASSIFICATION)) {
             setClassificationId(((Classification) d).getId());
-        } else if (name.equals("source")) {
+        } else if (name.equals(Constants.SOURCE)) {
             setSourceId(((Source) d).getId());
-        } else if (name.equals("docLengthGroup")) {
+        } else if (name.equals(Constants.DOCUMENT)) {
             setDocLengthGroupId(((DocumentLengthGroup) d).getId());
-        } else if (name.equals("docLengthPercentile")) {
+        } else if (name.equals(Constants.DOCUMENT_LENGTH_PERCENTILE)) {
             setDocLengthPercentileId(((DocumentLengthPercentile) d).getId());
-        } else if (name.equals("wordStemPercentile")) {
+        } else if (name.equals(Constants.WORD_STEM_PERCENTILE)) {
             setWordStemPercentileId(((WordStemPercentile) d).getId());
         }
     }

@@ -22,7 +22,6 @@ public class PublicationDate implements Dimension<String> {
 
     public void setId(String id) {
         this.id = id;
-
     }
 
     @Column(name = "pubDateMonth")

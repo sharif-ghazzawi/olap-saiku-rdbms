@@ -13,5 +13,4 @@ public class Document implements Dimension<String> {
         this.id = id;
     }
 
-
 }

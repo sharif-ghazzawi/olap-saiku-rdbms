@@ -25,7 +25,6 @@ public class WordStemPercentile implements Dimension<Integer> {
 
     public void setId(Integer id) {
         this.id = id;
-
     }
 
     @Column(name = "wordStemPercentileUpper")

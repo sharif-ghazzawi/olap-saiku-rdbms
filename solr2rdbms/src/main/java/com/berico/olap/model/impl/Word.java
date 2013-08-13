@@ -17,10 +17,6 @@ public class Word implements Dimension<String> {
     private String medium;
     private String coarse;
 
-    public Word() {
-
-    }
-
     @Id
     @Column(name = "wordId")
     public String getId() {

@@ -25,7 +25,6 @@ public class DocumentLengthPercentile implements Dimension<Integer> {
 
     public void setId(Integer id) {
         this.id = id;
-
     }
 
     @Column(name = "docLengthPercentileUpper")
