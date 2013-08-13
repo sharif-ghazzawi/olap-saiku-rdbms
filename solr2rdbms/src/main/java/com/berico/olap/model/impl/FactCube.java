@@ -7,7 +7,7 @@ import javax.persistence.Id;
 
 public abstract class FactCube implements Cube {
 
-    private String factId;
+    private String id;
     private String documentId;
     private String exLocationId;
     private String exDateId;
@@ -25,13 +25,13 @@ public abstract class FactCube implements Cube {
     private int position_percentile;
 
     @Id
-    @Column(name = "factId")
-    public String getFactId() {
-        return factId;
+    @Column(name = "id")
+    public String getId() {
+        return id;
     }
 
-    public void setFactId(String factId) {
-        this.factId = factId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Column(name = "documentId")
