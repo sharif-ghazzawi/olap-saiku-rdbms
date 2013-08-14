@@ -3,7 +3,9 @@ package com.berico.olap.model.impl;
 import com.berico.olap.model.Cube;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
 
 public abstract class FactCube implements Cube {
 
@@ -25,7 +27,8 @@ public abstract class FactCube implements Cube {
     private int position_percentile;
 
     @Id
-    @Column(name = "id")
+    @GeneratedValue(generator = "uuid")
+    @Column(name = "factId")
     public String getId() {
         return id;
     }

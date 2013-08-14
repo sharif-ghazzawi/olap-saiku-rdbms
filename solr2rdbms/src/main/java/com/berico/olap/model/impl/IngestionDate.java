@@ -10,9 +10,20 @@ import javax.persistence.Id;
 @Entity
 @Table(name = "ingest_date")
 public class IngestionDate implements Dimension<String> {
+
     private String id;
     private int ingDateMonth;
     private int ingDateYear;
+
+    @Id
+    @Column(name = "ingDateId")
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     @Column(name = "ingDateMonth")
     public int getIngDateMonth() {
@@ -31,16 +42,4 @@ public class IngestionDate implements Dimension<String> {
     public void setIngDateYear(int ingDateYear) {
         this.ingDateYear = ingDateYear;
     }
-
-    @Id
-    @Column(name = "ingDateId")
-    public String getId() {
-        return this.id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-
 }

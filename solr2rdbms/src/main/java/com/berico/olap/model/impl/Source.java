@@ -10,6 +10,7 @@ import javax.persistence.Id;
 @Entity
 @Table(name = "source")
 public class Source implements Dimension<String> {
+
     private String id;
     private String source;
     private String sourceType;
@@ -41,6 +42,5 @@ public class Source implements Dimension<String> {
     public void setSourceType(String sourceType) {
         this.sourceType = sourceType;
     }
-
 
 }

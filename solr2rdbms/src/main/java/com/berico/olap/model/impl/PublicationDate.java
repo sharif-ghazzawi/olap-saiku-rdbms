@@ -10,6 +10,7 @@ import javax.persistence.Id;
 @Entity
 @Table(name = "publication_date")
 public class PublicationDate implements Dimension<String> {
+
     private String id;
     private int pubDateMonth;
     private int pubDateYear;

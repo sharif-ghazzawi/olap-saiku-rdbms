@@ -10,6 +10,7 @@ import javax.persistence.Id;
 @Entity
 @Table(name = "extracted_location")
 public class ExtractedLocation implements Dimension<String> {
+
     private String id;
     private String locationName;
     private String countryId;

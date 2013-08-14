@@ -10,6 +10,7 @@ import javax.persistence.Id;
 @Entity
 @Table(name = "word_stem_percentile")
 public class WordStemPercentile implements Dimension<Integer> {
+
     private Integer id;
     private int upperBound;
     private int lowerBound;
@@ -58,7 +59,6 @@ public class WordStemPercentile implements Dimension<Integer> {
     public int getCoarseUpperBound() {
         return coarseUpperBound;
     }
-
 
     public void setCoarseUpperBound(int coarseUpperBound) {
         this.coarseUpperBound = coarseUpperBound;

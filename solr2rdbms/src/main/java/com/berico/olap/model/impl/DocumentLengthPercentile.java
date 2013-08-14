@@ -8,8 +8,9 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 
 @Entity
-@Table(name = "document_legth_percentile")
+@Table(name = "document_length_percentile")
 public class DocumentLengthPercentile implements Dimension<Integer> {
+
     private Integer id;
     private int upperBound;
     private int lowerBound;

@@ -13,6 +13,7 @@ import javax.persistence.Id;
 @Entity
 @Table(name = "person")
 public class Person implements Dimension<String> {
+
     private String id;
     private String person;
     private String fine;
@@ -27,7 +28,6 @@ public class Person implements Dimension<String> {
 
     public void setId(String id) {
         this.id = id;
-
     }
 
     @Column(name = "person")

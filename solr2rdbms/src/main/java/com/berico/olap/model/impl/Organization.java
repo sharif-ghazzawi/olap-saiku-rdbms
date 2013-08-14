@@ -10,6 +10,7 @@ import javax.persistence.Id;
 @Entity
 @Table(name = "organization")
 public class Organization implements Dimension<String> {
+
     private String id;
     private String organization;
     private String fine;
