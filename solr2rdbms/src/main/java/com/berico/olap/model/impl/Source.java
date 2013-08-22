@@ -9,38 +9,38 @@ import javax.persistence.Id;
 
 @Entity
 @Table(name = "source")
-public class Source implements Dimension<String> {
+public class Source implements Dimension {
 
-    private String id;
-    private String source;
-    private String sourceType;
+    private Integer id;
+    private String name;
+    private String type;
 
     @Id
-    @Column(name = "sourceId")
-    public String getId() {
+    @Column(name = "id")
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    private void setId(Integer id) {
         this.id = id;
     }
 
-    @Column(name = "source")
-    public String getSource() {
-        return source;
+    @Column(name = "name")
+    public String getName() {
+        return name;
     }
 
-    public void setSource(String source) {
-        this.source = source;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @Column(name = "sourceType")
-    public String getSourceType() {
-        return sourceType;
+    @Column(name = "type")
+    public String getType() {
+        return type;
     }
 
-    public void setSourceType(String sourceType) {
-        this.sourceType = sourceType;
+    public void setType(String type) {
+        this.type = type;
     }
 
 }

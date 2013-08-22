@@ -7,19 +7,19 @@ import com.berico.olap.model.Dimension;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "wordfact")
+@Table(name = "wordFact")
 public class WordFact implements Cube {
 
-    private String id;
-    private String wordId;
-    private String documentId;
-    private String exLocationId;
-    private String exDateId;
-    private String pubDateId;
-    private String ingDateId;
-    private String colDateId;
-    private String classificationId;
-    private String sourceId;
+    private Integer id;
+    private Integer wordId;
+    private Integer documentId;
+    private Integer exLocationId;
+    private Integer exDateId;
+    private Integer pubDateId;
+    private Integer ingDateId;
+    private Integer colDateId;
+    private Integer classificationId;
+    private Integer sourceId;
     private Integer docLengthGroupId;
     private Integer docLengthPercentileId;
     private Integer wordStemPercentileId;
@@ -58,93 +58,93 @@ public class WordFact implements Cube {
 
     @Id
     @GeneratedValue(generator = "uuid")
-    @Column(name = "factId")
-    public String getId() {
+    @Column(name = "id")
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    private void setId(Integer id) {
         this.id = id;
     }
 
     @Column(name = "wordId")
-    public String getWordId() {
+    public Integer getWordId() {
         return wordId;
     }
 
-    public void setWordId(String wordId) {
+    public void setWordId(Integer wordId) {
         this.wordId = wordId;
     }
 
     @Column(name = "documentId")
-    public String getDocumentId() {
+    public Integer getDocumentId() {
         return documentId;
     }
 
-    public void setDocumentId(String documentId) {
+    public void setDocumentId(Integer documentId) {
         this.documentId = documentId;
     }
 
     @Column(name = "exLocationId")
-    public String getExLocationId() {
+    public Integer getExLocationId() {
         return exLocationId;
     }
 
-    public void setExLocationId(String exLocationId) {
+    public void setExLocationId(Integer exLocationId) {
         this.exLocationId = exLocationId;
     }
 
     @Column(name = "exDateId")
-    public String getExDateId() {
+    public Integer getExDateId() {
         return exDateId;
     }
 
-    public void setExDateId(String exDateId) {
+    public void setExDateId(Integer exDateId) {
         this.exDateId = exDateId;
     }
 
     @Column(name = "pubDateId")
-    public String getPubDateId() {
+    public Integer getPubDateId() {
         return pubDateId;
     }
 
-    public void setPubDateId(String pubDateId) {
+    public void setPubDateId(Integer pubDateId) {
         this.pubDateId = pubDateId;
     }
 
     @Column(name = "ingDateId")
-    public String getIngDateId() {
+    public Integer getIngDateId() {
         return ingDateId;
     }
 
-    public void setIngDateId(String ingDateId) {
+    public void setIngDateId(Integer ingDateId) {
         this.ingDateId = ingDateId;
     }
 
     @Column(name = "colDateId")
-    public String getColDateId() {
+    public Integer getColDateId() {
         return colDateId;
     }
 
-    public void setColDateId(String colDateId) {
+    public void setColDateId(Integer colDateId) {
         this.colDateId = colDateId;
     }
 
     @Column(name = "classification")
-    public String getClassificationId() {
+    public Integer getClassificationId() {
         return classificationId;
     }
 
-    public void setClassificationId(String classificationId) {
+    public void setClassificationId(Integer classificationId) {
         this.classificationId = classificationId;
     }
 
     @Column(name = "source")
-    public String getSourceId() {
+    public Integer getSourceId() {
         return sourceId;
     }
 
-    public void setSourceId(String sourceId) {
+    public void setSourceId(Integer sourceId) {
         this.sourceId = sourceId;
     }
 

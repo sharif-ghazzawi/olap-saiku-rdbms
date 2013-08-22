@@ -8,38 +8,38 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 
 @Entity
-@Table(name = "ingest_date")
-public class IngestionDate implements Dimension<String> {
+@Table(name = "ingestDate")
+public class IngestionDate implements Dimension {
 
-    private String id;
-    private int ingDateMonth;
-    private int ingDateYear;
+    private Integer id;
+    private int month;
+    private int year;
 
     @Id
-    @Column(name = "ingDateId")
-    public String getId() {
+    @Column(name = "id")
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    private void setId(Integer id) {
         this.id = id;
     }
 
-    @Column(name = "ingDateMonth")
-    public int getIngDateMonth() {
-        return ingDateMonth;
+    @Column(name = "month")
+    public int getMonth() {
+        return month;
     }
 
-    public void setIngDateMonth(int ingDateMonth) {
-        this.ingDateMonth = ingDateMonth;
+    public void setMonth(int month) {
+        this.month = month;
     }
 
-    @Column(name = "ingDateMonth")
-    public int getIngDateYear() {
-        return ingDateYear;
+    @Column(name = "year")
+    public int getYear() {
+        return year;
     }
 
-    public void setIngDateYear(int ingDateYear) {
-        this.ingDateYear = ingDateYear;
+    public void setYear(int year) {
+        this.year = year;
     }
 }

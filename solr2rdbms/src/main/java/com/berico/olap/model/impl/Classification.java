@@ -9,28 +9,28 @@ import javax.persistence.Id;
 
 @Entity
 @Table(name = "classification")
-public class Classification implements Dimension<String> {
+public class Classification implements Dimension {
 
-    private String id;
-    private String classification;
+    private Integer id;
+    private String name;
 
     @Id
-    @Column(name = "classificationId")
-    public String getId() {
+    @Column(name = "id")
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    private void setId(Integer id) {
         this.id = id;
     }
 
-    @Column(name = "classification")
-    public String getClassification() {
-        return classification;
+    @Column(name = "name")
+    public String getName() {
+        return name;
     }
 
-    public void setClassification(String classification) {
-        this.classification = classification;
+    public void setName(String name) {
+        this.name = name;
     }
 
 

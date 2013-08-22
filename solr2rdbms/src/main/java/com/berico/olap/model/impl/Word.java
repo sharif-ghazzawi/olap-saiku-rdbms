@@ -9,8 +9,9 @@ import javax.persistence.Id;
 
 @Entity
 @Table(name = "word")
-public class Word implements Dimension<String> {
-    private String id;
+public class Word implements Dimension {
+
+    private Integer id;
     private String word;
     private String stem;
     private String fine;
@@ -18,12 +19,12 @@ public class Word implements Dimension<String> {
     private String coarse;
 
     @Id
-    @Column(name = "wordId")
-    public String getId() {
+    @Column(name = "id")
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    private void setId(Integer id) {
         this.id = id;
     }
 

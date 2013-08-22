@@ -8,18 +8,18 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 
 @Entity
-@Table(name = "word_stem_percentile")
-public class WordStemPercentile implements Dimension<Integer> {
+@Table(name = "wordStemPercentile")
+public class WordStemPercentile implements Dimension {
 
     private Integer id;
     private int upperBound;
     private int lowerBound;
-    private String coarseId;
+    private Integer coarseId;
     private int coarseUpperBound;
     private int coarseLowerBound;
 
     @Id
-    @Column(name = "percentileId")
+    @Column(name = "id")
     public Integer getId() {
         return this.id;
     }
@@ -28,7 +28,7 @@ public class WordStemPercentile implements Dimension<Integer> {
         this.id = id;
     }
 
-    @Column(name = "wordStemPercentileUpper")
+    @Column(name = "upper")
     public int getUpperBound() {
         return upperBound;
     }
@@ -37,7 +37,7 @@ public class WordStemPercentile implements Dimension<Integer> {
         this.upperBound = upperBound;
     }
 
-    @Column(name = "wordStemPercentileLower")
+    @Column(name = "lower")
     public int getLowerBound() {
         return lowerBound;
     }
@@ -46,16 +46,16 @@ public class WordStemPercentile implements Dimension<Integer> {
         this.lowerBound = lowerBound;
     }
 
-    @Column(name = "wordStemPercentileCoarseId")
-    public String getCoarseId() {
+    @Column(name = "coarseId")
+    public Integer getCoarseId() {
         return coarseId;
     }
 
-    public void setCoarseId(String coarseId) {
+    public void setCoarseId(Integer coarseId) {
         this.coarseId = coarseId;
     }
 
-    @Column(name = "wordStemPercentileCoarseUpper")
+    @Column(name = "coarseUpper")
     public int getCoarseUpperBound() {
         return coarseUpperBound;
     }
@@ -64,7 +64,7 @@ public class WordStemPercentile implements Dimension<Integer> {
         this.coarseUpperBound = coarseUpperBound;
     }
 
-    @Column(name = "wordStemPercentileCoarseLower")
+    @Column(name = "coarseLower")
     public int getCoarseLowerBound() {
         return coarseLowerBound;
     }

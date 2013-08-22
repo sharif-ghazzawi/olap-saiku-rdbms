@@ -8,27 +8,27 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 
 @Entity
-@Table(name = "document_length_percentile")
-public class DocumentLengthPercentile implements Dimension<Integer> {
+@Table(name = "documentLengthPercentile")
+public class DocumentLengthPercentile implements Dimension {
 
     private Integer id;
     private int upperBound;
     private int lowerBound;
-    private String coarseId;
+    private Integer coarseId;
     private int coarseUpperBound;
     private int coarseLowerBound;
 
     @Id
-    @Column(name = "percentileId")
+    @Column(name = "id")
     public Integer getId() {
         return this.id;
     }
 
-    public void setId(Integer id) {
+    private void setId(Integer id) {
         this.id = id;
     }
 
-    @Column(name = "docLengthPercentileUpper")
+    @Column(name = "upper")
     public int getUpperBound() {
         return upperBound;
     }
@@ -37,26 +37,25 @@ public class DocumentLengthPercentile implements Dimension<Integer> {
         this.upperBound = upperBound;
     }
 
-    @Column(name = "docLengthPercentileLower")
+    @Column(name = "lower")
     public int getLowerBound() {
         return lowerBound;
     }
-
 
     public void setLowerBound(int lowerBound) {
         this.lowerBound = lowerBound;
     }
 
-    @Column(name = "docLengthPercentileCoarseId")
-    public String getCoarseId() {
+    @Column(name = "coarseId")
+    public Integer getCoarseId() {
         return coarseId;
     }
 
-    public void setCoarseId(String coarseId) {
+    public void setCoarseId(Integer coarseId) {
         this.coarseId = coarseId;
     }
 
-    @Column(name = "docLengthPercentileCoarseUpper")
+    @Column(name = "coarseUpper")
     public int getCoarseUpperBound() {
         return coarseUpperBound;
     }
@@ -65,7 +64,7 @@ public class DocumentLengthPercentile implements Dimension<Integer> {
         this.coarseUpperBound = coarseUpperBound;
     }
 
-    @Column(name = "docLengthPercentileCoarseLower")
+    @Column(name = "coarseLower")
     public int getCoarseLowerBound() {
         return coarseLowerBound;
     }

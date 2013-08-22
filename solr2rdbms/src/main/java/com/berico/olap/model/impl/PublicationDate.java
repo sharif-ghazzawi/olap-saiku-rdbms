@@ -8,39 +8,39 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 
 @Entity
-@Table(name = "publication_date")
-public class PublicationDate implements Dimension<String> {
+@Table(name = "publicationDate")
+public class PublicationDate implements Dimension {
 
-    private String id;
-    private int pubDateMonth;
-    private int pubDateYear;
+    private Integer id;
+    private int month;
+    private int year;
 
     @Id
-    @Column(name = "pubDateId")
-    public String getId() {
+    @Column(name = "id")
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    @Column(name = "pubDateMonth")
-    public int getPubDateMonth() {
-        return pubDateMonth;
+    @Column(name = "month")
+    public int getMonth() {
+        return month;
     }
 
-    public void setPubDateMonth(int pubDateMonth) {
-        this.pubDateMonth = pubDateMonth;
+    public void setMonth(int month) {
+        this.month = month;
     }
 
-    @Column(name = "pubDateYear")
-    public int getPubDateYear() {
-        return pubDateYear;
+    @Column(name = "year")
+    public int getYear() {
+        return year;
     }
 
-    public void setPubDateYear(int pubDateYear) {
-        this.pubDateYear = pubDateYear;
+    public void setYear(int year) {
+        this.year = year;
     }
 
 

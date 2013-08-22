@@ -5,32 +5,32 @@ import com.berico.olap.model.Dimension;
 import javax.persistence.Column;
 import javax.persistence.Id;
 
-public class Document implements Dimension<String> {
+public class Document implements Dimension {
 
-    private String id;
-    private String documentTitle;
+    private Integer id;
+    private String title;
     private String fullText;
 
     @Id
-    @Column(name = "documentId")
-    public String getId() {
+    @Column(name = "id")
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    private void setId(Integer id) {
         this.id = id;
     }
 
-    @Column(name = "documentTitle")
-    public String getDocumentTitle() {
-        return documentTitle;
+    @Column(name = "title")
+    public String getTitle() {
+        return title;
     }
 
-    public void setDocumentTitle(String documentTitle) {
-        this.documentTitle = documentTitle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    @Column(name = "fulltext")
+    @Column(name = "fullText")
     public String getFullText() {
         return fullText;
     }

@@ -8,44 +8,63 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 
 @Entity
-@Table(name = "extracted_location")
-public class ExtractedLocation implements Dimension<String> {
+@Table(name = "extractedLocation")
+public class ExtractedLocation implements Dimension {
 
-    private String id;
-    private String locationName;
-    private String countryId;
+    private Integer id;
+    private Integer clavinId;
+    private String name;
+    private Integer countryClavinId;
+    private String countryIso;
     private String countryName;
-    private String commandId;
-    private String commandName;
+    private Command command;
     private float latitude;
     private float longitude;
 
     @Id
-    @Column(name = "locationId")
-    public String getId() {
+    @Column(name = "id")
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    private void setId(Integer id) {
         this.id = id;
     }
 
-    @Column(name = "locationName")
-    public String getLocationName() {
-        return locationName;
+    @Column(name = "clavinId")
+    public Integer getClavinId() {
+        return this.clavinId;
     }
 
-    public void setLocationName(String locationName) {
-        this.locationName = locationName;
+    public void setClavinId(Integer clavinId) {
+        this.clavinId = clavinId;
     }
 
-    @Column(name = "countryId")
-    public String getCountryId() {
-        return countryId;
+    @Column(name = "name")
+    public String getName() {
+        return name;
     }
 
-    public void setCountryId(String countryId) {
-        this.countryId = countryId;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Column(name = "countryClavinId")
+    public Integer getCountryClavinId() {
+        return countryClavinId;
+    }
+
+    public void setCountryClavinId(Integer countryClavinId) {
+        this.countryClavinId = countryClavinId;
+    }
+
+    @Column(name = "countryIso")
+    public String getCountryIso() {
+        return countryIso;
+    }
+
+    public void setCountryIso(String countryIso) {
+        this.countryIso = countryIso;
     }
 
     @Column(name = "countryName")
@@ -57,22 +76,13 @@ public class ExtractedLocation implements Dimension<String> {
         this.countryName = countryName;
     }
 
-    @Column(name = "commandId")
-    public String getCommandId() {
-        return commandId;
+    @Column(name = "command")
+    public Command getCommand() {
+        return command;
     }
 
-    public void setCommandId(String commandId) {
-        this.commandId = commandId;
-    }
-
-    @Column(name = "commandName")
-    public String getCommandName() {
-        return commandName;
-    }
-
-    public void setCommandName(String commandName) {
-        this.commandName = commandName;
+    public void setCommand(Command command) {
+        this.command = command;
     }
 
     @Column(name = "latitude")

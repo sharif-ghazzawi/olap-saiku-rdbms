@@ -11,32 +11,32 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 
 @Entity
-@Table(name = "person")
-public class Person implements Dimension<String> {
+@Table(name = "name")
+public class Person implements Dimension {
 
-    private String id;
-    private String person;
+    private Integer id;
+    private String name;
     private String fine;
     private String medium;
     private String coarse;
 
     @Id
-    @Column(name = "personId")
-    public String getId() {
+    @Column(name = "id")
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    private void setId(Integer id) {
         this.id = id;
     }
 
-    @Column(name = "person")
-    public String getPerson() {
-        return person;
+    @Column(name = "name")
+    public String getName() {
+        return name;
     }
 
-    public void setPerson(String person) {
-        this.person = person;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Column(name = "fine")
