@@ -17,5 +17,13 @@ public class Constants {
     public static final String DOCUMENT_LENGTH_PERCENTILE = "docLengthPercentile";
     public static final String WORD_STEM_PERCENTILE = "wordStemPercentile";
 
+    public static final String NORTHCOM = "NORTHCOM";
+    public static final String SOUTHCOM = "SOUTHCOM";
+    public static final String EUCOM = "EUCOM";
+    public static final String CENTCOM = "CENTCOM";
+    public static final String AFRICOM = "AFRICOM";
+    public static final String PACOM = "PACOM";
+    public static final String NULL_COMMAND = "N/A";
+
     public static final String FK_COMMAND_EXTRACTEDLOCATION = "FK_Command_ExtractedLocation";
 }
