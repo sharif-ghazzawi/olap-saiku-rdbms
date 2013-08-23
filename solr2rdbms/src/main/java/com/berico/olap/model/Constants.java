@@ -16,4 +16,6 @@ public class Constants {
     public static final String DOCUMENT_LENGTH_GROUP = "docLengthGroup";
     public static final String DOCUMENT_LENGTH_PERCENTILE = "docLengthPercentile";
     public static final String WORD_STEM_PERCENTILE = "wordStemPercentile";
+
+    public static final String FK_COMMAND_EXTRACTEDLOCATION = "FK_Command_ExtractedLocation";
 }

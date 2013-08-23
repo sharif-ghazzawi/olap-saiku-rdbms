@@ -6,6 +6,7 @@ import com.berico.olap.model.Dimension;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 public class OrganizationFact implements Cube {
@@ -65,7 +66,7 @@ public class OrganizationFact implements Cube {
     }
 
     @Id
-    @GeneratedValue(generator = "uuid")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     public Integer getId() {
         return id;

@@ -2,10 +2,7 @@ package com.berico.olap.model.impl;
 
 import com.berico.olap.model.Dimension;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "documentLengthGroup")
@@ -19,6 +16,7 @@ public class DocumentLengthGroup implements Dimension {
     private int coarseLowerBound;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     public Integer getId() {
         return this.id;

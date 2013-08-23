@@ -2,7 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"/>
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="url" value="jdbc:mysql://olap3.pegasus.bericotechnologies.com:3306/OLAP"/>
+    </bean>
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
@@ -27,13 +29,13 @@
                 <value>com.berico.olap.model.impl.ExtractedLocation</value>
                 <value>com.berico.olap.model.impl.IngestionDate</value>
                 <value>com.berico.olap.model.impl.Organization</value>
-                <value>com.berico.olap.model.impl.OrganizationFact</value>
+                <!--<value>com.berico.olap.model.impl.OrganizationFact</value>-->
                 <value>com.berico.olap.model.impl.Person</value>
-                <value>com.berico.olap.model.impl.PersonFact</value>
+                <!--<value>com.berico.olap.model.impl.PersonFact</value>-->
                 <value>com.berico.olap.model.impl.PublicationDate</value>
                 <value>com.berico.olap.model.impl.Source</value>
                 <value>com.berico.olap.model.impl.Word</value>
-                <value>com.berico.olap.model.impl.WordFact</value>
+                <!--<value>com.berico.olap.model.impl.WordFact</value>-->
                 <value>com.berico.olap.model.impl.WordStemPercentile</value>
             </list>
         </property>

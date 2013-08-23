@@ -1,11 +1,10 @@
 package com.berico.olap.model.impl;
 
+import com.berico.olap.model.Constants;
 import com.berico.olap.model.Dimension;
+import org.hibernate.annotations.ForeignKey;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "extractedLocation")
@@ -76,7 +75,9 @@ public class ExtractedLocation implements Dimension {
         this.countryName = countryName;
     }
 
-    @Column(name = "command")
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "command")
+    @ForeignKey(name = Constants.FK_COMMAND_EXTRACTEDLOCATION)
     public Command getCommand() {
         return command;
     }
