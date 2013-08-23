@@ -12,7 +12,7 @@ import javax.persistence.Id;
 public class Classification implements Dimension {
 
     private Integer id;
-    private String name;
+    private String type;
 
     @Id
     @Column(name = "id")
@@ -24,14 +24,12 @@ public class Classification implements Dimension {
         this.id = id;
     }
 
-    @Column(name = "name")
-    public String getName() {
-        return name;
+    @Column(name = "type")
+    public String getType() {
+        return type;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setType(String type) {
+        this.type = type;
     }
-
-
 }
