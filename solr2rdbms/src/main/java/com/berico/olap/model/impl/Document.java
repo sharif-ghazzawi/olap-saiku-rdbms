@@ -2,11 +2,10 @@ package com.berico.olap.model.impl;
 
 import com.berico.olap.model.Dimension;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "document")
 public class Document implements Dimension {
 
     private Integer id;

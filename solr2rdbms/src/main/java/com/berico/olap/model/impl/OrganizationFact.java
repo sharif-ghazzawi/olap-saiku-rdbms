@@ -3,66 +3,58 @@ package com.berico.olap.model.impl;
 import com.berico.olap.model.Constants;
 import com.berico.olap.model.Cube;
 import com.berico.olap.model.Dimension;
+import org.hibernate.annotations.ForeignKey;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "organizationFact")
 public class OrganizationFact implements Cube {
 
     private Integer id;
-    private Integer organizationId;
-    private Integer documentId;
-    private Integer exLocationId;
-    private Integer exDateId;
-    private Integer pubDateId;
-    private Integer ingDateId;
-    private Integer colDateId;
-    private Integer classificationId;
-    private Integer sourceId;
-    private Integer docLengthGroupId;
-    private Integer docLengthPercentileId;
-    private Integer wordStemPercentileId;
+    private Organization organization;
+    private Document document;
+    private ExtractedLocation exLocation;
+    private ExtractedDate exDate;
+    private PublicationDate pubDate;
+    private IngestionDate ingDate;
+    private CollectionDate colDate;
+    private Classification classification;
+    private Source source;
+    private DocumentLengthGroup docLengthGroup;
+    private DocumentLengthPercentile docLengthPercentile;
+    private WordStemPercentile wordStemPercentile;
     private int wordDocCount;
     private int wordDocCountShare;
     private int position;
-    private int position_percentile;
+    private int positionPercentile;
 
     public void addDimension(String name, Dimension d) {
         if (name.equals(Constants.ORGANIZATION)) {
-            setOrganizationId(((Organization) d).getId());
+            setOrganization((Organization) d);
         } else if (name.equals(Constants.DOCUMENT)) {
-            setDocumentId(((Document) d).getId());
+            setDocument((Document) d);
         } else if (name.equals(Constants.EXTRACTED_LOCATION)) {
-            setExLocationId(((ExtractedLocation) d).getId());
+            setExLocation((ExtractedLocation) d);
         } else if (name.equals(Constants.EXTRACTED_DATE)) {
-            setExDateId(((ExtractedDate) d).getId());
+            setExDate((ExtractedDate) d);
         } else if (name.equals(Constants.PUBLICATION_DATE)) {
-            setPubDateId(((PublicationDate) d).getId());
+            setPubDate((PublicationDate) d);
         } else if (name.equals(Constants.INGESTION_DATE)) {
-            setIngDateId(((IngestionDate) d).getId());
+            setIngDate((IngestionDate) d);
         } else if (name.equals(Constants.COLLECTION_DATE)) {
-            setColDateId(((CollectionDate) d).getId());
+            setColDate((CollectionDate) d);
         } else if (name.equals(Constants.CLASSIFICATION)) {
-            setClassificationId(((Classification) d).getId());
+            setClassification((Classification) d);
         } else if (name.equals(Constants.SOURCE)) {
-            setSourceId(((Source) d).getId());
+            setSource((Source) d);
         } else if (name.equals(Constants.DOCUMENT_LENGTH_GROUP)) {
-            setDocLengthGroupId(((DocumentLengthGroup) d).getId());
+            setDocLengthGroup((DocumentLengthGroup) d);
         } else if (name.equals(Constants.DOCUMENT_LENGTH_PERCENTILE)) {
-            setDocLengthPercentileId(((DocumentLengthPercentile) d).getId());
+            setDocLengthPercentile((DocumentLengthPercentile) d);
         } else if (name.equals(Constants.WORD_STEM_PERCENTILE)) {
-            setWordStemPercentileId(((WordStemPercentile) d).getId());
+            setWordStemPercentile((WordStemPercentile) d);
         }
-    }
-
-    public Integer getOrganizationId() {
-        return organizationId;
-    }
-
-    public void setOrganizationId(Integer organizationId) {
-        this.organizationId = organizationId;
     }
 
     @Id
@@ -76,106 +68,139 @@ public class OrganizationFact implements Cube {
         this.id = id;
     }
 
-    @Column(name = "documentId")
-    public Integer getDocumentId() {
-        return documentId;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "organization")
+    @ForeignKey(name = Constants.FK_ORG_ORGANIZATIONFACT)
+    public Organization getOrganization() {
+        return organization;
     }
 
-    public void setDocumentId(Integer documentId) {
-        this.documentId = documentId;
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
     }
 
-    @Column(name = "exLocationId")
-    public Integer getExLocationId() {
-        return exLocationId;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "document")
+    @ForeignKey(name = Constants.FK_DOCUMENT_ORGANIZATIONFACT)
+    public Document getDocument() {
+        return document;
     }
 
-    public void setExLocationId(Integer exLocationId) {
-        this.exLocationId = exLocationId;
+    public void setDocument(Document document) {
+        this.document = document;
     }
 
-    @Column(name = "exDateId")
-    public Integer getExDateId() {
-        return exDateId;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "extractedLocation")
+    @ForeignKey(name = Constants.FK_EXLOCATION_ORGANIZATIONFACT)
+    public ExtractedLocation getExLocation() {
+        return exLocation;
     }
 
-    public void setExDateId(Integer exDateId) {
-        this.exDateId = exDateId;
+    public void setExLocation(ExtractedLocation exLocation) {
+        this.exLocation = exLocation;
     }
 
-    @Column(name = "pubDateId")
-    public Integer getPubDateId() {
-        return pubDateId;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "extractedDate")
+    @ForeignKey(name = Constants.FK_EXDATE_ORGANIZATIONFACT)
+    public ExtractedDate getExDate() {
+        return exDate;
     }
 
-    public void setPubDateId(Integer pubDateId) {
-        this.pubDateId = pubDateId;
+    public void setExDate(ExtractedDate exDate) {
+        this.exDate = exDate;
     }
 
-    @Column(name = "ingDateId")
-    public Integer getIngDateId() {
-        return ingDateId;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "publicationDate")
+    @ForeignKey(name = Constants.FK_PUBDATE_ORGANIZATIONFACT)
+    public PublicationDate getPubDate() {
+        return pubDate;
     }
 
-    public void setIngDateId(Integer ingDateId) {
-        this.ingDateId = ingDateId;
+    public void setPubDate(PublicationDate pubDate) {
+        this.pubDate = pubDate;
     }
 
-    @Column(name = "colDateId")
-    public Integer getColDateId() {
-        return colDateId;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "ingestDate")
+    @ForeignKey(name = Constants.FK_INGDATE_ORGANIZATIONFACT)
+    public IngestionDate getIngDate() {
+        return ingDate;
     }
 
-    public void setColDateId(Integer colDateId) {
-        this.colDateId = colDateId;
+    public void setIngDate(IngestionDate ingDate) {
+        this.ingDate = ingDate;
     }
 
-    @Column(name = "classification")
-    public Integer getClassificationId() {
-        return classificationId;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "collectionDate")
+    @ForeignKey(name = Constants.FK_COLDATE_ORGANIZATIONFACT)
+    public CollectionDate getColDate() {
+        return colDate;
     }
 
-    public void setClassificationId(Integer classificationId) {
-        this.classificationId = classificationId;
+    public void setColDate(CollectionDate colDate) {
+        this.colDate = colDate;
     }
 
-    @Column(name = "source")
-    public Integer getSourceId() {
-        return sourceId;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "classification")
+    @ForeignKey(name = Constants.FK_CLASSIFICATION_ORGANIZATIONFACT)
+    public Classification getClassification() {
+        return classification;
     }
 
-    public void setSourceId(Integer sourceId) {
-        this.sourceId = sourceId;
+    public void setClassification(Classification classification) {
+        this.classification = classification;
     }
 
-    @Column(name = "docLengthGroup")
-    public Integer getDocLengthGroupId() {
-        return docLengthGroupId;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "source")
+    @ForeignKey(name = Constants.FK_SOURCE_ORGANIZATIONFACT)
+    public Source getSource() {
+        return source;
     }
 
-    public void setDocLengthGroupId(Integer docLengthGroupId) {
-        this.docLengthGroupId = docLengthGroupId;
+    public void setSource(Source source) {
+        this.source = source;
     }
 
-    @Column(name = "docLengthPercentile")
-    public Integer getDocLengthPercentileId() {
-        return docLengthPercentileId;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "documentLengthGroup")
+    @ForeignKey(name = Constants.FK_DOCLENGTHGROUP_ORGANIZATIONFACT)
+    public DocumentLengthGroup getDocLengthGroup() {
+        return docLengthGroup;
     }
 
-    public void setDocLengthPercentileId(Integer docLengthPercentileId) {
-        this.docLengthPercentileId = docLengthPercentileId;
+    public void setDocLengthGroup(DocumentLengthGroup docLengthGroup) {
+        this.docLengthGroup = docLengthGroup;
     }
 
-    @Column(name = "wordStemPercentile")
-    public Integer getWordStemPercentileId() {
-        return wordStemPercentileId;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "documentLengthPercentile")
+    @ForeignKey(name = Constants.FK_DOCLENGTHPERCENTILE_ORGANIZATIONFACT)
+    public DocumentLengthPercentile getDocLengthPercentile() {
+        return docLengthPercentile;
     }
 
-    public void setWordStemPercentileId(Integer wordStemPercentileId) {
-        this.wordStemPercentileId = wordStemPercentileId;
+    public void setDocLengthPercentile(DocumentLengthPercentile docLengthPercentile) {
+        this.docLengthPercentile = docLengthPercentile;
     }
 
-    @Column(name = "wordDocCount")
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "wordStemPercentile")
+    @ForeignKey(name = Constants.FK_WORDSTEMPERCENTILE_ORGANIZATIONFACT)
+    public WordStemPercentile getWordStemPercentile() {
+        return wordStemPercentile;
+    }
+
+    public void setWordStemPercentile(WordStemPercentile wordStemPercentile) {
+        this.wordStemPercentile = wordStemPercentile;
+    }
+
+    @Column(name = "wordCount")
     public int getWordDocCount() {
         return wordDocCount;
     }
@@ -184,7 +209,7 @@ public class OrganizationFact implements Cube {
         this.wordDocCount = wordDocCount;
     }
 
-    @Column(name = "wordDocCountShare")
+    @Column(name = "wordCountShare")
     public int getWordDocCountShare() {
         return wordDocCountShare;
     }
@@ -202,12 +227,12 @@ public class OrganizationFact implements Cube {
         this.position = position;
     }
 
-    @Column(name = "position_percentile")
-    public int getPosition_percentile() {
-        return position_percentile;
+    @Column(name = "positionPercentile")
+    public int getPositionPercentile() {
+        return positionPercentile;
     }
 
-    public void setPosition_percentile(int position_percentile) {
-        this.position_percentile = position_percentile;
+    public void setPositionPercentile(int positionPercentile) {
+        this.positionPercentile = positionPercentile;
     }
 }

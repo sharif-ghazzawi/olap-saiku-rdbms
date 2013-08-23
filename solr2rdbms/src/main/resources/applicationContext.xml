@@ -29,13 +29,13 @@
                 <value>com.berico.olap.model.impl.ExtractedLocation</value>
                 <value>com.berico.olap.model.impl.IngestionDate</value>
                 <value>com.berico.olap.model.impl.Organization</value>
-                <!--<value>com.berico.olap.model.impl.OrganizationFact</value>-->
+                <value>com.berico.olap.model.impl.OrganizationFact</value>
                 <value>com.berico.olap.model.impl.Person</value>
-                <!--<value>com.berico.olap.model.impl.PersonFact</value>-->
+                <value>com.berico.olap.model.impl.PersonFact</value>
                 <value>com.berico.olap.model.impl.PublicationDate</value>
                 <value>com.berico.olap.model.impl.Source</value>
                 <value>com.berico.olap.model.impl.Word</value>
-                <!--<value>com.berico.olap.model.impl.WordFact</value>-->
+                <value>com.berico.olap.model.impl.WordFact</value>
                 <value>com.berico.olap.model.impl.WordStemPercentile</value>
             </list>
         </property>
