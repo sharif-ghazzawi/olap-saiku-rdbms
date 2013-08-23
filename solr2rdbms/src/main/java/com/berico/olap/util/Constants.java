@@ -1,4 +1,4 @@
-package com.berico.olap.model;
+package com.berico.olap.util;
 
 public class Constants {
     public static final String WORD = "word";

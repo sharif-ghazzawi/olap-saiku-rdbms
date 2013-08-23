@@ -1,6 +1,6 @@
 package com.berico.olap.model.impl;
 
-import com.berico.olap.model.Constants;
+import com.berico.olap.util.Constants;
 import com.berico.olap.model.Cube;
 import com.berico.olap.model.Dimension;
 import org.hibernate.annotations.ForeignKey;
@@ -81,7 +81,7 @@ public class PersonFact implements Cube {
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "document")
-    @ForeignKey(name = Constants.FK_DOCUMENT_ORGANIZATIONFACT)
+    @ForeignKey(name = Constants.FK_DOCUMENT_PERSONFACT)
     public Document getDocument() {
         return document;
     }
@@ -92,7 +92,7 @@ public class PersonFact implements Cube {
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "extractedLocation")
-    @ForeignKey(name = Constants.FK_EXLOCATION_ORGANIZATIONFACT)
+    @ForeignKey(name = Constants.FK_EXLOCATION_PERSONFACT)
     public ExtractedLocation getExLocation() {
         return exLocation;
     }
@@ -103,7 +103,7 @@ public class PersonFact implements Cube {
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "extractedDate")
-    @ForeignKey(name = Constants.FK_EXDATE_ORGANIZATIONFACT)
+    @ForeignKey(name = Constants.FK_EXDATE_PERSONFACT)
     public ExtractedDate getExDate() {
         return exDate;
     }
@@ -114,7 +114,7 @@ public class PersonFact implements Cube {
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "publicationDate")
-    @ForeignKey(name = Constants.FK_PUBDATE_ORGANIZATIONFACT)
+    @ForeignKey(name = Constants.FK_PUBDATE_PERSONFACT)
     public PublicationDate getPubDate() {
         return pubDate;
     }
@@ -125,7 +125,7 @@ public class PersonFact implements Cube {
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "ingestDate")
-    @ForeignKey(name = Constants.FK_INGDATE_ORGANIZATIONFACT)
+    @ForeignKey(name = Constants.FK_INGDATE_PERSONFACT)
     public IngestionDate getIngDate() {
         return ingDate;
     }
@@ -136,7 +136,7 @@ public class PersonFact implements Cube {
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "collectionDate")
-    @ForeignKey(name = Constants.FK_COLDATE_ORGANIZATIONFACT)
+    @ForeignKey(name = Constants.FK_COLDATE_PERSONFACT)
     public CollectionDate getColDate() {
         return colDate;
     }
@@ -147,7 +147,7 @@ public class PersonFact implements Cube {
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "classification")
-    @ForeignKey(name = Constants.FK_CLASSIFICATION_ORGANIZATIONFACT)
+    @ForeignKey(name = Constants.FK_CLASSIFICATION_PERSONFACT)
     public Classification getClassification() {
         return classification;
     }
@@ -158,7 +158,7 @@ public class PersonFact implements Cube {
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "source")
-    @ForeignKey(name = Constants.FK_SOURCE_ORGANIZATIONFACT)
+    @ForeignKey(name = Constants.FK_SOURCE_PERSONFACT)
     public Source getSource() {
         return source;
     }
@@ -169,7 +169,7 @@ public class PersonFact implements Cube {
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "documentLengthGroup")
-    @ForeignKey(name = Constants.FK_DOCLENGTHGROUP_ORGANIZATIONFACT)
+    @ForeignKey(name = Constants.FK_DOCLENGTHGROUP_PERSONFACT)
     public DocumentLengthGroup getDocLengthGroup() {
         return docLengthGroup;
     }
@@ -180,7 +180,7 @@ public class PersonFact implements Cube {
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "documentLengthPercentile")
-    @ForeignKey(name = Constants.FK_DOCLENGTHPERCENTILE_ORGANIZATIONFACT)
+    @ForeignKey(name = Constants.FK_DOCLENGTHPERCENTILE_PERSONFACT)
     public DocumentLengthPercentile getDocLengthPercentile() {
         return docLengthPercentile;
     }
@@ -191,7 +191,7 @@ public class PersonFact implements Cube {
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "wordStemPercentile")
-    @ForeignKey(name = Constants.FK_WORDSTEMPERCENTILE_ORGANIZATIONFACT)
+    @ForeignKey(name = Constants.FK_WORDSTEMPERCENTILE_PERSONFACT)
     public WordStemPercentile getWordStemPercentile() {
         return wordStemPercentile;
     }

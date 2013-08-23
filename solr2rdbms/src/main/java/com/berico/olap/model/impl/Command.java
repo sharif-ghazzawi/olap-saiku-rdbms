@@ -1,6 +1,6 @@
 package com.berico.olap.model.impl;
 
-import com.berico.olap.model.Constants;
+import com.berico.olap.util.Constants;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
