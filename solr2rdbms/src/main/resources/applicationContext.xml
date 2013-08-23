@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"/>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+        <property name="annotatedClasses">
+            <list>
+                <value>com.berico.olap.model.impl.Classification</value>
+                <value>com.berico.olap.model.impl.CollectionDate</value>
+                <value>com.berico.olap.model.impl.Command</value>
+                <value>com.berico.olap.model.impl.Document</value>
+                <value>com.berico.olap.model.impl.DocumentLengthGroup</value>
+                <value>com.berico.olap.model.impl.DocumentLengthPercentile</value>
+                <value>com.berico.olap.model.impl.ExtractedDate</value>
+                <value>com.berico.olap.model.impl.ExtractedLocation</value>
+                <value>com.berico.olap.model.impl.IngestionDate</value>
+                <value>com.berico.olap.model.impl.Organization</value>
+                <value>com.berico.olap.model.impl.OrganizationFact</value>
+                <value>com.berico.olap.model.impl.Person</value>
+                <value>com.berico.olap.model.impl.PersonFact</value>
+                <value>com.berico.olap.model.impl.PublicationDate</value>
+                <value>com.berico.olap.model.impl.Source</value>
+                <value>com.berico.olap.model.impl.Word</value>
+                <value>com.berico.olap.model.impl.WordFact</value>
+                <value>com.berico.olap.model.impl.WordStemPercentile</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+</beans>
