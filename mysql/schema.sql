@@ -28,9 +28,7 @@ CREATE TABLE `classification` (
 
 CREATE TABLE `collectionDate` (
   `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
-  `date` varchar(10) DEFAULT NULL,
-  `month` varchar(10) DEFAULT NULL,
-  `year` varchar(10) DEFAULT NULL,
+  `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -73,9 +71,7 @@ CREATE TABLE `documentLengthPercentile` (
 
 CREATE TABLE `extractedDate` (
   `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
-  `date` varchar(10) DEFAULT NULL,
-  `month` varchar(10) DEFAULT NULL,
-  `year` varchar(10) DEFAULT NULL,
+  `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -97,9 +93,7 @@ CREATE TABLE `extractedLocation` (
 
 CREATE TABLE `ingestDate` (
   `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
-  `date` varchar(10) DEFAULT NULL,
-  `month` varchar(10) DEFAULT NULL,
-  `year` varchar(10) DEFAULT NULL,
+  `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -217,9 +211,7 @@ CREATE TABLE `personPercentile` (
 
 CREATE TABLE `publicationDate` (
   `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
-  `date` varchar(10) DEFAULT NULL,
-  `month` varchar(10) DEFAULT NULL,
-  `year` varchar(10) DEFAULT NULL,
+  `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
