@@ -55,15 +55,19 @@ CREATE TABLE `document` (
 
 CREATE TABLE `documentLengthGroup` (
   `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
-  `coarseId` int(10) unsigned DEFAULT NULL,
-  `coarseLower` tinyint(3) unsigned DEFAULT NULL,
-  `coarseUpper` tinyint(3) unsigned DEFAULT NULL,
+  `fineName` varchar(20) DEFAULT NULL,
+  `fineLower` int(10) unsigned DEFAULT NULL,
+  `fineUpper` int(10) unsigned DEFAULT NULL,
+  `coarseName` varchar(20) DEFAULT NULL,
+  `coarseLower` int(10) unsigned DEFAULT NULL,
+  `coarseUpper` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `documentLengthPercentile` (
   `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
-  `coarseId` int(10) unsigned DEFAULT NULL,
+  `percentile` tinyint(3) unsigned NOT NULL,
+  `coarseName` varchar(20) DEFAULT NULL,
   `coarseLower` tinyint(3) unsigned DEFAULT NULL,
   `coarseUpper` tinyint(3) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -147,7 +151,8 @@ CREATE TABLE `organizationFact` (
 
 CREATE TABLE `organizationPercentile` (
   `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
-  `coarseId` int(10) unsigned DEFAULT NULL,
+  `percentile` tinyint(3) unsigned NOT NULL,
+  `coarseName` varchar(20) DEFAULT NULL,
   `coarseLower` tinyint(3) unsigned DEFAULT NULL,
   `coarseUpper` tinyint(3) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -203,7 +208,8 @@ CREATE TABLE `personFact` (
 
 CREATE TABLE `personPercentile` (
   `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
-  `coarseId` int(10) unsigned DEFAULT NULL,
+  `percentile` tinyint(3) unsigned NOT NULL,
+  `coarseName` varchar(20) DEFAULT NULL,
   `coarseLower` tinyint(3) unsigned DEFAULT NULL,
   `coarseUpper` tinyint(3) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -272,7 +278,8 @@ CREATE TABLE `wordFact` (
 
 CREATE TABLE `wordStemPercentile` (
   `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
-  `coarseId` int(10) unsigned DEFAULT NULL,
+  `percentile` tinyint(3) unsigned NOT NULL,
+  `coarseName` varchar(20) DEFAULT NULL,
   `coarseLower` tinyint(3) unsigned DEFAULT NULL,
   `coarseUpper` tinyint(3) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
