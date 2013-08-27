@@ -14,6 +14,7 @@ DROP TABLE IF EXISTS `organizationFact`;
 DROP TABLE IF EXISTS `organizationPercentile`;
 DROP TABLE IF EXISTS `person`;
 DROP TABLE IF EXISTS `personFact`;
+DROP TABLE IF EXISTS `personPercentile`;
 DROP TABLE IF EXISTS `publicationDate`;
 DROP TABLE IF EXISTS `source`;
 DROP TABLE IF EXISTS `word`;
@@ -187,8 +188,8 @@ CREATE TABLE `personFact` (
   `documentLengthPercentileId` int(10) unsigned DEFAULT NULL,
   `documentLengthWords` int(10) unsigned DEFAULT NULL,
   `personPercentileId` int(10) unsigned DEFAULT NULL,
-  `wordFrequency` tinyint(3) unsigned DEFAULT NULL,
-  `wordFrequencyShare` tinyint(3) unsigned DEFAULT NULL,
+  `personFrequency` tinyint(3) unsigned DEFAULT NULL,
+  `personFrequencyShare` tinyint(3) unsigned DEFAULT NULL,
   `position` tinyint(3) unsigned DEFAULT NULL,
   `positionPercentile` tinyint(3) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),

@@ -1,0 +1,367 @@
+<?xml version="1.0"?>
+<Schema name="olap">
+
+    <Dimension name="Classification">
+        <Hierarchy hasAll="true" primaryKey="id">
+            <Table name="classification"/>
+            <Level name="Classification" column="name"/>
+        </Hierarchy>
+    </Dimension>
+
+    <Dimension name="Collection Date" type="TimeDimension">
+        <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
+            <Table name="collectionDate"/>
+            <Level name="Year" uniqueMembers="true" levelType="TimeYears" type="Numeric">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        CAST(YEAR(date) AS CHAR(4))
+                    </SQL>
+                </KeyExpression>
+                <OrdinalExpression>
+                    <SQL dialect="mysql">
+                        YEAR(date)
+                    </SQL>
+                </OrdinalExpression>
+            </Level>
+            <Level name="Month" uniqueMembers="false" levelType="TimeMonths" type="Numeric">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        MONTHNAME(date)
+                    </SQL>
+                </KeyExpression>
+                <OrdinalExpression>
+                    <SQL dialect="mysql">
+                        MONTH(date)
+                    </SQL>
+                </OrdinalExpression>
+            </Level>
+            <Level name="Date" uniqueMembers="false" levelType="TimeDays" type="Numeric">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        CAST(DAYOFMONTH(date) AS CHAR(2))
+                    </SQL>
+                </KeyExpression>
+                <OrdinalExpression>
+                    <SQL dialect="mysql">
+                        DAYOFMONTH(date)
+                    </SQL>
+                </OrdinalExpression>
+            </Level>
+        </Hierarchy>
+    </Dimension>
+
+    <Dimension name="Document">
+        <Hierarchy hasAll="true" primaryKey="id">
+            <Table name="document"/>
+            <Level name="Title" column="title"/>
+            <Level name="Full Text" column="fullText"/>
+        </Hierarchy>
+    </Dimension>
+
+    <Dimension name="Document Length Group">
+        <Hierarchy hasAll="true" primaryKey="id">
+            <Table name="documentLengthGroup"/>
+            <Level name="Fine" column="fineName" ordinalColumn="fineLower"/>
+            <Level name="Coarse" column="coarseName" ordinalColumn="coarseLower"/>
+        </Hierarchy>
+    </Dimension>
+
+    <Dimension name="Document Length Percentile">
+        <Hierarchy hasAll="true" primaryKey="id">
+            <Table name="documentLengthPercentile"/>
+            <Level name="Percentile" column="percentile"/>
+            <Level name="Coarse" column="coarseName" ordinalColumn="coarseLower"/>
+        </Hierarchy>
+    </Dimension>
+
+    <Dimension name="Extracted Location">
+        <Hierarchy hasAll="true" primaryKey="id">
+            <Table name="extractedLocation"/>
+            <Level name="Clavin ID" column="clavinId"/>
+            <Level name="Name" column="name"/>
+            <Level name="Country Clavin ID" column="countryClavinId"/>
+            <Level name="Country Code (ISO)" column="countryIso"/>
+            <Level name="Country Name" column="countryName"/>
+            <Level name="Command">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        (SELECT com.name FROM command AS com WHERE com.id=extractedLocation.commandId)
+                    </SQL>
+                </KeyExpression>
+            </Level>
+            <Level name="Subnational Clavin ID" column="subnationalClavinId"/>
+            <Level name="Subnational Name" column="subnationalName"/>
+            <Level name="Latitude" column="latitude"/>
+            <Level name="Longitude" column="longitude"/>
+            <!--Level name="Location">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        CONCAT(CONCAT(CAST(latitude AS CHAR(8), ',')), CAST(longitude AS CHAR(8)))
+                    </SQL>
+                </KeyExpression>
+                <OrdinalExpression>
+                    <SQL dialect="mysql">
+                        latitude, longitude
+                    </SQL>
+                </OrdinalExpression>
+            </Level-->
+        </Hierarchy>
+    </Dimension>
+
+    <Dimension name="Extraction Date" type="TimeDimension">
+        <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
+            <Table name="extractedDate"/>
+            <Level name="Year" uniqueMembers="true" levelType="TimeYears" type="Numeric">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        CAST(YEAR(date) AS CHAR(4))
+                    </SQL>
+                </KeyExpression>
+                <OrdinalExpression>
+                    <SQL dialect="mysql">
+                        YEAR(date)
+                    </SQL>
+                </OrdinalExpression>
+            </Level>
+            <Level name="Month" uniqueMembers="false" levelType="TimeMonths" type="Numeric">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        MONTHNAME(date)
+                    </SQL>
+                </KeyExpression>
+                <OrdinalExpression>
+                    <SQL dialect="mysql">
+                        MONTH(date)
+                    </SQL>
+                </OrdinalExpression>
+            </Level>
+            <Level name="Date" uniqueMembers="false" levelType="TimeDays" type="Numeric">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        CAST(DAYOFMONTH(date) AS CHAR(2))
+                    </SQL>
+                </KeyExpression>
+                <OrdinalExpression>
+                    <SQL dialect="mysql">
+                        DAYOFMONTH(date)
+                    </SQL>
+                </OrdinalExpression>
+            </Level>
+        </Hierarchy>
+    </Dimension>
+
+    <Dimension name="Ingest Date" type="TimeDimension">
+        <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
+            <Table name="ingestDate"/>
+            <Level name="Year" uniqueMembers="true" levelType="TimeYears" type="Numeric">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        CAST(YEAR(date) AS CHAR(4))
+                    </SQL>
+                </KeyExpression>
+                <OrdinalExpression>
+                    <SQL dialect="mysql">
+                        YEAR(date)
+                    </SQL>
+                </OrdinalExpression>
+            </Level>
+            <Level name="Month" uniqueMembers="false" levelType="TimeMonths" type="Numeric">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        MONTHNAME(date)
+                    </SQL>
+                </KeyExpression>
+                <OrdinalExpression>
+                    <SQL dialect="mysql">
+                        MONTH(date)
+                    </SQL>
+                </OrdinalExpression>
+            </Level>
+            <Level name="Date" uniqueMembers="false" levelType="TimeDays" type="Numeric">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        CAST(DAYOFMONTH(date) AS CHAR(2))
+                    </SQL>
+                </KeyExpression>
+                <OrdinalExpression>
+                    <SQL dialect="mysql">
+                        DAYOFMONTH(date)
+                    </SQL>
+                </OrdinalExpression>
+            </Level>
+        </Hierarchy>
+    </Dimension>
+
+    <Dimension name="Organization Percentile">
+        <Hierarchy hasAll="true" primaryKey="id">
+            <Table name="organizationPercentile"/>
+            <Level name="Percentile" column="percentile"/>
+            <Level name="Coarse" column="coarseName" ordinalColumn="coarseLower"/>
+        </Hierarchy>
+    </Dimension>
+
+    <Dimension name="Person Percentile">
+        <Hierarchy hasAll="true" primaryKey="id">
+            <Table name="personPercentile"/>
+            <Level name="Percentile" column="percentile"/>
+            <Level name="Coarse" column="coarseName" ordinalColumn="coarseLower"/>
+        </Hierarchy>
+    </Dimension>
+
+    <Dimension name="Publication Date" type="TimeDimension">
+        <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
+            <Table name="publicationDate"/>
+            <Level name="Year" uniqueMembers="true" levelType="TimeYears" type="Numeric">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        CAST(YEAR(date) AS CHAR(4))
+                    </SQL>
+                </KeyExpression>
+                <OrdinalExpression>
+                    <SQL dialect="mysql">
+                        YEAR(date)
+                    </SQL>
+                </OrdinalExpression>
+            </Level>
+            <Level name="Month" uniqueMembers="false" levelType="TimeMonths" type="Numeric">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        MONTHNAME(date)
+                    </SQL>
+                </KeyExpression>
+                <OrdinalExpression>
+                    <SQL dialect="mysql">
+                        MONTH(date)
+                    </SQL>
+                </OrdinalExpression>
+            </Level>
+            <Level name="Date" uniqueMembers="false" levelType="TimeDays" type="Numeric">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        CAST(DAYOFMONTH(date) AS CHAR(2))
+                    </SQL>
+                </KeyExpression>
+                <OrdinalExpression>
+                    <SQL dialect="mysql">
+                        DAYOFMONTH(date)
+                    </SQL>
+                </OrdinalExpression>
+            </Level>
+        </Hierarchy>
+    </Dimension>
+
+    <Dimension name="Source">
+        <Hierarchy hasAll="true" primaryKey="id">
+            <Table name="source"/>
+            <Level name="Name" column="name"/>
+            <Level name="Type" column="type"/>
+        </Hierarchy>
+    </Dimension>
+
+    <Dimension name="Word Stem Percentile">
+        <Hierarchy hasAll="true" primaryKey="id">
+            <Table name="wordStemPercentile"/>
+            <Level name="Percentile" column="percentile"/>
+            <Level name="Coarse" column="coarseName" ordinalColumn="coarseLower"/>
+        </Hierarchy>
+    </Dimension>
+
+    <Cube name="Words">
+        <Table name="wordFact"/>
+        <Dimension name="Word" foreignKey="wordId">
+            <Hierarchy hasAll="true" primaryKey="id">
+                <Table name="word"/>
+                <Level name="Name" column="name" uniqueMembers="false"/>
+                <Level name="Concept" column="concept" uniqueMembers="false"/>
+                <Level name="Fine" column="fineName" ordinalColumn="fineId" uniqueMembers="false"/>
+                <Level name="Medium" column="mediumName" ordinalColumn="mediumId" uniqueMembers="false"/>
+                <Level name="Coarse" column="coarseName" ordinalColumn="coarseId" uniqueMembers="false"/>
+                <Level name="Importance" column="evImportance" uniqueMembers="false"/>
+            </Hierarchy>
+        </Dimension>
+        <DimensionUsage name="Document" source="Document" foreignKey="documentId"/>
+        <DimensionUsage name="Location" source="Extracted Location" foreignKey="extractedLocationId"/>
+        <DimensionUsage name="Extraction Date" source="Extraction Date" foreignKey="extractedDateId"/>
+        <DimensionUsage name="Publication date" source="Publication Date" foreignKey="publicationDateId"/>
+        <DimensionUsage name="Ingestion date" source="Ingest Date" foreignKey="ingestDateId"/>
+        <DimensionUsage name="Collection date" source="Collection Date" foreignKey="collectionDateId"/>
+        <DimensionUsage name="Classification" source="Classification" foreignKey="classificationId"/>
+        <DimensionUsage name="Source" source="Source" foreignKey="sourceId"/>
+        <DimensionUsage name="Document Length Group" source="Document Length Group" foreignKey="documentLengthGroupId"/>
+        <DimensionUsage name="Document Length Percentile" source="Document Length Percentile"
+                        foreignKey="documentLengthPercentileId"/>
+        <DimensionUsage name="Word Stem Percentile" source="Word Stem Percentile" foreignKey="wordStemPercentileId"/>
+
+        <Measure name="Document Length" column="documentLengthWords" aggregator="avg" formatString="Standard"/>
+        <Measure name="Frequency of Appearance" column="wordFrequency" aggregator="avg" formatString="Standard"/>
+        <Measure name="Frequency Share" column="wordFrequencyShare" aggregator="avg" formatString="Standard"/>
+        <Measure name="Position in Document" column="position" aggregator="avg" formatString="Standard"/>
+        <Measure name="Position Percentile" column="positionPercentile" aggregator="count" formatString="Standard"/>
+    </Cube>
+
+    <Cube name="People">
+        <Table name="personFact"/>
+        <Dimension name="Person" foreignKey="personId">
+            <Hierarchy hasAll="true" primaryKey="id">
+                <Table name="word"/>
+                <Level name="Name" column="name" uniqueMembers="false"/>
+                <Level name="Concept" column="concept" uniqueMembers="false"/>
+                <Level name="Fine" column="fineName" ordinalColumn="fineId" uniqueMembers="false"/>
+                <Level name="Medium" column="mediumName" ordinalColumn="mediumId" uniqueMembers="false"/>
+                <Level name="Coarse" column="coarseName" ordinalColumn="coarseId" uniqueMembers="false"/>
+                <Level name="Importance" column="evImportance" uniqueMembers="false"/>
+            </Hierarchy>
+        </Dimension>
+        <DimensionUsage name="Document" source="Document" foreignKey="documentId"/>
+        <DimensionUsage name="Location" source="Extracted Location" foreignKey="extractedLocationId"/>
+        <DimensionUsage name="Extraction Date" source="Extraction Date" foreignKey="extractedDateId"/>
+        <DimensionUsage name="Publication date" source="Publication Date" foreignKey="publicationDateId"/>
+        <DimensionUsage name="Ingestion date" source="Ingest Date" foreignKey="ingestDateId"/>
+        <DimensionUsage name="Collection date" source="Collection Date" foreignKey="collectionDateId"/>
+        <DimensionUsage name="Classification" source="Classification" foreignKey="classificationId"/>
+        <DimensionUsage name="Source" source="Source" foreignKey="sourceId"/>
+        <DimensionUsage name="Document Length Group" source="Document Length Group" foreignKey="documentLengthGroupId"/>
+        <DimensionUsage name="Document Length Percentile" source="Document Length Percentile"
+                        foreignKey="documentLengthPercentileId"/>
+        <DimensionUsage name="Person Percentile" source="Person Percentile" foreignKey="personPercentileId"/>
+
+        <Measure name="Document Length" column="documentLengthWords" aggregator="avg" formatString="Standard"/>
+        <Measure name="Frequency of Appearance" column="personFrequency" aggregator="avg" formatString="Standard"/>
+        <Measure name="Frequency Share" column="personFrequencyShare" aggregator="avg" formatString="Standard"/>
+        <Measure name="Position in Document" column="position" aggregator="avg" formatString="Standard"/>
+        <Measure name="Position Percentile" column="positionPercentile" aggregator="count" formatString="Standard"/>
+    </Cube>
+
+    <Cube name="Organizations">
+        <Table name="organizationFact"/>
+        <Dimension name="Organization" foreignKey="organizationId">
+            <Hierarchy hasAll="true" primaryKey="id">
+                <Table name="word"/>
+                <Level name="Name" column="name" uniqueMembers="false"/>
+                <Level name="Concept" column="concept" uniqueMembers="false"/>
+                <Level name="Fine" column="fineName" ordinalColumn="fineId" uniqueMembers="false"/>
+                <Level name="Medium" column="mediumName" ordinalColumn="mediumId" uniqueMembers="false"/>
+                <Level name="Coarse" column="coarseName" ordinalColumn="coarseId" uniqueMembers="false"/>
+                <Level name="Importance" column="evImportance" uniqueMembers="false"/>
+            </Hierarchy>
+        </Dimension>
+        <DimensionUsage name="Document" source="Document" foreignKey="documentId"/>
+        <DimensionUsage name="Location" source="Extracted Location" foreignKey="extractedLocationId"/>
+        <DimensionUsage name="Extraction Date" source="Extraction Date" foreignKey="extractedDateId"/>
+        <DimensionUsage name="Publication date" source="Publication Date" foreignKey="publicationDateId"/>
+        <DimensionUsage name="Ingestion date" source="Ingest Date" foreignKey="ingestDateId"/>
+        <DimensionUsage name="Collection date" source="Collection Date" foreignKey="collectionDateId"/>
+        <DimensionUsage name="Classification" source="Classification" foreignKey="classificationId"/>
+        <DimensionUsage name="Source" source="Source" foreignKey="sourceId"/>
+        <DimensionUsage name="Document Length Group" source="Document Length Group" foreignKey="documentLengthGroupId"/>
+        <DimensionUsage name="Document Length Percentile" source="Document Length Percentile"
+                        foreignKey="documentLengthPercentileId"/>
+        <DimensionUsage name="Organization Percentile" source="Organization Percentile" foreignKey="organizationPercentileId"/>
+
+        <Measure name="Document Length" column="documentLengthWords" aggregator="avg" formatString="Standard"/>
+        <Measure name="Frequency of Appearance" column="orgFrequency" aggregator="avg" formatString="Standard"/>
+        <Measure name="Frequency Share" column="orgFrequencyShare" aggregator="avg" formatString="Standard"/>
+        <Measure name="Position in Document" column="position" aggregator="avg" formatString="Standard"/>
+        <Measure name="Position Percentile" column="positionPercentile" aggregator="count" formatString="Standard"/>
+    </Cube>
+</Schema>
