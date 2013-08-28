@@ -49,8 +49,9 @@ INSERT INTO command (id, name) VALUES (7, 'N/A');
 
 CREATE TABLE `document` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
-  `title` varchar(40) DEFAULT NULL,
-  `fullText` text,
+  `drsiDocId` varchar(40) DEFAULT NULL,
+  `title` varchar(120) DEFAULT NULL,
+  `body` text,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -234,11 +235,11 @@ CREATE TABLE `word` (
   `word` varchar(40) DEFAULT NULL,
   `stem` varchar(40) DEFAULT NULL,
   `fineId` int(10) unsigned DEFAULT NULL,
-  `fineName` varchar(40) DEFAULT NULL,
+  `fineName` varchar(80) DEFAULT NULL,
   `mediumId` int(10) unsigned DEFAULT NULL,
-  `mediumName` varchar(40) DEFAULT NULL,
+  `mediumName` varchar(80) DEFAULT NULL,
   `coarseId` int(10) unsigned DEFAULT NULL,
-  `coarseName` varchar(40) DEFAULT NULL,
+  `coarseName` varchar(80) DEFAULT NULL,
   `evImportance` float unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;

@@ -9,10 +9,10 @@ import javax.persistence.*;
 public class DocumentLengthPercentile implements Dimension {
 
     private Integer id;
-    private short percentile;
+    private Short percentile;
     private String coarseName;
-    private int coarseUpperBound;
-    private int coarseLowerBound;
+    private Integer coarseUpperBound;
+    private Integer coarseLowerBound;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,11 +26,11 @@ public class DocumentLengthPercentile implements Dimension {
     }
 
     @Column(name = "percentile")
-    public short getPercentile() {
+    public Short getPercentile() {
         return percentile;
     }
 
-    public void setPercentile(short percentile) {
+    public void setPercentile(Short percentile) {
         this.percentile = percentile;
     }
 
@@ -44,20 +44,20 @@ public class DocumentLengthPercentile implements Dimension {
     }
 
     @Column(name = "coarseUpper")
-    public int getCoarseUpperBound() {
+    public Integer getCoarseUpperBound() {
         return coarseUpperBound;
     }
 
-    public void setCoarseUpperBound(int coarseUpperBound) {
+    public void setCoarseUpperBound(Integer coarseUpperBound) {
         this.coarseUpperBound = coarseUpperBound;
     }
 
     @Column(name = "coarseLower")
-    public int getCoarseLowerBound() {
+    public Integer getCoarseLowerBound() {
         return coarseLowerBound;
     }
 
-    public void setCoarseLowerBound(int coarseLowerBound) {
+    public void setCoarseLowerBound(Integer coarseLowerBound) {
         this.coarseLowerBound = coarseLowerBound;
     }
 }

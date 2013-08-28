@@ -24,11 +24,11 @@ public class OrganizationFact implements Cube {
     private DocumentLengthGroup docLengthGroup;
     private DocumentLengthPercentile docLengthPercentile;
     private OrganizationPercentile orgPercentile;
-    private int docLengthWords;
-    private int orgFrequency;
-    private int orgFrequencyShare;
-    private int position;
-    private int positionPercentile;
+    private Integer docLengthWords;
+    private Integer orgFrequency;
+    private Integer orgFrequencyShare;
+    private Integer position;
+    private Integer positionPercentile;
 
     public void addDimension(String name, Dimension d) {
         if (name.equals(Constants.ORGANIZATION)) {
@@ -202,47 +202,47 @@ public class OrganizationFact implements Cube {
     }
 
     @Column(name = "documentLengthWords")
-    public int getDocLengthWords() {
+    public Integer getDocLengthWords() {
         return docLengthWords;
     }
 
-    public void setDocLengthWords(int docLengthWords) {
+    public void setDocLengthWords(Integer docLengthWords) {
         this.docLengthWords = docLengthWords;
     }
 
     @Column(name = "orgFrequency")
-    public int getOrgFrequency() {
+    public Integer getOrgFrequency() {
         return orgFrequency;
     }
 
-    public void setOrgFrequency(int orgFrequency) {
+    public void setOrgFrequency(Integer orgFrequency) {
         this.orgFrequency = orgFrequency;
     }
 
     @Column(name = "orgFrequencyShare")
-    public int getOrgFrequencyShare() {
+    public Integer getOrgFrequencyShare() {
         return orgFrequencyShare;
     }
 
-    public void setOrgFrequencyShare(int orgFrequencyShare) {
+    public void setOrgFrequencyShare(Integer orgFrequencyShare) {
         this.orgFrequencyShare = orgFrequencyShare;
     }
 
     @Column(name = "position")
-    public int getPosition() {
+    public Integer getPosition() {
         return position;
     }
 
-    public void setPosition(int position) {
+    public void setPosition(Integer position) {
         this.position = position;
     }
 
     @Column(name = "positionPercentile")
-    public int getPositionPercentile() {
+    public Integer getPositionPercentile() {
         return positionPercentile;
     }
 
-    public void setPositionPercentile(int positionPercentile) {
+    public void setPositionPercentile(Integer positionPercentile) {
         this.positionPercentile = positionPercentile;
     }
 }

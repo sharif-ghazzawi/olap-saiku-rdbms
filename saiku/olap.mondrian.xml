@@ -53,8 +53,9 @@
     <Dimension name="Document">
         <Hierarchy hasAll="true" primaryKey="id">
             <Table name="document"/>
+            <Level name="DRSI ID" column="drsiDocId"/>
             <Level name="Title" column="title"/>
-            <Level name="Full Text" column="fullText"/>
+            <Level name="Full Text" column="body"/>
         </Hierarchy>
     </Dimension>
 

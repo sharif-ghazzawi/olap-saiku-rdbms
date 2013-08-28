@@ -17,10 +17,13 @@ public class ExtractedLocation implements Dimension {
     private String countryIso;
     private String countryName;
     private Command command;
-    private float latitude;
-    private float longitude;
+    private Integer subnationalClavinId;
+    private String subnationalName;
+    private Float latitude;
+    private Float longitude;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     public Integer getId() {
         return this.id;
@@ -86,21 +89,39 @@ public class ExtractedLocation implements Dimension {
         this.command = command;
     }
 
+    @Column(name = "subnationalClavinId")
+    public Integer getSubnationalClavinId() {
+        return this.subnationalClavinId;
+    }
+
+    public void setSubnationalClavinId(Integer subnationalClavinId) {
+        this.subnationalClavinId = subnationalClavinId;
+    }
+
+    @Column(name = "subnationalName")
+    public String getSubnationalName() {
+        return subnationalName;
+    }
+
+    public void setSubnationalName(String subnationalName) {
+        this.subnationalName = subnationalName;
+    }
+
     @Column(name = "latitude")
-    public float getLatitude() {
+    public Float getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(float latitude) {
+    public void setLatitude(Float latitude) {
         this.latitude = latitude;
     }
 
     @Column(name = "longitude")
-    public float getLongitude() {
+    public Float getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(float longitude) {
+    public void setLongitude(Float longitude) {
         this.longitude = longitude;
     }
 

@@ -10,11 +10,11 @@ public class DocumentLengthGroup implements Dimension {
 
     private Integer id;
     private String fineName;
-    private int fineLowerBound;
-    private int fineUpperBound;
+    private Integer fineLowerBound;
+    private Integer fineUpperBound;
     private String coarseName;
-    private int coarseLowerBound;
-    private int coarseUpperBound;
+    private Integer coarseLowerBound;
+    private Integer coarseUpperBound;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,20 +37,20 @@ public class DocumentLengthGroup implements Dimension {
     }
 
     @Column(name = "fineLower")
-    public int getFineLowerBound() {
+    public Integer getFineLowerBound() {
         return fineLowerBound;
     }
 
-    public void setFineLowerBound(int upperBound) {
+    public void setFineLowerBound(Integer upperBound) {
         this.fineLowerBound = upperBound;
     }
 
     @Column(name = "fineUpper")
-    public int getFineUpperBound() {
+    public Integer getFineUpperBound() {
         return fineUpperBound;
     }
 
-    public void setFineUpperBound(int lowerBound) {
+    public void setFineUpperBound(Integer lowerBound) {
         this.fineUpperBound = lowerBound;
     }
 
@@ -64,20 +64,20 @@ public class DocumentLengthGroup implements Dimension {
     }
 
     @Column(name = "coarseLower")
-    public int getCoarseLowerBound() {
+    public Integer getCoarseLowerBound() {
         return coarseLowerBound;
     }
 
-    public void setCoarseLowerBound(int coarseLowerBound) {
+    public void setCoarseLowerBound(Integer coarseLowerBound) {
         this.coarseLowerBound = coarseLowerBound;
     }
 
     @Column(name = "coarseUpper")
-    public int getCoarseUpperBound() {
+    public Integer getCoarseUpperBound() {
         return coarseUpperBound;
     }
 
-    public void setCoarseUpperBound(int coarseUpperBound) {
+    public void setCoarseUpperBound(Integer coarseUpperBound) {
         this.coarseUpperBound = coarseUpperBound;
     }
 

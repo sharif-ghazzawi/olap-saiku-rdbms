@@ -14,13 +14,13 @@ public class Person implements Dimension {
     private Integer id;
     private String name;
     private String concept;
-    private int fineId;
+    private Integer fineId;
     private String fineName;
-    private int mediumId;
+    private Integer mediumId;
     private String mediumName;
-    private int coarseId;
+    private Integer coarseId;
     private String coarseName;
-    private float evImportance;
+    private Float evImportance;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -52,11 +52,11 @@ public class Person implements Dimension {
     }
 
     @Column(name = "fineId")
-    public int getFineId() {
+    public Integer getFineId() {
         return fineId;
     }
 
-    public void setFineId(int fineId) {
+    public void setFineId(Integer fineId) {
         this.fineId = fineId;
     }
 
@@ -70,11 +70,11 @@ public class Person implements Dimension {
     }
 
     @Column(name = "mediumId")
-    public int getMediumId() {
+    public Integer getMediumId() {
         return mediumId;
     }
 
-    public void setMediumId(int mediumId) {
+    public void setMediumId(Integer mediumId) {
         this.mediumId = mediumId;
     }
 
@@ -88,11 +88,11 @@ public class Person implements Dimension {
     }
 
     @Column(name = "coarseId")
-    public int getCoarseId() {
+    public Integer getCoarseId() {
         return coarseId;
     }
 
-    public void setCoarseId(int coarseId) {
+    public void setCoarseId(Integer coarseId) {
         this.coarseId = coarseId;
     }
 
@@ -106,11 +106,11 @@ public class Person implements Dimension {
     }
 
     @Column(name = "evImportance")
-    public float getEvImportance() {
+    public Float getEvImportance() {
         return evImportance;
     }
 
-    public void setEvImportance(float evImportance) {
+    public void setEvImportance(Float evImportance) {
         this.evImportance = evImportance;
     }
 }

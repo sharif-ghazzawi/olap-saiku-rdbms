@@ -9,8 +9,9 @@ import javax.persistence.*;
 public class Document implements Dimension {
 
     private Integer id;
+    private String drsiId;
     private String title;
-    private String fullText;
+    private String body;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,6 +24,15 @@ public class Document implements Dimension {
         this.id = id;
     }
 
+    @Column(name = "drsiDocId")
+    public String getDrsiId() {
+        return drsiId;
+    }
+
+    public void setDrsiId(String drsiId) {
+        this.drsiId = drsiId;
+    }
+
     @Column(name = "title")
     public String getTitle() {
         return title;
@@ -32,13 +42,13 @@ public class Document implements Dimension {
         this.title = title;
     }
 
-    @Column(name = "fullText")
-    public String getFullText() {
-        return fullText;
+    @Column(name = "body", length = 65535)
+    public String getBody() {
+        return body;
     }
 
-    public void setFullText(String fullText) {
-        this.fullText = fullText;
+    public void setBody(String body) {
+        this.body = body;
     }
 
 }
