@@ -75,36 +75,21 @@
     </Dimension>
 
     <Dimension name="Extracted Location">
-        <Hierarchy hasAll="true" primaryKey="id">
-            <Table name="extractedLocation"/>
-            <Level name="Clavin ID" column="clavinId"/>
-            <Level name="Name" column="name"/>
-            <Level name="Country Clavin ID" column="countryClavinId"/>
-            <Level name="Country Code (ISO)" column="countryIso"/>
-            <Level name="Country Name" column="countryName"/>
-            <Level name="Command">
-                <KeyExpression>
-                    <SQL dialect="mysql">
-                        (SELECT com.name FROM command AS com WHERE com.id=extractedLocation.commandId)
-                    </SQL>
-                </KeyExpression>
-            </Level>
-            <Level name="Subnational Clavin ID" column="subnationalClavinId"/>
-            <Level name="Subnational Name" column="subnationalName"/>
-            <Level name="Latitude" column="latitude"/>
-            <Level name="Longitude" column="longitude"/>
-            <!--Level name="Location">
-                <KeyExpression>
-                    <SQL dialect="mysql">
-                        CONCAT(CONCAT(CAST(latitude AS CHAR(8), ',')), CAST(longitude AS CHAR(8)))
-                    </SQL>
-                </KeyExpression>
-                <OrdinalExpression>
-                    <SQL dialect="mysql">
-                        latitude, longitude
-                    </SQL>
-                </OrdinalExpression>
-            </Level-->
+        <Hierarchy hasAll="true" primaryKey="id" primaryKeyTable="extractedLocation">
+            <Join leftKey="commandId" rightKey="id">
+                <Table name="extractedLocation"/>
+                <Table name="command"/>
+            </Join>
+            <Level name="Clavin ID" table="extractedLocation" column="clavinId"/>
+            <Level name="Name" table="extractedLocation" column="name"/>
+            <Level name="Country Clavin ID" table="extractedLocation" column="countryClavinId"/>
+            <Level name="Country Code (ISO)" table="extractedLocation" column="countryIso"/>
+            <Level name="Country Name" table="extractedLocation" column="countryName"/>
+            <Level name="Command" table="command" column="name"/>
+            <Level name="Subnational Clavin ID" table="extractedLocation" column="subnationalClavinId"/>
+            <Level name="Subnational Name" table="extractedLocation" column="subnationalName"/>
+            <Level name="Latitude" table="extractedLocation" column="latitude"/>
+            <Level name="Longitude" table="extractedLocation" column="longitude"/>
         </Hierarchy>
     </Dimension>
 
