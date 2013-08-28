@@ -22,13 +22,13 @@ DROP TABLE IF EXISTS `wordFact`;
 DROP TABLE IF EXISTS `wordStemPercentile`;
 
 CREATE TABLE `classification` (
-  `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
+  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `collectionDate` (
-  `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
+  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -48,14 +48,14 @@ INSERT INTO command (id, name) VALUES (6, 'PACOM');
 INSERT INTO command (id, name) VALUES (7, 'N/A');
 
 CREATE TABLE `document` (
-  `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
+  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `title` varchar(40) DEFAULT NULL,
   `fullText` text,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `documentLengthGroup` (
-  `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
+  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `fineName` varchar(20) DEFAULT NULL,
   `fineLower` int(10) unsigned DEFAULT NULL,
   `fineUpper` int(10) unsigned DEFAULT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE `documentLengthGroup` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `documentLengthPercentile` (
-  `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
+  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `percentile` tinyint(3) unsigned NOT NULL,
   `coarseName` varchar(20) DEFAULT NULL,
   `coarseLower` tinyint(3) unsigned DEFAULT NULL,
@@ -75,13 +75,13 @@ CREATE TABLE `documentLengthPercentile` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `extractedDate` (
-  `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
+  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `extractedLocation` (
-  `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
+  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `clavinId` int(10) DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
   `countryClavinId` int(10) DEFAULT NULL,
@@ -97,13 +97,13 @@ CREATE TABLE `extractedLocation` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `ingestDate` (
-  `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
+  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `organization` (
-  `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
+  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `name` varchar(40) DEFAULT NULL,
   `concept` varchar(40) DEFAULT NULL,
   `fineId` int(10) unsigned DEFAULT NULL,
@@ -117,7 +117,7 @@ CREATE TABLE `organization` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `organizationFact` (
-  `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
+  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `organizationId` int(10) unsigned DEFAULT NULL,
   `documentId` int(10) unsigned DEFAULT NULL,
   `extractedLocationId` int(10) unsigned DEFAULT NULL,
@@ -151,7 +151,7 @@ CREATE TABLE `organizationFact` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `organizationPercentile` (
-  `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
+  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `percentile` tinyint(3) unsigned NOT NULL,
   `coarseName` varchar(20) DEFAULT NULL,
   `coarseLower` tinyint(3) unsigned DEFAULT NULL,
@@ -160,7 +160,7 @@ CREATE TABLE `organizationPercentile` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `person` (
-  `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
+  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `name` varchar(40) DEFAULT NULL,
   `concept` varchar(40) DEFAULT NULL,
   `fineId` int(10) unsigned DEFAULT NULL,
@@ -174,7 +174,7 @@ CREATE TABLE `person` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `personFact` (
-  `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
+  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `personId` int(10) unsigned DEFAULT NULL,
   `documentId` int(10) unsigned DEFAULT NULL,
   `extractedLocationId` int(10) unsigned DEFAULT NULL,
@@ -208,7 +208,7 @@ CREATE TABLE `personFact` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `personPercentile` (
-  `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
+  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `percentile` tinyint(3) unsigned NOT NULL,
   `coarseName` varchar(20) DEFAULT NULL,
   `coarseLower` tinyint(3) unsigned DEFAULT NULL,
@@ -217,20 +217,20 @@ CREATE TABLE `personPercentile` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `publicationDate` (
-  `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
+  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `source` (
-  `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
+  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `name` varchar(60) DEFAULT NULL,
   `type` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `word` (
-  `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
+  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `name` varchar(40) DEFAULT NULL,
   `concept` varchar(40) DEFAULT NULL,
   `fineId` int(10) unsigned DEFAULT NULL,
@@ -244,7 +244,7 @@ CREATE TABLE `word` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `wordFact` (
-  `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
+  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `wordId` int(10) unsigned DEFAULT NULL,
   `documentId` int(10) unsigned DEFAULT NULL,
   `extractedLocationId` int(10) unsigned DEFAULT NULL,
@@ -278,7 +278,7 @@ CREATE TABLE `wordFact` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `wordStemPercentile` (
-  `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
+  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `percentile` tinyint(3) unsigned NOT NULL,
   `coarseName` varchar(20) DEFAULT NULL,
   `coarseLower` tinyint(3) unsigned DEFAULT NULL,
