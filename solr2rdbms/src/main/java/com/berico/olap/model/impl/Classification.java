@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Classification implements Dimension {
 
     private Integer id;
-    private String type;
+    private String name;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,12 +22,12 @@ public class Classification implements Dimension {
         this.id = id;
     }
 
-    @Column(name = "type")
-    public String getType() {
-        return type;
+    @Column(name = "name")
+    public String getName() {
+        return name;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setName(String type) {
+        this.name = type;
     }
 }

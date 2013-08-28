@@ -9,11 +9,12 @@ import javax.persistence.*;
 public class DocumentLengthGroup implements Dimension {
 
     private Integer id;
-    private int upperBound;
-    private int lowerBound;
-    private Integer coarseId;
-    private int coarseUpperBound;
+    private String fineName;
+    private int fineLowerBound;
+    private int fineUpperBound;
+    private String coarseName;
     private int coarseLowerBound;
+    private int coarseUpperBound;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,44 +23,44 @@ public class DocumentLengthGroup implements Dimension {
         return this.id;
     }
 
-    public void setId(Integer id) {
+    private void setId(Integer id) {
         this.id = id;
     }
 
-    @Column(name = "upper")
-    public int getUpperBound() {
-        return upperBound;
+    @Column(name = "fineName")
+    public String getFineName() {
+        return fineName;
     }
 
-    public void setUpperBound(int upperBound) {
-        this.upperBound = upperBound;
+    public void setFineName(String fineName) {
+        this.fineName = fineName;
     }
 
-    @Column(name = "lower")
-    public int getLowerBound() {
-        return lowerBound;
+    @Column(name = "fineLower")
+    public int getFineLowerBound() {
+        return fineLowerBound;
     }
 
-    public void setLowerBound(int lowerBound) {
-        this.lowerBound = lowerBound;
+    public void setFineLowerBound(int upperBound) {
+        this.fineLowerBound = upperBound;
     }
 
-    @Column(name = "coarseId")
-    public Integer getCoarseId() {
-        return coarseId;
+    @Column(name = "fineUpper")
+    public int getFineUpperBound() {
+        return fineUpperBound;
     }
 
-    public void setCoarseId(Integer coarseId) {
-        this.coarseId = coarseId;
+    public void setFineUpperBound(int lowerBound) {
+        this.fineUpperBound = lowerBound;
     }
 
-    @Column(name = "coarseUpper")
-    public int getCoarseUpperBound() {
-        return coarseUpperBound;
+    @Column(name = "coarseName")
+    public String getCoarseName() {
+        return coarseName;
     }
 
-    public void setCoarseUpperBound(int coarseUpperBound) {
-        this.coarseUpperBound = coarseUpperBound;
+    public void setCoarseName(String coarseName) {
+        this.coarseName = coarseName;
     }
 
     @Column(name = "coarseLower")
@@ -69,6 +70,15 @@ public class DocumentLengthGroup implements Dimension {
 
     public void setCoarseLowerBound(int coarseLowerBound) {
         this.coarseLowerBound = coarseLowerBound;
+    }
+
+    @Column(name = "coarseUpper")
+    public int getCoarseUpperBound() {
+        return coarseUpperBound;
+    }
+
+    public void setCoarseUpperBound(int coarseUpperBound) {
+        this.coarseUpperBound = coarseUpperBound;
     }
 
 }

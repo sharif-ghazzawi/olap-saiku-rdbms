@@ -76,7 +76,7 @@ public class ExtractedLocation implements Dimension {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "command")
+    @JoinColumn(name = "commandId")
     @ForeignKey(name = Constants.FK_COMMAND_EXTRACTEDLOCATION)
     public Command getCommand() {
         return command;

@@ -5,8 +5,8 @@ import com.berico.olap.model.Dimension;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "wordStemPercentile")
-public class WordStemPercentile implements Dimension {
+@Table(name = "personPercentile")
+public class PersonPercentile implements Dimension {
 
     private Integer id;
     private short percentile;

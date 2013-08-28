@@ -12,9 +12,8 @@
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.show_sql">false</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
-                <prop key="hibernate.show_sql">true</prop>
             </props>
         </property>
         <property name="annotatedClasses">
@@ -30,8 +29,10 @@
                 <value>com.berico.olap.model.impl.IngestionDate</value>
                 <value>com.berico.olap.model.impl.Organization</value>
                 <value>com.berico.olap.model.impl.OrganizationFact</value>
+                <value>com.berico.olap.model.impl.OrganizationPercentile</value>
                 <value>com.berico.olap.model.impl.Person</value>
                 <value>com.berico.olap.model.impl.PersonFact</value>
+                <value>com.berico.olap.model.impl.PersonPercentile</value>
                 <value>com.berico.olap.model.impl.PublicationDate</value>
                 <value>com.berico.olap.model.impl.Source</value>
                 <value>com.berico.olap.model.impl.Word</value>

@@ -16,6 +16,8 @@ public class Constants {
     public static final String DOCUMENT_LENGTH_GROUP = "docLengthGroup";
     public static final String DOCUMENT_LENGTH_PERCENTILE = "docLengthPercentile";
     public static final String WORD_STEM_PERCENTILE = "wordStemPercentile";
+    public static final String ORGANIZATION_PERCENTILE = "organizationPercentile";
+    public static final String PERSON_PERCENTILE = "personPercentile";
 
     public static final String NORTHCOM = "NORTHCOM";
     public static final String SOUTHCOM = "SOUTHCOM";
@@ -51,7 +53,7 @@ public class Constants {
     public static final String FK_SOURCE_PERSONFACT = "FK_Source_PersonFact";
     public static final String FK_DOCLENGTHGROUP_PERSONFACT = "FK_DocumentLengthGroup_PersonFact";
     public static final String FK_DOCLENGTHPERCENTILE_PERSONFACT = "FK_DocumentLengthPercentile_PersonFact";
-    public static final String FK_WORDSTEMPERCENTILE_PERSONFACT = "FK_WordStemPercentile_PersonFact";
+    public static final String FK_PERSONPERCENTILE_PERSONFACT = "FK_PersonPercentile_PersonFact";
 
     public static final String FK_ORG_ORGANIZATIONFACT = "FK_Organization_OrganizationFact";
     public static final String FK_DOCUMENT_ORGANIZATIONFACT = "FK_Document_OrganizationFact";
@@ -64,5 +66,5 @@ public class Constants {
     public static final String FK_SOURCE_ORGANIZATIONFACT = "FK_Source_OrganizationFact";
     public static final String FK_DOCLENGTHGROUP_ORGANIZATIONFACT = "FK_DocumentLengthGroup_OrganizationFact";
     public static final String FK_DOCLENGTHPERCENTILE_ORGANIZATIONFACT = "FK_DocumentLengthPercentile_OrganizationFact";
-    public static final String FK_WORDSTEMPERCENTILE_ORGANIZATIONFACT = "FK_WordStemPercentile_OrganizationFact";
+    public static final String FK_ORGANIZATIONPERCENTILE_ORGANIZATIONFACT = "FK_OrganizationPercentile_OrganizationFact";
 }

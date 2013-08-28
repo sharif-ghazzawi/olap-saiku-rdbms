@@ -9,66 +9,105 @@ import javax.persistence.*;
 public class Word implements Dimension {
 
     private Integer id;
-    private String word;
-    private String stem;
-    private String fine;
-    private String medium;
-    private String coarse;
+    private String name;
+    private String concept;
+    private int fineId;
+    private String fineName;
+    private int mediumId;
+    private String mediumName;
+    private int coarseId;
+    private String coarseName;
+    private float evImportance;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     private void setId(Integer id) {
         this.id = id;
     }
 
-    @Column(name = "word")
-    public String getWord() {
-        return this.word;
+    @Column(name = "name")
+    public String getName() {
+        return name;
     }
 
-    public void setWord(String word) {
-        this.word = word;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @Column(name = "stem")
-    public String getStem() {
-        return this.stem;
+    @Column(name = "concept")
+    public String getConcept() {
+        return concept;
     }
 
-    public void setStem(String stem) {
-        this.stem = stem;
+    public void setConcept(String concept) {
+        this.concept = concept;
     }
 
-    @Column(name = "fine")
-    public String getFine() {
-        return this.fine;
+    @Column(name = "fineId")
+    public int getFineId() {
+        return fineId;
     }
 
-    public void setFine(String fine) {
-        this.fine = fine;
+    public void setFineId(int fineId) {
+        this.fineId = fineId;
     }
 
-    @Column(name = "medium")
-    public String getMedium() {
-        return this.medium;
+    @Column(name = "fineName")
+    public String getFineName() {
+        return fineName;
     }
 
-    public void setMedium(String medium) {
-        this.medium = medium;
+    public void setFineName(String fineName) {
+        this.fineName = fineName;
     }
 
-    @Column(name = "coarse")
-    public String getCoarse() {
-        return this.coarse;
+    @Column(name = "mediumId")
+    public int getMediumId() {
+        return mediumId;
     }
 
-    public void setCoarse(String coarse) {
-        this.coarse = coarse;
+    public void setMediumId(int mediumId) {
+        this.mediumId = mediumId;
     }
 
+    @Column(name = "mediumName")
+    public String getMediumName() {
+        return mediumName;
+    }
+
+    public void setMediumName(String mediumName) {
+        this.mediumName = mediumName;
+    }
+
+    @Column(name = "coarseId")
+    public int getCoarseId() {
+        return coarseId;
+    }
+
+    public void setCoarseId(int coarseId) {
+        this.coarseId = coarseId;
+    }
+
+    @Column(name = "coarseName")
+    public String getCoarseName() {
+        return coarseName;
+    }
+
+    public void setCoarseName(String coarseName) {
+        this.coarseName = coarseName;
+    }
+
+    @Column(name = "evImportance")
+    public float getEvImportance() {
+        return evImportance;
+    }
+
+    public void setEvImportance(float evImportance) {
+        this.evImportance = evImportance;
+    }
 }

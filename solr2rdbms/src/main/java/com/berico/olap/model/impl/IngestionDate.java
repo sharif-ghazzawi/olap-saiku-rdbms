@@ -1,6 +1,8 @@
 package com.berico.olap.model.impl;
 
 import com.berico.olap.model.Dimension;
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 
 import javax.persistence.*;
 
@@ -9,8 +11,7 @@ import javax.persistence.*;
 public class IngestionDate implements Dimension {
 
     private Integer id;
-    private int month;
-    private int year;
+    private DateTime date;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,21 +24,13 @@ public class IngestionDate implements Dimension {
         this.id = id;
     }
 
-    @Column(name = "month")
-    public int getMonth() {
-        return month;
+    @Column(name = "date")
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    public DateTime getDate() {
+        return date;
     }
 
-    public void setMonth(int month) {
-        this.month = month;
-    }
-
-    @Column(name = "year")
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
+    public void setDate(DateTime date) {
+        this.date = date;
     }
 }
