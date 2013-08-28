@@ -256,8 +256,8 @@
         <Dimension name="Word" foreignKey="wordId">
             <Hierarchy hasAll="true" primaryKey="id">
                 <Table name="word"/>
-                <Level name="Name" column="name" uniqueMembers="false"/>
-                <Level name="Concept" column="concept" uniqueMembers="false"/>
+                <Level name="Word" column="word" uniqueMembers="false"/>
+                <Level name="Word Stem" column="stem" uniqueMembers="false"/>
                 <Level name="Fine" column="fineName" ordinalColumn="fineId" uniqueMembers="false"/>
                 <Level name="Medium" column="mediumName" ordinalColumn="mediumId" uniqueMembers="false"/>
                 <Level name="Coarse" column="coarseName" ordinalColumn="coarseId" uniqueMembers="false"/>

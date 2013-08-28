@@ -9,8 +9,8 @@ import javax.persistence.*;
 public class Word implements Dimension {
 
     private Integer id;
-    private String name;
-    private String concept;
+    private String word;
+    private String stem;
     private int fineId;
     private String fineName;
     private int mediumId;
@@ -30,22 +30,22 @@ public class Word implements Dimension {
         this.id = id;
     }
 
-    @Column(name = "name")
-    public String getName() {
-        return name;
+    @Column(name = "word")
+    public String getWord() {
+        return word;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setWord(String name) {
+        this.word = name;
     }
 
-    @Column(name = "concept")
-    public String getConcept() {
-        return concept;
+    @Column(name = "stem")
+    public String getStem() {
+        return stem;
     }
 
-    public void setConcept(String concept) {
-        this.concept = concept;
+    public void setStem(String concept) {
+        this.stem = concept;
     }
 
     @Column(name = "fineId")

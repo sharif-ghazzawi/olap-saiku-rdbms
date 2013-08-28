@@ -231,8 +231,8 @@ CREATE TABLE `source` (
 
 CREATE TABLE `word` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
-  `name` varchar(40) DEFAULT NULL,
-  `concept` varchar(40) DEFAULT NULL,
+  `word` varchar(40) DEFAULT NULL,
+  `stem` varchar(40) DEFAULT NULL,
   `fineId` int(10) unsigned DEFAULT NULL,
   `fineName` varchar(40) DEFAULT NULL,
   `mediumId` int(10) unsigned DEFAULT NULL,
