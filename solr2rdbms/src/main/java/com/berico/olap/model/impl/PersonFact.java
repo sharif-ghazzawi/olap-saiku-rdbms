@@ -14,19 +14,19 @@ public class PersonFact implements Cube {
     private Integer id;
     private Person person;
     private Document document;
-    private ExtractedLocation exLocation;
-    private ExtractedDate exDate;
-    private PublicationDate pubDate;
-    private IngestionDate ingDate;
-    private CollectionDate colDate;
+    private ExtractedLocation extractedLocation;
+    private ExtractedDate extractedDate;
+    private PublicationDate publicationDate;
+    private IngestionDate ingestDate;
+    private CollectionDate collectionDate;
     private Classification classification;
     private Source source;
-    private DocumentLengthGroup docLengthGroup;
-    private DocumentLengthPercentile docLengthPercentile;
+    private DocumentLengthGroup documentLengthGroup;
+    private DocumentLengthPercentile documentLengthPercentile;
     private PersonPercentile personPercentile;
-    private Integer docLengthWords;
+    private Integer documentLengthWords;
     private Integer personFrequency;
-    private Integer personFrequencyShare;
+    private Float personFrequencyShare;
     private Integer position;
     private Integer positionPercentile;
 
@@ -36,23 +36,23 @@ public class PersonFact implements Cube {
         } else if (name.equals(Constants.DOCUMENT)) {
             setDocument((Document) d);
         } else if (name.equals(Constants.EXTRACTED_LOCATION)) {
-            setExLocation((ExtractedLocation) d);
+            setExtractedLocation((ExtractedLocation) d);
         } else if (name.equals(Constants.EXTRACTED_DATE)) {
-            setExDate((ExtractedDate) d);
+            setExtractedDate((ExtractedDate) d);
         } else if (name.equals(Constants.PUBLICATION_DATE)) {
-            setPubDate((PublicationDate) d);
+            setPublicationDate((PublicationDate) d);
         } else if (name.equals(Constants.INGESTION_DATE)) {
-            setIngDate((IngestionDate) d);
+            setIngestDate((IngestionDate) d);
         } else if (name.equals(Constants.COLLECTION_DATE)) {
-            setColDate((CollectionDate) d);
+            setCollectionDate((CollectionDate) d);
         } else if (name.equals(Constants.CLASSIFICATION)) {
             setClassification((Classification) d);
         } else if (name.equals(Constants.SOURCE)) {
             setSource((Source) d);
         } else if (name.equals(Constants.DOCUMENT_LENGTH_GROUP)) {
-            setDocLengthGroup((DocumentLengthGroup) d);
+            setDocumentLengthGroup((DocumentLengthGroup) d);
         } else if (name.equals(Constants.DOCUMENT_LENGTH_PERCENTILE)) {
-            setDocLengthPercentile((DocumentLengthPercentile) d);
+            setDocumentLengthPercentile((DocumentLengthPercentile) d);
         } else if (name.equals(Constants.PERSON_PERCENTILE)) {
             setPersonPercentile((PersonPercentile) d);
         }
@@ -94,56 +94,56 @@ public class PersonFact implements Cube {
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "extractedLocationId")
     @ForeignKey(name = Constants.FK_EXLOCATION_PERSONFACT)
-    public ExtractedLocation getExLocation() {
-        return exLocation;
+    public ExtractedLocation getExtractedLocation() {
+        return extractedLocation;
     }
 
-    public void setExLocation(ExtractedLocation exLocation) {
-        this.exLocation = exLocation;
+    public void setExtractedLocation(ExtractedLocation exLocation) {
+        this.extractedLocation = exLocation;
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "extractedDateId")
     @ForeignKey(name = Constants.FK_EXDATE_PERSONFACT)
-    public ExtractedDate getExDate() {
-        return exDate;
+    public ExtractedDate getExtractedDate() {
+        return extractedDate;
     }
 
-    public void setExDate(ExtractedDate exDate) {
-        this.exDate = exDate;
+    public void setExtractedDate(ExtractedDate exDate) {
+        this.extractedDate = exDate;
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "publicationDateId")
     @ForeignKey(name = Constants.FK_PUBDATE_PERSONFACT)
-    public PublicationDate getPubDate() {
-        return pubDate;
+    public PublicationDate getPublicationDate() {
+        return publicationDate;
     }
 
-    public void setPubDate(PublicationDate pubDate) {
-        this.pubDate = pubDate;
+    public void setPublicationDate(PublicationDate pubDate) {
+        this.publicationDate = pubDate;
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "ingestDateId")
     @ForeignKey(name = Constants.FK_INGDATE_PERSONFACT)
-    public IngestionDate getIngDate() {
-        return ingDate;
+    public IngestionDate getIngestDate() {
+        return ingestDate;
     }
 
-    public void setIngDate(IngestionDate ingDate) {
-        this.ingDate = ingDate;
+    public void setIngestDate(IngestionDate ingestDate) {
+        this.ingestDate = ingestDate;
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "collectionDateId")
     @ForeignKey(name = Constants.FK_COLDATE_PERSONFACT)
-    public CollectionDate getColDate() {
-        return colDate;
+    public CollectionDate getCollectionDate() {
+        return collectionDate;
     }
 
-    public void setColDate(CollectionDate colDate) {
-        this.colDate = colDate;
+    public void setCollectionDate(CollectionDate colDate) {
+        this.collectionDate = colDate;
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
@@ -171,23 +171,23 @@ public class PersonFact implements Cube {
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "documentLengthGroupId")
     @ForeignKey(name = Constants.FK_DOCLENGTHGROUP_PERSONFACT)
-    public DocumentLengthGroup getDocLengthGroup() {
-        return docLengthGroup;
+    public DocumentLengthGroup getDocumentLengthGroup() {
+        return documentLengthGroup;
     }
 
-    public void setDocLengthGroup(DocumentLengthGroup docLengthGroup) {
-        this.docLengthGroup = docLengthGroup;
+    public void setDocumentLengthGroup(DocumentLengthGroup docLengthGroup) {
+        this.documentLengthGroup = docLengthGroup;
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "documentLengthPercentileId")
     @ForeignKey(name = Constants.FK_DOCLENGTHPERCENTILE_PERSONFACT)
-    public DocumentLengthPercentile getDocLengthPercentile() {
-        return docLengthPercentile;
+    public DocumentLengthPercentile getDocumentLengthPercentile() {
+        return documentLengthPercentile;
     }
 
-    public void setDocLengthPercentile(DocumentLengthPercentile docLengthPercentile) {
-        this.docLengthPercentile = docLengthPercentile;
+    public void setDocumentLengthPercentile(DocumentLengthPercentile docLengthPercentile) {
+        this.documentLengthPercentile = docLengthPercentile;
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
@@ -202,12 +202,12 @@ public class PersonFact implements Cube {
     }
 
     @Column(name = "documentLengthWords")
-    public Integer getDocLengthWords() {
-        return docLengthWords;
+    public Integer getDocumentLengthWords() {
+        return documentLengthWords;
     }
 
-    public void setDocLengthWords(Integer docLengthWords) {
-        this.docLengthWords = docLengthWords;
+    public void setDocumentLengthWords(Integer docLengthWords) {
+        this.documentLengthWords = docLengthWords;
     }
 
     @Column(name = "personFrequency")
@@ -220,11 +220,11 @@ public class PersonFact implements Cube {
     }
 
     @Column(name = "personFrequencyShare")
-    public Integer getPersonFrequencyShare() {
+    public Float getPersonFrequencyShare() {
         return personFrequencyShare;
     }
 
-    public void setPersonFrequencyShare(Integer wordDocCountShare) {
+    public void setPersonFrequencyShare(Float wordDocCountShare) {
         this.personFrequencyShare = wordDocCountShare;
     }
 
