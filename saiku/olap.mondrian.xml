@@ -62,16 +62,16 @@
     <Dimension name="Document Length Group">
         <Hierarchy hasAll="true" primaryKey="id">
             <Table name="documentLengthGroup"/>
-            <Level name="Fine" column="fineName" ordinalColumn="fineLower"/>
             <Level name="Coarse" column="coarseName" ordinalColumn="coarseLower"/>
+            <Level name="Fine" column="fineName" ordinalColumn="fineLower"/>
         </Hierarchy>
     </Dimension>
 
     <Dimension name="Document Length Percentile">
         <Hierarchy hasAll="true" primaryKey="id">
             <Table name="documentLengthPercentile"/>
-            <Level name="Percentile" column="percentile"/>
             <Level name="Coarse" column="coarseName" ordinalColumn="coarseLower"/>
+            <Level name="Percentile" column="percentile"/>
         </Hierarchy>
     </Dimension>
 
@@ -81,20 +81,23 @@
                 <Table name="extractedLocation"/>
                 <Table name="command"/>
             </Join>
-            <Level name="Clavin ID" table="extractedLocation" column="clavinId" uniqueMembers="true"/>
-            <Level name="Name" table="extractedLocation" column="name"/>
-            <Level name="Country Clavin ID" table="extractedLocation" column="countryClavinId"/>
-            <Level name="Country Code (ISO)" table="extractedLocation" column="countryIso"/>
-            <Level name="Country Name" table="extractedLocation" column="countryName"/>
             <Level name="Command" table="command" column="name" ordinalColumn="id"/>
-            <Level name="Subnational Clavin ID" table="extractedLocation" column="subnationalClavinId"/>
-            <Level name="Subnational Name" table="extractedLocation" column="subnationalName"/>
-            <Level name="Latitude" table="extractedLocation" column="latitude"/>
-            <Level name="Longitude" table="extractedLocation" column="longitude"/>
+            <Level name="Country" table="extractedLocation" column="countryName">
+                <Property name="Country Clavin ID" table="extractedLocation" column="countryClavinId"/>
+                <Property name="Country Code (ISO)" table="extractedLocation" column="countryIso"/>
+            </Level>
+            <Level name="State/Province" table="extractedLocation" column="subnationalName">
+                <Property name="State/Province Clavin ID" table="extractedLocation" column="subnationalClavinId"/>
+            </Level>
+            <Level name="Location" table="extractedLocation" column="name">
+                <Property name="Clavin ID" table="extractedLocation" column="clavinId"/>
+                <Property name="Latitude" table="extractedLocation" column="latitude"/>
+                <Property name="Longitude" table="extractedLocation" column="longitude"/>
+            </Level>
         </Hierarchy>
     </Dimension>
 
-    <Dimension name="Extraction Date" type="TimeDimension">
+    <Dimension name="Extracted Date" type="TimeDimension">
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
             <Table name="extractedDate"/>
             <Level name="Year" uniqueMembers="true" levelType="TimeYears">
@@ -181,16 +184,16 @@
     <Dimension name="Organization Percentile">
         <Hierarchy hasAll="true" primaryKey="id">
             <Table name="organizationPercentile"/>
-            <Level name="Percentile" column="percentile"/>
             <Level name="Coarse" column="coarseName" ordinalColumn="coarseLower"/>
+            <Level name="Percentile" column="percentile"/>
         </Hierarchy>
     </Dimension>
 
     <Dimension name="Person Percentile">
         <Hierarchy hasAll="true" primaryKey="id">
             <Table name="personPercentile"/>
-            <Level name="Percentile" column="percentile"/>
             <Level name="Coarse" column="coarseName" ordinalColumn="coarseLower"/>
+            <Level name="Percentile" column="percentile"/>
         </Hierarchy>
     </Dimension>
 
@@ -239,35 +242,34 @@
     <Dimension name="Source">
         <Hierarchy hasAll="true" primaryKey="id">
             <Table name="source"/>
-            <Level name="Name" column="name"/>
             <Level name="Type" column="type"/>
+            <Level name="Name" column="name"/>
         </Hierarchy>
     </Dimension>
 
     <Dimension name="Word Stem Percentile">
         <Hierarchy hasAll="true" primaryKey="id">
             <Table name="wordStemPercentile"/>
-            <Level name="Percentile" column="percentile"/>
             <Level name="Coarse" column="coarseName" ordinalColumn="coarseLower"/>
+            <Level name="Percentile" column="percentile"/>
         </Hierarchy>
     </Dimension>
 
-    <Cube name="Words">
+    <Cube name="Words" defaultMeasure="Total">
         <Table name="wordFact"/>
         <Dimension name="Word" foreignKey="wordId">
             <Hierarchy hasAll="true" primaryKey="id">
                 <Table name="word"/>
-                <Level name="Word" column="word" uniqueMembers="false"/>
-                <Level name="Word Stem" column="stem" uniqueMembers="false"/>
-                <Level name="Fine" column="fineName" ordinalColumn="fineId" uniqueMembers="false"/>
-                <Level name="Medium" column="mediumName" ordinalColumn="mediumId" uniqueMembers="false"/>
                 <Level name="Coarse" column="coarseName" ordinalColumn="coarseId" uniqueMembers="false"/>
-                <Level name="Importance" column="evImportance" uniqueMembers="false"/>
+                <Level name="Medium" column="mediumName" ordinalColumn="mediumId" uniqueMembers="false"/>
+                <Level name="Fine" column="fineName" ordinalColumn="fineId" uniqueMembers="false"/>
+                <Level name="Word Stem" column="stem" uniqueMembers="false"/>
+                <Level name="Word" column="word" uniqueMembers="false"/>
             </Hierarchy>
         </Dimension>
         <DimensionUsage name="Document" source="Document" foreignKey="documentId"/>
         <DimensionUsage name="Location" source="Extracted Location" foreignKey="extractedLocationId"/>
-        <DimensionUsage name="Extraction Date" source="Extraction Date" foreignKey="extractedDateId"/>
+        <DimensionUsage name="Extracted Date" source="Extracted Date" foreignKey="extractedDateId"/>
         <DimensionUsage name="Publication date" source="Publication Date" foreignKey="publicationDateId"/>
         <DimensionUsage name="Ingestion date" source="Ingest Date" foreignKey="ingestDateId"/>
         <DimensionUsage name="Collection date" source="Collection Date" foreignKey="collectionDateId"/>
@@ -278,6 +280,7 @@
                         foreignKey="documentLengthPercentileId"/>
         <DimensionUsage name="Word Stem Percentile" source="Word Stem Percentile" foreignKey="wordStemPercentileId"/>
 
+        <Measure name="Total" column="id" aggregator="count" formatString="Standard"/>
         <Measure name="Document Length" column="documentLengthWords" aggregator="avg" formatString="Standard"/>
         <Measure name="Frequency of Appearance" column="wordFrequency" aggregator="avg" formatString="Standard"/>
         <Measure name="Frequency Share" column="wordFrequencyShare" aggregator="avg" formatString="Standard"/>
@@ -285,22 +288,21 @@
         <Measure name="Position Percentile" column="positionPercentile" aggregator="count" formatString="Standard"/>
     </Cube>
 
-    <Cube name="People">
+    <Cube name="People" defaultMeasure="Total">
         <Table name="personFact"/>
         <Dimension name="Person" foreignKey="personId">
             <Hierarchy hasAll="true" primaryKey="id">
                 <Table name="word"/>
-                <Level name="Name" column="name" uniqueMembers="false"/>
-                <Level name="Concept" column="concept" uniqueMembers="false"/>
-                <Level name="Fine" column="fineName" ordinalColumn="fineId" uniqueMembers="false"/>
-                <Level name="Medium" column="mediumName" ordinalColumn="mediumId" uniqueMembers="false"/>
                 <Level name="Coarse" column="coarseName" ordinalColumn="coarseId" uniqueMembers="false"/>
-                <Level name="Importance" column="evImportance" uniqueMembers="false"/>
+                <Level name="Medium" column="mediumName" ordinalColumn="mediumId" uniqueMembers="false"/>
+                <Level name="Fine" column="fineName" ordinalColumn="fineId" uniqueMembers="false"/>
+                <Level name="Concept" column="concept" uniqueMembers="false"/>
+                <Level name="Name" column="name" uniqueMembers="false"/>
             </Hierarchy>
         </Dimension>
         <DimensionUsage name="Document" source="Document" foreignKey="documentId"/>
         <DimensionUsage name="Location" source="Extracted Location" foreignKey="extractedLocationId"/>
-        <DimensionUsage name="Extraction Date" source="Extraction Date" foreignKey="extractedDateId"/>
+        <DimensionUsage name="Extracted Date" source="Extracted Date" foreignKey="extractedDateId"/>
         <DimensionUsage name="Publication date" source="Publication Date" foreignKey="publicationDateId"/>
         <DimensionUsage name="Ingestion date" source="Ingest Date" foreignKey="ingestDateId"/>
         <DimensionUsage name="Collection date" source="Collection Date" foreignKey="collectionDateId"/>
@@ -311,6 +313,7 @@
                         foreignKey="documentLengthPercentileId"/>
         <DimensionUsage name="Person Percentile" source="Person Percentile" foreignKey="personPercentileId"/>
 
+        <Measure name="Total" column="id" aggregator="count" formatString="Standard"/>
         <Measure name="Document Length" column="documentLengthWords" aggregator="avg" formatString="Standard"/>
         <Measure name="Frequency of Appearance" column="personFrequency" aggregator="avg" formatString="Standard"/>
         <Measure name="Frequency Share" column="personFrequencyShare" aggregator="avg" formatString="Standard"/>
@@ -318,22 +321,21 @@
         <Measure name="Position Percentile" column="positionPercentile" aggregator="count" formatString="Standard"/>
     </Cube>
 
-    <Cube name="Organizations">
+    <Cube name="Organizations" defaultMeasure="Total">
         <Table name="organizationFact"/>
         <Dimension name="Organization" foreignKey="organizationId">
             <Hierarchy hasAll="true" primaryKey="id">
                 <Table name="word"/>
-                <Level name="Name" column="name" uniqueMembers="false"/>
-                <Level name="Concept" column="concept" uniqueMembers="false"/>
-                <Level name="Fine" column="fineName" ordinalColumn="fineId" uniqueMembers="false"/>
-                <Level name="Medium" column="mediumName" ordinalColumn="mediumId" uniqueMembers="false"/>
                 <Level name="Coarse" column="coarseName" ordinalColumn="coarseId" uniqueMembers="false"/>
-                <Level name="Importance" column="evImportance" uniqueMembers="false"/>
+                <Level name="Medium" column="mediumName" ordinalColumn="mediumId" uniqueMembers="false"/>
+                <Level name="Fine" column="fineName" ordinalColumn="fineId" uniqueMembers="false"/>
+                <Level name="Concept" column="concept" uniqueMembers="false"/>
+                <Level name="Name" column="name" uniqueMembers="false"/>
             </Hierarchy>
         </Dimension>
         <DimensionUsage name="Document" source="Document" foreignKey="documentId"/>
         <DimensionUsage name="Location" source="Extracted Location" foreignKey="extractedLocationId"/>
-        <DimensionUsage name="Extraction Date" source="Extraction Date" foreignKey="extractedDateId"/>
+        <DimensionUsage name="Extracted Date" source="Extracted Date" foreignKey="extractedDateId"/>
         <DimensionUsage name="Publication date" source="Publication Date" foreignKey="publicationDateId"/>
         <DimensionUsage name="Ingestion date" source="Ingest Date" foreignKey="ingestDateId"/>
         <DimensionUsage name="Collection date" source="Collection Date" foreignKey="collectionDateId"/>
@@ -344,6 +346,7 @@
                         foreignKey="documentLengthPercentileId"/>
         <DimensionUsage name="Organization Percentile" source="Organization Percentile" foreignKey="organizationPercentileId"/>
 
+        <Measure name="Total" column="id" aggregator="count" formatString="Standard"/>
         <Measure name="Document Length" column="documentLengthWords" aggregator="avg" formatString="Standard"/>
         <Measure name="Frequency of Appearance" column="orgFrequency" aggregator="avg" formatString="Standard"/>
         <Measure name="Frequency Share" column="orgFrequencyShare" aggregator="avg" formatString="Standard"/>
