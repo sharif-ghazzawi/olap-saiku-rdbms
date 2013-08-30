@@ -11,7 +11,7 @@
     <Dimension name="Collection Date" type="TimeDimension">
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
             <Table name="collectionDate"/>
-            <Level name="Year" uniqueMembers="true" levelType="TimeYears" type="Numeric">
+            <Level name="Year" uniqueMembers="true" levelType="TimeYears">
                 <KeyExpression>
                     <SQL dialect="mysql">
                         CAST(YEAR(date) AS CHAR(4))
@@ -23,7 +23,7 @@
                     </SQL>
                 </OrdinalExpression>
             </Level>
-            <Level name="Month" uniqueMembers="false" levelType="TimeMonths" type="Numeric">
+            <Level name="Month" uniqueMembers="false" levelType="TimeMonths">
                 <KeyExpression>
                     <SQL dialect="mysql">
                         MONTHNAME(date)
@@ -35,7 +35,7 @@
                     </SQL>
                 </OrdinalExpression>
             </Level>
-            <Level name="Date" uniqueMembers="false" levelType="TimeDays" type="Numeric">
+            <Level name="Date" uniqueMembers="false" levelType="TimeDays">
                 <KeyExpression>
                     <SQL dialect="mysql">
                         CAST(DAYOFMONTH(date) AS CHAR(2))
@@ -81,12 +81,12 @@
                 <Table name="extractedLocation"/>
                 <Table name="command"/>
             </Join>
-            <Level name="Clavin ID" table="extractedLocation" column="clavinId"/>
+            <Level name="Clavin ID" table="extractedLocation" column="clavinId" uniqueMembers="true"/>
             <Level name="Name" table="extractedLocation" column="name"/>
             <Level name="Country Clavin ID" table="extractedLocation" column="countryClavinId"/>
             <Level name="Country Code (ISO)" table="extractedLocation" column="countryIso"/>
             <Level name="Country Name" table="extractedLocation" column="countryName"/>
-            <Level name="Command" table="command" column="name"/>
+            <Level name="Command" table="command" column="name" ordinalColumn="id"/>
             <Level name="Subnational Clavin ID" table="extractedLocation" column="subnationalClavinId"/>
             <Level name="Subnational Name" table="extractedLocation" column="subnationalName"/>
             <Level name="Latitude" table="extractedLocation" column="latitude"/>
@@ -97,7 +97,7 @@
     <Dimension name="Extraction Date" type="TimeDimension">
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
             <Table name="extractedDate"/>
-            <Level name="Year" uniqueMembers="true" levelType="TimeYears" type="Numeric">
+            <Level name="Year" uniqueMembers="true" levelType="TimeYears">
                 <KeyExpression>
                     <SQL dialect="mysql">
                         CAST(YEAR(date) AS CHAR(4))
@@ -109,7 +109,7 @@
                     </SQL>
                 </OrdinalExpression>
             </Level>
-            <Level name="Month" uniqueMembers="false" levelType="TimeMonths" type="Numeric">
+            <Level name="Month" uniqueMembers="false" levelType="TimeMonths">
                 <KeyExpression>
                     <SQL dialect="mysql">
                         MONTHNAME(date)
@@ -121,7 +121,7 @@
                     </SQL>
                 </OrdinalExpression>
             </Level>
-            <Level name="Date" uniqueMembers="false" levelType="TimeDays" type="Numeric">
+            <Level name="Date" uniqueMembers="false" levelType="TimeDays">
                 <KeyExpression>
                     <SQL dialect="mysql">
                         CAST(DAYOFMONTH(date) AS CHAR(2))
@@ -139,7 +139,7 @@
     <Dimension name="Ingest Date" type="TimeDimension">
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
             <Table name="ingestDate"/>
-            <Level name="Year" uniqueMembers="true" levelType="TimeYears" type="Numeric">
+            <Level name="Year" uniqueMembers="true" levelType="TimeYears">
                 <KeyExpression>
                     <SQL dialect="mysql">
                         CAST(YEAR(date) AS CHAR(4))
@@ -151,7 +151,7 @@
                     </SQL>
                 </OrdinalExpression>
             </Level>
-            <Level name="Month" uniqueMembers="false" levelType="TimeMonths" type="Numeric">
+            <Level name="Month" uniqueMembers="false" levelType="TimeMonths">
                 <KeyExpression>
                     <SQL dialect="mysql">
                         MONTHNAME(date)
@@ -163,7 +163,7 @@
                     </SQL>
                 </OrdinalExpression>
             </Level>
-            <Level name="Date" uniqueMembers="false" levelType="TimeDays" type="Numeric">
+            <Level name="Date" uniqueMembers="false" levelType="TimeDays">
                 <KeyExpression>
                     <SQL dialect="mysql">
                         CAST(DAYOFMONTH(date) AS CHAR(2))
@@ -197,7 +197,7 @@
     <Dimension name="Publication Date" type="TimeDimension">
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
             <Table name="publicationDate"/>
-            <Level name="Year" uniqueMembers="true" levelType="TimeYears" type="Numeric">
+            <Level name="Year" uniqueMembers="true" levelType="TimeYears">
                 <KeyExpression>
                     <SQL dialect="mysql">
                         CAST(YEAR(date) AS CHAR(4))
@@ -209,7 +209,7 @@
                     </SQL>
                 </OrdinalExpression>
             </Level>
-            <Level name="Month" uniqueMembers="false" levelType="TimeMonths" type="Numeric">
+            <Level name="Month" uniqueMembers="false" levelType="TimeMonths">
                 <KeyExpression>
                     <SQL dialect="mysql">
                         MONTHNAME(date)
@@ -221,7 +221,7 @@
                     </SQL>
                 </OrdinalExpression>
             </Level>
-            <Level name="Date" uniqueMembers="false" levelType="TimeDays" type="Numeric">
+            <Level name="Date" uniqueMembers="false" levelType="TimeDays">
                 <KeyExpression>
                     <SQL dialect="mysql">
                         CAST(DAYOFMONTH(date) AS CHAR(2))
