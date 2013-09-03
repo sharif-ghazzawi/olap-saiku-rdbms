@@ -25,19 +25,19 @@ CREATE TABLE `classification` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `collectionDate` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `command` (
   `id` int(10) unsigned UNIQUE NOT NULL,
   `name` varchar(8) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO command (id, name) VALUES (1, 'NORTHCOM');
 INSERT INTO command (id, name) VALUES (2, 'SOUTHCOM');
@@ -53,7 +53,7 @@ CREATE TABLE `document` (
   `title` varchar(120) DEFAULT NULL,
   `body` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `documentLengthGroup` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE `documentLengthGroup` (
   `coarseLower` int(10) unsigned DEFAULT NULL,
   `coarseUpper` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `documentLengthPercentile` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
@@ -73,13 +73,13 @@ CREATE TABLE `documentLengthPercentile` (
   `coarseLower` tinyint(3) unsigned DEFAULT NULL,
   `coarseUpper` tinyint(3) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `extractedDate` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `extractedLocation` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
@@ -95,13 +95,13 @@ CREATE TABLE `extractedLocation` (
   `longitude` float DEFAULT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `FK_Command_ExtractedLocation` FOREIGN KEY (commandId) REFERENCES command(id)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ingestDate` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `organization` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
@@ -115,7 +115,7 @@ CREATE TABLE `organization` (
   `coarseName` varchar(40) DEFAULT NULL,
   `evImportance` float unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `organizationFact` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
@@ -149,7 +149,7 @@ CREATE TABLE `organizationFact` (
   CONSTRAINT `FK_DocumentLengthGroup_OrganizationFact` FOREIGN KEY (documentLengthGroupId) REFERENCES documentLengthGroup(id),
   CONSTRAINT `FK_DocumentLengthPercentile_OrganizationFact` FOREIGN KEY (documentLengthPercentileId) REFERENCES documentLengthPercentile(id),
   CONSTRAINT `FK_OrganizationPercentile_OrganizationFact` FOREIGN KEY (orgPercentileId) REFERENCES organizationPercentile(id)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `organizationPercentile` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
@@ -158,7 +158,7 @@ CREATE TABLE `organizationPercentile` (
   `coarseLower` tinyint(3) unsigned DEFAULT NULL,
   `coarseUpper` tinyint(3) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `person` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
@@ -172,7 +172,7 @@ CREATE TABLE `person` (
   `coarseName` varchar(40) DEFAULT NULL,
   `evImportance` float unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `personFact` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
@@ -206,7 +206,7 @@ CREATE TABLE `personFact` (
   CONSTRAINT `FK_DocumentLengthGroup_PersonFact` FOREIGN KEY (documentLengthGroupId) REFERENCES documentLengthGroup(id),
   CONSTRAINT `FK_DocumentLengthPercentile_PersonFact` FOREIGN KEY (documentLengthPercentileId) REFERENCES documentLengthPercentile(id),
   CONSTRAINT `FK_PersonPercentile_PersonFact` FOREIGN KEY (personPercentileId) REFERENCES personPercentile(id)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `personPercentile` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
@@ -215,20 +215,20 @@ CREATE TABLE `personPercentile` (
   `coarseLower` tinyint(3) unsigned DEFAULT NULL,
   `coarseUpper` tinyint(3) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `publicationDate` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `source` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `name` varchar(60) DEFAULT NULL,
   `type` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `word` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
@@ -242,7 +242,7 @@ CREATE TABLE `word` (
   `coarseName` varchar(80) DEFAULT NULL,
   `evImportance` float unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `wordFact` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
@@ -276,7 +276,7 @@ CREATE TABLE `wordFact` (
   CONSTRAINT `FK_DocumentLengthGroup_WordFact` FOREIGN KEY (documentLengthGroupId) REFERENCES documentLengthGroup(id),
   CONSTRAINT `FK_DocumentLengthPercentile_WordFact` FOREIGN KEY (documentLengthPercentileId) REFERENCES documentLengthPercentile(id),
   CONSTRAINT `FK_WordStemPercentile_WordFact` FOREIGN KEY (wordStemPercentileId) REFERENCES wordStemPercentile(id)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `wordStemPercentile` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
@@ -285,4 +285,4 @@ CREATE TABLE `wordStemPercentile` (
   `coarseLower` tinyint(3) unsigned DEFAULT NULL,
   `coarseUpper` tinyint(3) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;

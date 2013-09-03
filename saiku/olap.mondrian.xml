@@ -75,28 +75,6 @@
         </Hierarchy>
     </Dimension>
 
-    <Dimension name="Extracted Location">
-        <Hierarchy hasAll="true" primaryKey="id" primaryKeyTable="extractedLocation">
-            <Join leftKey="commandId" rightKey="id">
-                <Table name="extractedLocation"/>
-                <Table name="command"/>
-            </Join>
-            <Level name="Command" table="command" column="name" ordinalColumn="id"/>
-            <Level name="Country" table="extractedLocation" column="countryName">
-                <Property name="Country Clavin ID" table="extractedLocation" column="countryClavinId"/>
-                <Property name="Country Code (ISO)" table="extractedLocation" column="countryIso"/>
-            </Level>
-            <Level name="State/Province" table="extractedLocation" column="subnationalName">
-                <Property name="State/Province Clavin ID" table="extractedLocation" column="subnationalClavinId"/>
-            </Level>
-            <Level name="Location" table="extractedLocation" column="name">
-                <Property name="Clavin ID" table="extractedLocation" column="clavinId"/>
-                <Property name="Latitude" table="extractedLocation" column="latitude"/>
-                <Property name="Longitude" table="extractedLocation" column="longitude"/>
-            </Level>
-        </Hierarchy>
-    </Dimension>
-
     <Dimension name="Extracted Date" type="TimeDimension">
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
             <Table name="extractedDate"/>
@@ -135,6 +113,51 @@
                         DAYOFMONTH(date)
                     </SQL>
                 </OrdinalExpression>
+            </Level>
+        </Hierarchy>
+    </Dimension>
+
+    <Dimension name="Extracted Location">
+        <Hierarchy hasAll="true" primaryKey="id">
+            <View alias="Ex-location">
+                <SQL dialect="mysql">
+                    select
+                        loc.id as id,
+                        loc.clavinId as clavinId,
+                        loc.name as name,
+                        loc.countryClavinId as countryClavinId,
+                        loc.countryIso as countryIso,
+                        loc.countryName as countryName,
+                        com.id as commandId,
+                        com.name as commandName,
+                        loc.subnationalClavinId as subnationalClavinId,
+                        loc.subnationalName as subnationalName,
+                        loc.latitude as latitude,
+                        loc.longitude as longitude
+                    from
+                        extractedLocation as loc, command as com
+                    where
+                        loc.commandId = com.id
+                </SQL>
+            </View>
+            <Level name="Command" column="commandName" ordinalColumn="commandId"/>
+            <Level name="Country" column="countryName">
+                <Property name="Country Clavin ID" column="countryClavinId"/>
+                <Property name="Country Code (ISO)" column="countryIso"/>
+            </Level>
+            <Level name="State/Province">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        if(subnationalClavinId=clavinId and countryClavinId=subnationalClavinId,
+                            concat(countryName, " (Other)"), subnationalName)
+                    </SQL>
+                </KeyExpression>
+                <Property name="State/Province Clavin ID" column="subnationalClavinId"/>
+            </Level>
+            <Level name="Location" column="name">
+                <Property name="Clavin ID" column="clavinId"/>
+                <Property name="Latitude" column="latitude"/>
+                <Property name="Longitude" column="longitude"/>
             </Level>
         </Hierarchy>
     </Dimension>
