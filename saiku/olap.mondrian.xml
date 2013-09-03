@@ -255,7 +255,7 @@
         </Hierarchy>
     </Dimension>
 
-    <Cube name="Words" defaultMeasure="Total">
+    <Cube name="Words" defaultMeasure="Document Count">
         <Table name="wordFact"/>
         <Dimension name="Word" foreignKey="wordId">
             <Hierarchy hasAll="true" primaryKey="id">
@@ -280,7 +280,8 @@
                         foreignKey="documentLengthPercentileId"/>
         <DimensionUsage name="Word Stem Percentile" source="Word Stem Percentile" foreignKey="wordStemPercentileId"/>
 
-        <Measure name="Total" column="id" aggregator="count" formatString="Standard"/>
+        <Measure name="Entry Count" column="id" aggregator="count" formatString="Standard"/>
+        <Measure name="Document Count" column="documentId" aggregator="distinct-count" formatString="Standard"/>
         <Measure name="Document Length" column="documentLengthWords" aggregator="avg" formatString="Standard"/>
         <Measure name="Frequency of Appearance" column="wordFrequency" aggregator="avg" formatString="Standard"/>
         <Measure name="Frequency Share" column="wordFrequencyShare" aggregator="avg" formatString="Standard"/>
@@ -288,7 +289,7 @@
         <Measure name="Position Percentile" column="positionPercentile" aggregator="count" formatString="Standard"/>
     </Cube>
 
-    <Cube name="People" defaultMeasure="Total">
+    <Cube name="People" defaultMeasure="Document Count">
         <Table name="personFact"/>
         <Dimension name="Person" foreignKey="personId">
             <Hierarchy hasAll="true" primaryKey="id">
@@ -313,7 +314,8 @@
                         foreignKey="documentLengthPercentileId"/>
         <DimensionUsage name="Person Percentile" source="Person Percentile" foreignKey="personPercentileId"/>
 
-        <Measure name="Total" column="id" aggregator="count" formatString="Standard"/>
+        <Measure name="Entry Count" column="id" aggregator="count" formatString="Standard"/>
+        <Measure name="Document Count" column="documentId" aggregator="distinct-count" formatString="Standard"/>
         <Measure name="Document Length" column="documentLengthWords" aggregator="avg" formatString="Standard"/>
         <Measure name="Frequency of Appearance" column="personFrequency" aggregator="avg" formatString="Standard"/>
         <Measure name="Frequency Share" column="personFrequencyShare" aggregator="avg" formatString="Standard"/>
@@ -321,7 +323,7 @@
         <Measure name="Position Percentile" column="positionPercentile" aggregator="count" formatString="Standard"/>
     </Cube>
 
-    <Cube name="Organizations" defaultMeasure="Total">
+    <Cube name="Organizations" defaultMeasure="Document Count">
         <Table name="organizationFact"/>
         <Dimension name="Organization" foreignKey="organizationId">
             <Hierarchy hasAll="true" primaryKey="id">
@@ -346,7 +348,8 @@
                         foreignKey="documentLengthPercentileId"/>
         <DimensionUsage name="Organization Percentile" source="Organization Percentile" foreignKey="organizationPercentileId"/>
 
-        <Measure name="Total" column="id" aggregator="count" formatString="Standard"/>
+        <Measure name="Entry Count" column="id" aggregator="count" formatString="Standard"/>
+        <Measure name="Document Count" column="documentId" aggregator="distinct-count" formatString="Standard"/>
         <Measure name="Document Length" column="documentLengthWords" aggregator="avg" formatString="Standard"/>
         <Measure name="Frequency of Appearance" column="orgFrequency" aggregator="avg" formatString="Standard"/>
         <Measure name="Frequency Share" column="orgFrequencyShare" aggregator="avg" formatString="Standard"/>
