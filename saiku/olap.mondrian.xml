@@ -168,6 +168,12 @@
                             concat(countryName, " (Other)"), subnationalName)
                     </SQL>
                 </KeyExpression>
+                <OrdinalExpression>
+                    <SQL dialect="mysql">
+                        IF(subnationalClavinId=clavinId and countryClavinId=subnationalClavinId,
+                            "ZZZZZZZZZZ", subnationalName)
+                    </SQL>
+                </OrdinalExpression>
                 <Property name="State/Province Clavin ID" column="subnationalClavinId"/>
             </Level>
             <Level name="Location">
