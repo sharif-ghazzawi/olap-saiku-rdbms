@@ -10,40 +10,48 @@
 
     <Dimension name="Collection Date" type="TimeDimension">
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
-            <Table name="collectionDate"/>
+            <View alias="CollectionDateView">
+                <SQL dialect="mysql">
+                    SELECT
+                        cd.id AS id,
+                        cd.date AS collectionDate
+                    FROM
+                        collectionDate AS cd
+                </SQL>
+            </View>
             <Level name="Year" uniqueMembers="true" levelType="TimeYears">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        CAST(YEAR(date) AS CHAR(4))
+                        CAST(YEAR(collectionDate) AS CHAR(4))
                     </SQL>
                 </KeyExpression>
                 <OrdinalExpression>
                     <SQL dialect="mysql">
-                        YEAR(date)
+                        YEAR(collectionDate)
                     </SQL>
                 </OrdinalExpression>
             </Level>
             <Level name="Month" uniqueMembers="false" levelType="TimeMonths">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        MONTHNAME(date)
+                        MONTHNAME(collectionDate)
                     </SQL>
                 </KeyExpression>
                 <OrdinalExpression>
                     <SQL dialect="mysql">
-                        MONTH(date)
+                        MONTH(collectionDate)
                     </SQL>
                 </OrdinalExpression>
             </Level>
             <Level name="Date" uniqueMembers="false" levelType="TimeDays">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        CAST(DAYOFMONTH(date) AS CHAR(2))
+                        CAST(DAYOFMONTH(collectionDate) AS CHAR(2))
                     </SQL>
                 </KeyExpression>
                 <OrdinalExpression>
                     <SQL dialect="mysql">
-                        DAYOFMONTH(date)
+                        DAYOFMONTH(collectionDate)
                     </SQL>
                 </OrdinalExpression>
             </Level>
@@ -77,40 +85,48 @@
 
     <Dimension name="Extracted Date" type="TimeDimension">
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
-            <Table name="extractedDate"/>
+            <View alias="ExtractedDateView">
+                <SQL dialect="mysql">
+                    SELECT
+                        ed.id AS id,
+                        ed.date AS extractedDate
+                    FROM
+                        extractedDate AS ed
+                </SQL>
+            </View>
             <Level name="Year" uniqueMembers="true" levelType="TimeYears">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        CAST(YEAR(date) AS CHAR(4))
+                        CAST(YEAR(extractedDate) AS CHAR(4))
                     </SQL>
                 </KeyExpression>
                 <OrdinalExpression>
                     <SQL dialect="mysql">
-                        YEAR(date)
+                        YEAR(extractedDate)
                     </SQL>
                 </OrdinalExpression>
             </Level>
             <Level name="Month" uniqueMembers="false" levelType="TimeMonths">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        MONTHNAME(date)
+                        MONTHNAME(extractedDate)
                     </SQL>
                 </KeyExpression>
                 <OrdinalExpression>
                     <SQL dialect="mysql">
-                        MONTH(date)
+                        MONTH(extractedDate)
                     </SQL>
                 </OrdinalExpression>
             </Level>
             <Level name="Date" uniqueMembers="false" levelType="TimeDays">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        CAST(DAYOFMONTH(date) AS CHAR(2))
+                        CAST(DAYOFMONTH(extractedDate) AS CHAR(2))
                     </SQL>
                 </KeyExpression>
                 <OrdinalExpression>
                     <SQL dialect="mysql">
-                        DAYOFMONTH(date)
+                        DAYOFMONTH(extractedDate)
                     </SQL>
                 </OrdinalExpression>
             </Level>
@@ -121,22 +137,22 @@
         <Hierarchy hasAll="true" primaryKey="id">
             <View alias="Ex-location">
                 <SQL dialect="mysql">
-                    select
-                        loc.id as id,
-                        loc.clavinId as clavinId,
-                        loc.name as name,
-                        loc.countryClavinId as countryClavinId,
-                        loc.countryIso as countryIso,
-                        loc.countryName as countryName,
-                        com.id as commandId,
-                        com.name as commandName,
-                        loc.subnationalClavinId as subnationalClavinId,
-                        loc.subnationalName as subnationalName,
-                        loc.latitude as latitude,
-                        loc.longitude as longitude
-                    from
-                        extractedLocation as loc, command as com
-                    where
+                    SELECT
+                        loc.id AS id,
+                        loc.clavinId AS clavinId,
+                        loc.name AS locationName,
+                        loc.countryClavinId AS countryClavinId,
+                        loc.countryIso AS countryIso,
+                        loc.countryName AS countryName,
+                        com.id AS commandId,
+                        com.name AS commandName,
+                        loc.subnationalClavinId AS subnationalClavinId,
+                        loc.subnationalName AS subnationalName,
+                        loc.latitude AS latitude,
+                        loc.longitude AS longitude
+                    FROM
+                        extractedLocation AS loc, command AS com
+                    WHERE
                         loc.commandId = com.id
                 </SQL>
             </View>
@@ -148,7 +164,7 @@
             <Level name="State/Province">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        if(subnationalClavinId=clavinId and countryClavinId=subnationalClavinId,
+                        IF(subnationalClavinId=clavinId and countryClavinId=subnationalClavinId,
                             concat(countryName, " (Other)"), subnationalName)
                     </SQL>
                 </KeyExpression>
@@ -157,7 +173,7 @@
             <Level name="Location">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        if(clavinId=countryClavinId, countryName, name)
+                        IF(clavinId=countryClavinId, countryName, locationName)
                     </SQL>
                 </KeyExpression>
                 <Property name="Clavin ID" column="clavinId"/>
@@ -169,40 +185,48 @@
 
     <Dimension name="Ingest Date" type="TimeDimension">
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
-            <Table name="ingestDate"/>
+            <View alias="IngestionDateView">
+                <SQL dialect="mysql">
+                    SELECT
+                        ing.id AS id,
+                        ing.date AS ingestDate
+                    FROM
+                        ingestDate AS ing
+                </SQL>
+            </View>
             <Level name="Year" uniqueMembers="true" levelType="TimeYears">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        CAST(YEAR(date) AS CHAR(4))
+                        CAST(YEAR(ingestDate) AS CHAR(4))
                     </SQL>
                 </KeyExpression>
                 <OrdinalExpression>
                     <SQL dialect="mysql">
-                        YEAR(date)
+                        YEAR(ingestDate)
                     </SQL>
                 </OrdinalExpression>
             </Level>
             <Level name="Month" uniqueMembers="false" levelType="TimeMonths">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        MONTHNAME(date)
+                        MONTHNAME(ingestDate)
                     </SQL>
                 </KeyExpression>
                 <OrdinalExpression>
                     <SQL dialect="mysql">
-                        MONTH(date)
+                        MONTH(ingestDate)
                     </SQL>
                 </OrdinalExpression>
             </Level>
             <Level name="Date" uniqueMembers="false" levelType="TimeDays">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        CAST(DAYOFMONTH(date) AS CHAR(2))
+                        CAST(DAYOFMONTH(ingestDate) AS CHAR(2))
                     </SQL>
                 </KeyExpression>
                 <OrdinalExpression>
                     <SQL dialect="mysql">
-                        DAYOFMONTH(date)
+                        DAYOFMONTH(ingestDate)
                     </SQL>
                 </OrdinalExpression>
             </Level>
@@ -227,40 +251,48 @@
 
     <Dimension name="Publication Date" type="TimeDimension">
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
-            <Table name="publicationDate"/>
+            <View alias="PublicationDateView">
+                <SQL dialect="mysql">
+                    SELECT
+                        pd.id AS id,
+                        pd.date AS pubDate
+                    FROM
+                        publicationDate AS pd
+                </SQL>
+            </View>
             <Level name="Year" uniqueMembers="true" levelType="TimeYears">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        CAST(YEAR(date) AS CHAR(4))
+                        CAST(YEAR(pubDate) AS CHAR(4))
                     </SQL>
                 </KeyExpression>
                 <OrdinalExpression>
                     <SQL dialect="mysql">
-                        YEAR(date)
+                        YEAR(pubDate)
                     </SQL>
                 </OrdinalExpression>
             </Level>
             <Level name="Month" uniqueMembers="false" levelType="TimeMonths">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        MONTHNAME(date)
+                        MONTHNAME(pubDate)
                     </SQL>
                 </KeyExpression>
                 <OrdinalExpression>
                     <SQL dialect="mysql">
-                        MONTH(date)
+                        MONTH(pubDate)
                     </SQL>
                 </OrdinalExpression>
             </Level>
             <Level name="Date" uniqueMembers="false" levelType="TimeDays">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        CAST(DAYOFMONTH(date) AS CHAR(2))
+                        CAST(DAYOFMONTH(pubDate) AS CHAR(2))
                     </SQL>
                 </KeyExpression>
                 <OrdinalExpression>
                     <SQL dialect="mysql">
-                        DAYOFMONTH(date)
+                        DAYOFMONTH(pubDate)
                     </SQL>
                 </OrdinalExpression>
             </Level>
