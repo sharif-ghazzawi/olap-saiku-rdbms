@@ -154,7 +154,12 @@
                 </KeyExpression>
                 <Property name="State/Province Clavin ID" column="subnationalClavinId"/>
             </Level>
-            <Level name="Location" column="name">
+            <Level name="Location">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        if(clavinId=countryClavinId, countryName, name)
+                    </SQL>
+                </KeyExpression>
                 <Property name="Clavin ID" column="clavinId"/>
                 <Property name="Latitude" column="latitude"/>
                 <Property name="Longitude" column="longitude"/>
