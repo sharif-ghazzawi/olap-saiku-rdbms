@@ -2,7 +2,6 @@ USE OLAP;
 
 DROP TABLE IF EXISTS `classification`;
 DROP TABLE IF EXISTS `collectionDate`;
-DROP TABLE IF EXISTS `command`;
 DROP TABLE IF EXISTS `document`;
 DROP TABLE IF EXISTS `documentLengthGroup`;
 DROP TABLE IF EXISTS `documentLengthPercentile`;

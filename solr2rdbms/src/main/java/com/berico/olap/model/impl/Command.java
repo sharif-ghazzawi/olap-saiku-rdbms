@@ -2,13 +2,6 @@ package com.berico.olap.model.impl;
 
 import com.berico.olap.util.Constants;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "command")
 public class Command {
 
     public static final Command NORTHCOM = new Command(1, Constants.NORTHCOM);
@@ -22,36 +15,16 @@ public class Command {
     private Integer id;
     private String name;
 
-    protected Command() {
-        this(NULL);
-    }
-
     private Command(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    private Command(Command command) {
-        this.id = command.id;
-        this.name = command.name;
-    }
-
-    @Id
-    @Column(name = "id")
     public Integer getId() {
         return id;
     }
 
-    private void setId(Integer id) {
-        this.id = id;
-    }
-
-    @Column(name = "name")
     public String getName() {
         return name;
-    }
-
-    private void setName(String name) {
-        this.name = name;
     }
 }

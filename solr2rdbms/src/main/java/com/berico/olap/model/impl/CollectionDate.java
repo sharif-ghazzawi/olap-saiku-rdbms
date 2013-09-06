@@ -1,8 +1,6 @@
 package com.berico.olap.model.impl;
 
 import com.berico.olap.model.Dimension;
-import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
 
 import javax.persistence.*;
 
@@ -11,7 +9,10 @@ import javax.persistence.*;
 public class CollectionDate implements Dimension {
 
     private Integer id;
-    private DateTime date;
+    private Integer year;
+    private Short month;
+    private String monthName;
+    private Short dayOfMonth;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,13 +25,39 @@ public class CollectionDate implements Dimension {
         this.id = id;
     }
 
-    @Column(name = "date")
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    public DateTime getDate() {
-        return date;
+    @Column(name = "year")
+    public Integer getYear() {
+        return year;
     }
 
-    public void setDate(DateTime date) {
-        this.date = date;
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    @Column(name = "monthName")
+    public String getMonthName() {
+        return monthName;
+    }
+
+    private void setMonthName(String monthName) {
+        this.monthName = monthName;
+    }
+
+    @Column(name = "month")
+    public Short getMonth() {
+        return month;
+    }
+
+    public void setMonth(Short month) {
+        this.month = month;
+    }
+
+    @Column(name = "dayOfMonth")
+    public Short getDayOfMonth() {
+        return dayOfMonth;
+    }
+
+    public void setDayOfMonth(Short dayOfMonth) {
+        this.dayOfMonth = dayOfMonth;
     }
 }
