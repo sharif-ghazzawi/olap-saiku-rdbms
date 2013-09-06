@@ -61,9 +61,10 @@
     <Dimension name="Document">
         <Hierarchy hasAll="true" primaryKey="id">
             <Table name="document"/>
-            <Level name="DRSI ID" column="drsiDocId"/>
-            <Level name="Title" column="title"/>
-            <Level name="Full Text" column="body"/>
+            <Level name="Title" column="title">
+                <Property name="DRSI ID" column="drsiDocId"/>
+            </Level>
+            <Level name="Full Text" column="body" visible="false"/>
         </Hierarchy>
     </Dimension>
 
@@ -157,7 +158,17 @@
                 </SQL>
             </View>
             <Level name="Command" column="commandName" ordinalColumn="commandId"/>
-            <Level name="Country" column="countryName">
+            <Level name="Country">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        IF(countryName="No Man's Land", "No Associated Country", countryName)
+                    </SQL>
+                </KeyExpression>
+                <OrdinalExpression>
+                    <SQL dialect="mysql">
+                        IF(countryName="No Man's Land", "ZZZZZZZZZZ", countryName)
+                    </SQL>
+                </OrdinalExpression>
                 <Property name="Country Clavin ID" column="countryClavinId"/>
                 <Property name="Country Code (ISO)" column="countryIso"/>
             </Level>
@@ -346,7 +357,6 @@
                         foreignKey="documentLengthPercentileId"/>
         <DimensionUsage name="Word Stem Percentile" source="Word Stem Percentile" foreignKey="wordStemPercentileId"/>
 
-        <Measure name="Entry Count" column="id" aggregator="count" formatString="Standard"/>
         <Measure name="Document Count" column="documentId" aggregator="distinct-count" formatString="Standard"/>
         <Measure name="Document Length" column="documentLengthWords" aggregator="avg" formatString="Standard"/>
         <Measure name="Frequency of Appearance" column="wordFrequency" aggregator="avg" formatString="Standard"/>
@@ -380,7 +390,6 @@
                         foreignKey="documentLengthPercentileId"/>
         <DimensionUsage name="Person Percentile" source="Person Percentile" foreignKey="personPercentileId"/>
 
-        <Measure name="Entry Count" column="id" aggregator="count" formatString="Standard"/>
         <Measure name="Document Count" column="documentId" aggregator="distinct-count" formatString="Standard"/>
         <Measure name="Document Length" column="documentLengthWords" aggregator="avg" formatString="Standard"/>
         <Measure name="Frequency of Appearance" column="personFrequency" aggregator="avg" formatString="Standard"/>
@@ -414,7 +423,6 @@
                         foreignKey="documentLengthPercentileId"/>
         <DimensionUsage name="Organization Percentile" source="Organization Percentile" foreignKey="organizationPercentileId"/>
 
-        <Measure name="Entry Count" column="id" aggregator="count" formatString="Standard"/>
         <Measure name="Document Count" column="documentId" aggregator="distinct-count" formatString="Standard"/>
         <Measure name="Document Length" column="documentLengthWords" aggregator="avg" formatString="Standard"/>
         <Measure name="Frequency of Appearance" column="orgFrequency" aggregator="avg" formatString="Standard"/>
