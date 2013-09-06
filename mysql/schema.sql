@@ -155,14 +155,14 @@ CREATE TABLE `organizationPercentile` (
 
 CREATE TABLE `person` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
-  `name` varchar(40) DEFAULT NULL,
-  `concept` varchar(40) DEFAULT NULL,
+  `name` varchar(160) DEFAULT NULL,
+  `concept` varchar(160) DEFAULT NULL,
   `fineId` int(10) unsigned DEFAULT NULL,
-  `fineName` varchar(40) DEFAULT NULL,
+  `fineName` varchar(160) DEFAULT NULL,
   `mediumId` int(10) unsigned DEFAULT NULL,
-  `mediumName` varchar(40) DEFAULT NULL,
+  `mediumName` varchar(160) DEFAULT NULL,
   `coarseId` int(10) unsigned DEFAULT NULL,
-  `coarseName` varchar(40) DEFAULT NULL,
+  `coarseName` varchar(160) DEFAULT NULL,
   `evImportance` float unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
