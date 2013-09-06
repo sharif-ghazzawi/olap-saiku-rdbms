@@ -10,51 +10,10 @@
 
     <Dimension name="Collection Date" type="TimeDimension">
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
-            <View alias="CollectionDateView">
-                <SQL dialect="mysql">
-                    SELECT
-                        cd.id AS id,
-                        cd.date AS collectionDate
-                    FROM
-                        collectionDate AS cd
-                </SQL>
-            </View>
-            <Level name="Year" uniqueMembers="true" levelType="TimeYears">
-                <KeyExpression>
-                    <SQL dialect="mysql">
-                        CAST(YEAR(collectionDate) AS CHAR(4))
-                    </SQL>
-                </KeyExpression>
-                <OrdinalExpression>
-                    <SQL dialect="mysql">
-                        YEAR(collectionDate)
-                    </SQL>
-                </OrdinalExpression>
-            </Level>
-            <Level name="Month" uniqueMembers="false" levelType="TimeMonths">
-                <KeyExpression>
-                    <SQL dialect="mysql">
-                        MONTHNAME(collectionDate)
-                    </SQL>
-                </KeyExpression>
-                <OrdinalExpression>
-                    <SQL dialect="mysql">
-                        MONTH(collectionDate)
-                    </SQL>
-                </OrdinalExpression>
-            </Level>
-            <Level name="Date" uniqueMembers="false" levelType="TimeDays">
-                <KeyExpression>
-                    <SQL dialect="mysql">
-                        CAST(DAYOFMONTH(collectionDate) AS CHAR(2))
-                    </SQL>
-                </KeyExpression>
-                <OrdinalExpression>
-                    <SQL dialect="mysql">
-                        DAYOFMONTH(collectionDate)
-                    </SQL>
-                </OrdinalExpression>
-            </Level>
+            <Table name="collectionDate"/>
+            <Level name="Year" column="year" uniqueMembers="true" levelType="TimeYears"/>
+            <Level name="Month" column="monthName" ordinalColumn="month" uniqueMembers="false" levelType="TimeMonths"/>
+            <Level name="Date" column="dayOfMonth" uniqueMembers="false" levelType="TimeDays"/>
         </Hierarchy>
     </Dimension>
 
@@ -86,78 +45,23 @@
 
     <Dimension name="Extracted Date" type="TimeDimension">
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
-            <View alias="ExtractedDateView">
-                <SQL dialect="mysql">
-                    SELECT
-                        ed.id AS id,
-                        ed.date AS extractedDate
-                    FROM
-                        extractedDate AS ed
-                </SQL>
-            </View>
-            <Level name="Year" uniqueMembers="true" levelType="TimeYears">
-                <KeyExpression>
-                    <SQL dialect="mysql">
-                        CAST(YEAR(extractedDate) AS CHAR(4))
-                    </SQL>
-                </KeyExpression>
-                <OrdinalExpression>
-                    <SQL dialect="mysql">
-                        YEAR(extractedDate)
-                    </SQL>
-                </OrdinalExpression>
-            </Level>
-            <Level name="Month" uniqueMembers="false" levelType="TimeMonths">
-                <KeyExpression>
-                    <SQL dialect="mysql">
-                        MONTHNAME(extractedDate)
-                    </SQL>
-                </KeyExpression>
-                <OrdinalExpression>
-                    <SQL dialect="mysql">
-                        MONTH(extractedDate)
-                    </SQL>
-                </OrdinalExpression>
-            </Level>
-            <Level name="Date" uniqueMembers="false" levelType="TimeDays">
-                <KeyExpression>
-                    <SQL dialect="mysql">
-                        CAST(DAYOFMONTH(extractedDate) AS CHAR(2))
-                    </SQL>
-                </KeyExpression>
-                <OrdinalExpression>
-                    <SQL dialect="mysql">
-                        DAYOFMONTH(extractedDate)
-                    </SQL>
-                </OrdinalExpression>
-            </Level>
+            <Table name="extractedDate"/>
+            <Level name="Year" column="year" uniqueMembers="true" levelType="TimeYears"/>
+            <Level name="Month" column="monthName" ordinalColumn="month" uniqueMembers="false" levelType="TimeMonths"/>
+            <Level name="Date" column="dayOfMonth" uniqueMembers="false" levelType="TimeDays"/>
         </Hierarchy>
     </Dimension>
 
     <Dimension name="Extracted Location">
         <Hierarchy hasAll="true" primaryKey="id">
-            <View alias="Ex-location">
-                <SQL dialect="mysql">
-                    SELECT
-                        loc.id AS id,
-                        loc.clavinId AS clavinId,
-                        loc.name AS locationName,
-                        loc.countryClavinId AS countryClavinId,
-                        loc.countryIso AS countryIso,
-                        loc.countryName AS countryName,
-                        com.id AS commandId,
-                        com.name AS commandName,
-                        loc.subnationalClavinId AS subnationalClavinId,
-                        loc.subnationalName AS subnationalName,
-                        loc.latitude AS latitude,
-                        loc.longitude AS longitude
-                    FROM
-                        extractedLocation AS loc, command AS com
-                    WHERE
-                        loc.commandId = com.id
-                </SQL>
-            </View>
-            <Level name="Command" column="commandName" ordinalColumn="commandId"/>
+            <Table name="extractedLocation"/>
+            <Level name="Command" column="command">
+                <OrdinalExpression>
+                    <SQL dialect="mysql">
+                        IF(command="N/A", "Z", command)
+                    </SQL>
+                </OrdinalExpression>
+            </Level>
             <Level name="Country">
                 <KeyExpression>
                     <SQL dialect="mysql">
@@ -166,7 +70,7 @@
                 </KeyExpression>
                 <OrdinalExpression>
                     <SQL dialect="mysql">
-                        IF(countryName="No Man's Land", "ZZZZZZZZZZ", countryName)
+                        IF(countryName="No Man's Land", "ZZZZZ", countryName)
                     </SQL>
                 </OrdinalExpression>
                 <Property name="Country Clavin ID" column="countryClavinId"/>
@@ -182,7 +86,7 @@
                 <OrdinalExpression>
                     <SQL dialect="mysql">
                         IF(subnationalClavinId=clavinId and countryClavinId=subnationalClavinId,
-                            "ZZZZZZZZZZ", subnationalName)
+                            "ZZZZZ", subnationalName)
                     </SQL>
                 </OrdinalExpression>
                 <Property name="State/Province Clavin ID" column="subnationalClavinId"/>
@@ -202,51 +106,10 @@
 
     <Dimension name="Ingest Date" type="TimeDimension">
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
-            <View alias="IngestionDateView">
-                <SQL dialect="mysql">
-                    SELECT
-                        ing.id AS id,
-                        ing.date AS ingestDate
-                    FROM
-                        ingestDate AS ing
-                </SQL>
-            </View>
-            <Level name="Year" uniqueMembers="true" levelType="TimeYears">
-                <KeyExpression>
-                    <SQL dialect="mysql">
-                        CAST(YEAR(ingestDate) AS CHAR(4))
-                    </SQL>
-                </KeyExpression>
-                <OrdinalExpression>
-                    <SQL dialect="mysql">
-                        YEAR(ingestDate)
-                    </SQL>
-                </OrdinalExpression>
-            </Level>
-            <Level name="Month" uniqueMembers="false" levelType="TimeMonths">
-                <KeyExpression>
-                    <SQL dialect="mysql">
-                        MONTHNAME(ingestDate)
-                    </SQL>
-                </KeyExpression>
-                <OrdinalExpression>
-                    <SQL dialect="mysql">
-                        MONTH(ingestDate)
-                    </SQL>
-                </OrdinalExpression>
-            </Level>
-            <Level name="Date" uniqueMembers="false" levelType="TimeDays">
-                <KeyExpression>
-                    <SQL dialect="mysql">
-                        CAST(DAYOFMONTH(ingestDate) AS CHAR(2))
-                    </SQL>
-                </KeyExpression>
-                <OrdinalExpression>
-                    <SQL dialect="mysql">
-                        DAYOFMONTH(ingestDate)
-                    </SQL>
-                </OrdinalExpression>
-            </Level>
+            <Table name="ingestDate"/>
+            <Level name="Year" column="year" uniqueMembers="true" levelType="TimeYears"/>
+            <Level name="Month" column="monthName" ordinalColumn="month" uniqueMembers="false" levelType="TimeMonths"/>
+            <Level name="Date" column="dayOfMonth" uniqueMembers="false" levelType="TimeDays"/>
         </Hierarchy>
     </Dimension>
 
@@ -268,51 +131,10 @@
 
     <Dimension name="Publication Date" type="TimeDimension">
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
-            <View alias="PublicationDateView">
-                <SQL dialect="mysql">
-                    SELECT
-                        pd.id AS id,
-                        pd.date AS pubDate
-                    FROM
-                        publicationDate AS pd
-                </SQL>
-            </View>
-            <Level name="Year" uniqueMembers="true" levelType="TimeYears">
-                <KeyExpression>
-                    <SQL dialect="mysql">
-                        CAST(YEAR(pubDate) AS CHAR(4))
-                    </SQL>
-                </KeyExpression>
-                <OrdinalExpression>
-                    <SQL dialect="mysql">
-                        YEAR(pubDate)
-                    </SQL>
-                </OrdinalExpression>
-            </Level>
-            <Level name="Month" uniqueMembers="false" levelType="TimeMonths">
-                <KeyExpression>
-                    <SQL dialect="mysql">
-                        MONTHNAME(pubDate)
-                    </SQL>
-                </KeyExpression>
-                <OrdinalExpression>
-                    <SQL dialect="mysql">
-                        MONTH(pubDate)
-                    </SQL>
-                </OrdinalExpression>
-            </Level>
-            <Level name="Date" uniqueMembers="false" levelType="TimeDays">
-                <KeyExpression>
-                    <SQL dialect="mysql">
-                        CAST(DAYOFMONTH(pubDate) AS CHAR(2))
-                    </SQL>
-                </KeyExpression>
-                <OrdinalExpression>
-                    <SQL dialect="mysql">
-                        DAYOFMONTH(pubDate)
-                    </SQL>
-                </OrdinalExpression>
-            </Level>
+            <Table name="publicationDate"/>
+            <Level name="Year" column="year" uniqueMembers="true" levelType="TimeYears"/>
+            <Level name="Month" column="monthName" ordinalColumn="month" uniqueMembers="false" levelType="TimeMonths"/>
+            <Level name="Date" column="dayOfMonth" uniqueMembers="false" levelType="TimeDays"/>
         </Hierarchy>
     </Dimension>
 

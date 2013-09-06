@@ -29,23 +29,12 @@ CREATE TABLE `classification` (
 
 CREATE TABLE `collectionDate` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
-  `date` date DEFAULT NULL,
+  `year` smallint(4) unsigned DEFAULT NULL,
+  `month` tinyint(2) unsigned DEFAULT NULL,
+  `monthName` varchar(3) DEFAULT NULL,
+  `dayOfMonth` tinyint(2) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-CREATE TABLE `command` (
-  `id` int(10) unsigned UNIQUE NOT NULL,
-  `name` varchar(8) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-INSERT INTO command (id, name) VALUES (1, 'NORTHCOM');
-INSERT INTO command (id, name) VALUES (2, 'SOUTHCOM');
-INSERT INTO command (id, name) VALUES (3, 'EUCOM');
-INSERT INTO command (id, name) VALUES (4, 'CENTCOM');
-INSERT INTO command (id, name) VALUES (5, 'AFRICOM');
-INSERT INTO command (id, name) VALUES (6, 'PACOM');
-INSERT INTO command (id, name) VALUES (7, 'N/A');
 
 CREATE TABLE `document` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
@@ -77,7 +66,10 @@ CREATE TABLE `documentLengthPercentile` (
 
 CREATE TABLE `extractedDate` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
-  `date` date DEFAULT NULL,
+  `year` smallint(4) unsigned DEFAULT NULL,
+  `month` tinyint(2) unsigned DEFAULT NULL,
+  `monthName` varchar(3) DEFAULT NULL,
+  `dayOfMonth` tinyint(2) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -88,18 +80,20 @@ CREATE TABLE `extractedLocation` (
   `countryClavinId` int(10) DEFAULT NULL,
   `countryIso` varchar(4) DEFAULT NULL,
   `countryName` varchar(100) DEFAULT NULL,
-  `commandId` int(10) unsigned DEFAULT NULL,
+  `command` varchar(8) DEFAULT NULL,
   `subnationalClavinId` int(10) DEFAULT NULL,
   `subnationalName` varchar(100) DEFAULT NULL,
   `latitude` float DEFAULT NULL,
   `longitude` float DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `FK_Command_ExtractedLocation` FOREIGN KEY (commandId) REFERENCES command(id)
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ingestDate` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
-  `date` date DEFAULT NULL,
+  `year` smallint(4) unsigned DEFAULT NULL,
+  `month` tinyint(2) unsigned DEFAULT NULL,
+  `monthName` varchar(3) DEFAULT NULL,
+  `dayOfMonth` tinyint(2) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -219,7 +213,10 @@ CREATE TABLE `personPercentile` (
 
 CREATE TABLE `publicationDate` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
-  `date` date DEFAULT NULL,
+  `year` smallint(4) unsigned DEFAULT NULL,
+  `month` tinyint(2) unsigned DEFAULT NULL,
+  `monthName` varchar(3) DEFAULT NULL,
+  `dayOfMonth` tinyint(2) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
