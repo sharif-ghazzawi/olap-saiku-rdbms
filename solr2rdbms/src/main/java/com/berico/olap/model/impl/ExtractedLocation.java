@@ -40,7 +40,7 @@ public class ExtractedLocation implements Dimension {
         this.clavinId = clavinId;
     }
 
-    @Column(name = "name")
+    @Column(name = "locationName")
     public String getName() {
         return name;
     }

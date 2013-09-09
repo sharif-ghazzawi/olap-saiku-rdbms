@@ -75,7 +75,7 @@ CREATE TABLE `extractedDate` (
 CREATE TABLE `extractedLocation` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `clavinId` int(10) DEFAULT NULL,
-  `name` varchar(100) DEFAULT NULL,
+  `locationName` varchar(100) DEFAULT NULL,
   `countryClavinId` int(10) DEFAULT NULL,
   `countryIso` varchar(4) DEFAULT NULL,
   `countryName` varchar(100) DEFAULT NULL,
