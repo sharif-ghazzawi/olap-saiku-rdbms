@@ -191,7 +191,7 @@
         <Table name="personFact"/>
         <Dimension name="Person" foreignKey="personId">
             <Hierarchy hasAll="true" primaryKey="id">
-                <Table name="word"/>
+                <Table name="person"/>
                 <Level name="Coarse" column="coarseName" ordinalColumn="coarseId" uniqueMembers="false"/>
                 <Level name="Medium" column="mediumName" ordinalColumn="mediumId" uniqueMembers="false"/>
                 <Level name="Fine" column="fineName" ordinalColumn="fineId" uniqueMembers="false"/>
@@ -224,7 +224,7 @@
         <Table name="organizationFact"/>
         <Dimension name="Organization" foreignKey="organizationId">
             <Hierarchy hasAll="true" primaryKey="id">
-                <Table name="word"/>
+                <Table name="organization"/>
                 <Level name="Coarse" column="coarseName" ordinalColumn="coarseId" uniqueMembers="false"/>
                 <Level name="Medium" column="mediumName" ordinalColumn="mediumId" uniqueMembers="false"/>
                 <Level name="Fine" column="fineName" ordinalColumn="fineId" uniqueMembers="false"/>

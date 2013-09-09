@@ -98,15 +98,15 @@ CREATE TABLE `ingestDate` (
 
 CREATE TABLE `organization` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
-  `name` varchar(40) DEFAULT NULL,
-  `concept` varchar(40) DEFAULT NULL,
+  `name` varchar(120) DEFAULT NULL,
+  `concept` varchar(120) DEFAULT NULL,
   `fineId` int(10) unsigned DEFAULT NULL,
-  `fineName` varchar(40) DEFAULT NULL,
+  `fineName` varchar(120) DEFAULT NULL,
   `mediumId` int(10) unsigned DEFAULT NULL,
-  `mediumName` varchar(40) DEFAULT NULL,
+  `mediumName` varchar(120) DEFAULT NULL,
   `coarseId` int(10) unsigned DEFAULT NULL,
-  `coarseName` varchar(40) DEFAULT NULL,
-  `evImportance` float unsigned DEFAULT NULL,
+  `coarseName` varchar(120) DEFAULT NULL,
+  `entityKey` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -163,7 +163,7 @@ CREATE TABLE `person` (
   `mediumName` varchar(160) DEFAULT NULL,
   `coarseId` int(10) unsigned DEFAULT NULL,
   `coarseName` varchar(160) DEFAULT NULL,
-  `evImportance` float unsigned DEFAULT NULL,
+  `entityKey` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 

@@ -20,7 +20,7 @@ public class Person implements Dimension {
     private String mediumName;
     private Integer coarseId;
     private String coarseName;
-    private Float evImportance;
+    private String entityKey;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -105,12 +105,12 @@ public class Person implements Dimension {
         this.coarseName = coarseName;
     }
 
-    @Column(name = "evImportance")
-    public Float getEvImportance() {
-        return evImportance;
+    @Column(name = "entityKey")
+    public String getEntityKey() {
+        return entityKey;
     }
 
-    public void setEvImportance(Float evImportance) {
-        this.evImportance = evImportance;
+    public void setEntityKey(String entityKey) {
+        this.entityKey = entityKey;
     }
 }

@@ -1,18 +1,14 @@
 package com.berico.olap.model.impl;
 
-import com.berico.olap.model.Dimension;
+import com.berico.olap.model.DateDimension;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "collectionDate")
-public class CollectionDate implements Dimension {
+public class CollectionDate extends DateDimension {
 
     private Integer id;
-    private Integer year;
-    private Short month;
-    private String monthName;
-    private Short dayOfMonth;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
