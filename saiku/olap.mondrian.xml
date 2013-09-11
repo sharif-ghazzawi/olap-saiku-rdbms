@@ -168,7 +168,7 @@
         <DimensionUsage name="Location" source="Extracted Location" foreignKey="extractedLocationId"/>
         <DimensionUsage name="Date Mentioned in Document" source="Date of Mention" foreignKey="extractedDateId"/>
         <DimensionUsage name="Date Document Published" source="Date of Publishing" foreignKey="publicationDateId"/>
-        <DimensionUsage name="Date Document Ingested" source="Date of Ingestion" foreignKey="ingestDateId"/>
+        <DimensionUsage name="Date Document Ingested" source="Date of Ingest" foreignKey="ingestDateId"/>
         <DimensionUsage name="Date Document Collected" source="Date of Collection" foreignKey="collectionDateId"/>
         <DimensionUsage name="Classification" source="Classification" foreignKey="classificationId"/>
         <DimensionUsage name="Source" source="Source" foreignKey="sourceId"/>
@@ -199,7 +199,7 @@
         <DimensionUsage name="Location" source="Extracted Location" foreignKey="extractedLocationId"/>
         <DimensionUsage name="Date Mentioned in Document" source="Date of Mention" foreignKey="extractedDateId"/>
         <DimensionUsage name="Date Document Published" source="Date of Publishing" foreignKey="publicationDateId"/>
-        <DimensionUsage name="Date Document Ingested" source="Date of Ingestion" foreignKey="ingestDateId"/>
+        <DimensionUsage name="Date Document Ingested" source="Date of Ingest" foreignKey="ingestDateId"/>
         <DimensionUsage name="Date Document Collected" source="Date of Collection" foreignKey="collectionDateId"/>
         <DimensionUsage name="Classification" source="Classification" foreignKey="classificationId"/>
         <DimensionUsage name="Source" source="Source" foreignKey="sourceId"/>
@@ -232,7 +232,7 @@
         <DimensionUsage name="Location" source="Extracted Location" foreignKey="extractedLocationId"/>
         <DimensionUsage name="Date Mentioned in Document" source="Date of Mention" foreignKey="extractedDateId"/>
         <DimensionUsage name="Date Document Published" source="Date of Publishing" foreignKey="publicationDateId"/>
-        <DimensionUsage name="Date Document Ingested" source="Date of Ingestion" foreignKey="ingestDateId"/>
+        <DimensionUsage name="Date Document Ingested" source="Date of Ingest" foreignKey="ingestDateId"/>
         <DimensionUsage name="Date Document Collected" source="Date of Collection" foreignKey="collectionDateId"/>
         <DimensionUsage name="Classification" source="Classification" foreignKey="classificationId"/>
         <DimensionUsage name="Source" source="Source" foreignKey="sourceId"/>
@@ -256,7 +256,7 @@
         <DimensionUsage name="Location" source="Extracted Location" foreignKey="extractedLocationId"/>
         <DimensionUsage name="Date Mentioned in Document" source="Date of Mention" foreignKey="extractedDateId"/>
         <DimensionUsage name="Date Document Published" source="Date of Publishing" foreignKey="publicationDateId"/>
-        <DimensionUsage name="Date Document Ingested" source="Date of Ingestion" foreignKey="ingestDateId"/>
+        <DimensionUsage name="Date Document Ingested" source="Date of Ingest" foreignKey="ingestDateId"/>
         <DimensionUsage name="Date Document Collected" source="Date of Collection" foreignKey="collectionDateId"/>
         <DimensionUsage name="Classification" source="Classification" foreignKey="classificationId"/>
         <DimensionUsage name="Source" source="Source" foreignKey="sourceId"/>
