@@ -18,25 +18,19 @@
         <property name="annotatedClasses">
             <list>
                 <value>com.berico.olap.model.impl.Classification</value>
-                <value>com.berico.olap.model.impl.CollectionDate</value>
-                <value>com.berico.olap.model.impl.Command</value>
+                <value>com.berico.olap.model.impl.Date</value>
                 <value>com.berico.olap.model.impl.Document</value>
+                <value>com.berico.olap.model.impl.DocumentFact</value>
                 <value>com.berico.olap.model.impl.DocumentLengthGroup</value>
-                <value>com.berico.olap.model.impl.DocumentLengthPercentile</value>
-                <value>com.berico.olap.model.impl.ExtractedDate</value>
                 <value>com.berico.olap.model.impl.ExtractedLocation</value>
-                <value>com.berico.olap.model.impl.IngestionDate</value>
                 <value>com.berico.olap.model.impl.Organization</value>
                 <value>com.berico.olap.model.impl.OrganizationFact</value>
-                <value>com.berico.olap.model.impl.OrganizationPercentile</value>
+                <value>com.berico.olap.model.impl.Percentile</value>
                 <value>com.berico.olap.model.impl.Person</value>
                 <value>com.berico.olap.model.impl.PersonFact</value>
-                <value>com.berico.olap.model.impl.PersonPercentile</value>
-                <value>com.berico.olap.model.impl.PublicationDate</value>
                 <value>com.berico.olap.model.impl.Source</value>
                 <value>com.berico.olap.model.impl.Word</value>
                 <value>com.berico.olap.model.impl.WordFact</value>
-                <value>com.berico.olap.model.impl.WordStemPercentile</value>
             </list>
         </property>
     </bean>

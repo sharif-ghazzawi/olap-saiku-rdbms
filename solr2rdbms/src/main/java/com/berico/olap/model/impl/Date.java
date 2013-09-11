@@ -1,14 +1,20 @@
 package com.berico.olap.model.impl;
 
-import com.berico.olap.model.DateDimension;
+import com.berico.olap.model.Dimension;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "collectionDate")
-public class CollectionDate extends DateDimension {
+@Table(name = "date")
+public class Date implements Dimension {
 
     private Integer id;
+    private Integer year;
+    private Short month;
+    private String monthName;
+    private Short dayOfMonth;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -55,5 +61,17 @@ public class CollectionDate extends DateDimension {
 
     public void setDayOfMonth(Short dayOfMonth) {
         this.dayOfMonth = dayOfMonth;
+    }
+
+    @Transient
+    public DateTime getDate() {
+        return new DateTime(year, month, dayOfMonth, 0, 0, 0, 0, DateTimeZone.UTC);
+    }
+
+    public void setDate(DateTime date) {
+        this.year = date.getYear();
+        this.month = (short) date.getMonthOfYear();
+        this.dayOfMonth = (short) date.getDayOfMonth();
+        this.monthName = date.toString("MMM");
     }
 }

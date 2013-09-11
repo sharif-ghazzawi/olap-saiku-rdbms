@@ -15,15 +15,15 @@ public class OrganizationFact implements Cube {
     private Organization organization;
     private Document document;
     private ExtractedLocation extractedLocation;
-    private ExtractedDate extractedDate;
-    private PublicationDate publicationDate;
-    private IngestionDate ingestDate;
-    private CollectionDate collectionDate;
+    private Date extractedDate;
+    private Date publicationDate;
+    private Date ingestDate;
+    private Date collectionDate;
     private Classification classification;
     private Source source;
     private DocumentLengthGroup documentLengthGroup;
-    private DocumentLengthPercentile documentLengthPercentile;
-    private OrganizationPercentile orgPercentile;
+    private Percentile documentLengthPercentile;
+    private Percentile orgPercentile;
     private Integer documentLengthWords;
     private Integer orgFrequency;
     private Integer orgFrequencyShare;
@@ -38,13 +38,13 @@ public class OrganizationFact implements Cube {
         } else if (name.equals(Constants.EXTRACTED_LOCATION)) {
             setExtractedLocation((ExtractedLocation) d);
         } else if (name.equals(Constants.EXTRACTED_DATE)) {
-            setExtractedDate((ExtractedDate) d);
+            setExtractedDate((Date) d);
         } else if (name.equals(Constants.PUBLICATION_DATE)) {
-            setPublicationDate((PublicationDate) d);
+            setPublicationDate((Date) d);
         } else if (name.equals(Constants.INGESTION_DATE)) {
-            setIngestDate((IngestionDate) d);
+            setIngestDate((Date) d);
         } else if (name.equals(Constants.COLLECTION_DATE)) {
-            setCollectionDate((CollectionDate) d);
+            setCollectionDate((Date) d);
         } else if (name.equals(Constants.CLASSIFICATION)) {
             setClassification((Classification) d);
         } else if (name.equals(Constants.SOURCE)) {
@@ -52,9 +52,9 @@ public class OrganizationFact implements Cube {
         } else if (name.equals(Constants.DOCUMENT_LENGTH_GROUP)) {
             setDocumentLengthGroup((DocumentLengthGroup) d);
         } else if (name.equals(Constants.DOCUMENT_LENGTH_PERCENTILE)) {
-            setDocumentLengthPercentile((DocumentLengthPercentile) d);
+            setDocumentLengthPercentile((Percentile) d);
         } else if (name.equals(Constants.ORGANIZATION_PERCENTILE)) {
-            setOrgPercentile((OrganizationPercentile) d);
+            setOrgPercentile((Percentile) d);
         }
     }
 
@@ -105,44 +105,44 @@ public class OrganizationFact implements Cube {
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "extractedDateId")
     @ForeignKey(name = Constants.FK_EXDATE_ORGANIZATIONFACT)
-    public ExtractedDate getExtractedDate() {
+    public Date getExtractedDate() {
         return extractedDate;
     }
 
-    public void setExtractedDate(ExtractedDate exDate) {
+    public void setExtractedDate(Date exDate) {
         this.extractedDate = exDate;
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "publicationDateId")
     @ForeignKey(name = Constants.FK_PUBDATE_ORGANIZATIONFACT)
-    public PublicationDate getPublicationDate() {
+    public Date getPublicationDate() {
         return publicationDate;
     }
 
-    public void setPublicationDate(PublicationDate pubDate) {
+    public void setPublicationDate(Date pubDate) {
         this.publicationDate = pubDate;
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "ingestDateId")
     @ForeignKey(name = Constants.FK_INGDATE_ORGANIZATIONFACT)
-    public IngestionDate getIngestDate() {
+    public Date getIngestDate() {
         return ingestDate;
     }
 
-    public void setIngestDate(IngestionDate ingDate) {
+    public void setIngestDate(Date ingDate) {
         this.ingestDate = ingDate;
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "collectionDateId")
     @ForeignKey(name = Constants.FK_COLDATE_ORGANIZATIONFACT)
-    public CollectionDate getCollectionDate() {
+    public Date getCollectionDate() {
         return collectionDate;
     }
 
-    public void setCollectionDate(CollectionDate colDate) {
+    public void setCollectionDate(Date colDate) {
         this.collectionDate = colDate;
     }
 
@@ -182,22 +182,22 @@ public class OrganizationFact implements Cube {
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "documentLengthPercentileId")
     @ForeignKey(name = Constants.FK_DOCLENGTHPERCENTILE_ORGANIZATIONFACT)
-    public DocumentLengthPercentile getDocumentLengthPercentile() {
+    public Percentile getDocumentLengthPercentile() {
         return documentLengthPercentile;
     }
 
-    public void setDocumentLengthPercentile(DocumentLengthPercentile docLengthPercentile) {
+    public void setDocumentLengthPercentile(Percentile docLengthPercentile) {
         this.documentLengthPercentile = docLengthPercentile;
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "orgPercentileId")
     @ForeignKey(name = Constants.FK_ORGANIZATIONPERCENTILE_ORGANIZATIONFACT)
-    public OrganizationPercentile getOrgPercentile() {
+    public Percentile getOrgPercentile() {
         return orgPercentile;
     }
 
-    public void setOrgPercentile(OrganizationPercentile orgPercentile) {
+    public void setOrgPercentile(Percentile orgPercentile) {
         this.orgPercentile = orgPercentile;
     }
 

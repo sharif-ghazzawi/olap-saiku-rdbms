@@ -5,14 +5,14 @@ import com.berico.olap.model.Dimension;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "organizationPercentile")
-public class OrganizationPercentile implements Dimension {
+@Table(name = "percentile")
+public class Percentile implements Dimension {
 
     private Integer id;
-    private Short percentile;
+    private short percentile;
     private String coarseName;
-    private Integer coarseUpperBound;
-    private Integer coarseLowerBound;
+    private int coarseUpperBound;
+    private int coarseLowerBound;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,11 +26,11 @@ public class OrganizationPercentile implements Dimension {
     }
 
     @Column(name = "percentile")
-    public Short getPercentile() {
+    public short getPercentile() {
         return percentile;
     }
 
-    public void setPercentile(Short percentile) {
+    public void setPercentile(short percentile) {
         this.percentile = percentile;
     }
 
@@ -44,20 +44,20 @@ public class OrganizationPercentile implements Dimension {
     }
 
     @Column(name = "coarseUpper")
-    public Integer getCoarseUpperBound() {
+    public int getCoarseUpperBound() {
         return coarseUpperBound;
     }
 
-    public void setCoarseUpperBound(Integer coarseUpperBound) {
+    public void setCoarseUpperBound(int coarseUpperBound) {
         this.coarseUpperBound = coarseUpperBound;
     }
 
     @Column(name = "coarseLower")
-    public Integer getCoarseLowerBound() {
+    public int getCoarseLowerBound() {
         return coarseLowerBound;
     }
 
-    public void setCoarseLowerBound(Integer coarseLowerBound) {
+    public void setCoarseLowerBound(int coarseLowerBound) {
         this.coarseLowerBound = coarseLowerBound;
     }
 }
