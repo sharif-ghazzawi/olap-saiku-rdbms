@@ -8,7 +8,7 @@
         </Hierarchy>
     </Dimension>
 
-    <Dimension name="Date Document Collected" type="TimeDimension">
+    <Dimension name="Date of Collection" type="TimeDimension">
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
             <Table name="collectionDate"/>
             <Level name="Collection Year" column="year" uniqueMembers="true" levelType="TimeYears"/>
@@ -17,7 +17,7 @@
         </Hierarchy>
     </Dimension>
 
-    <Dimension name="Date Document Ingested" type="TimeDimension">
+    <Dimension name="Date of Ingest" type="TimeDimension">
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
             <Table name="ingestDate"/>
             <Level name="Ingestion Year" column="year" uniqueMembers="true" levelType="TimeYears"/>
@@ -26,21 +26,21 @@
         </Hierarchy>
     </Dimension>
 
-    <Dimension name="Date Document Published" type="TimeDimension">
-        <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
-            <Table name="publicationDate"/>
-            <Level name="Publication Year" column="year" uniqueMembers="true" levelType="TimeYears"/>
-            <Level name="Publication Month" column="monthName" ordinalColumn="month" uniqueMembers="false" levelType="TimeMonths"/>
-            <Level name="Publication Date" column="dayOfMonth" uniqueMembers="false" levelType="TimeDays"/>
-        </Hierarchy>
-    </Dimension>
-
-    <Dimension name="Date Mentioned in Document" type="TimeDimension">
+    <Dimension name="Date of Mention" type="TimeDimension">
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
             <Table name="extractedDate"/>
             <Level name="Mention Year" column="year" uniqueMembers="true" levelType="TimeYears"/>
             <Level name="Mention Month" column="monthName" ordinalColumn="month" uniqueMembers="false" levelType="TimeMonths"/>
             <Level name="Mention Date" column="dayOfMonth" uniqueMembers="false" levelType="TimeDays"/>
+        </Hierarchy>
+    </Dimension>
+
+    <Dimension name="Date of Publishing" type="TimeDimension">
+        <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
+            <Table name="publicationDate"/>
+            <Level name="Publication Year" column="year" uniqueMembers="true" levelType="TimeYears"/>
+            <Level name="Publication Month" column="monthName" ordinalColumn="month" uniqueMembers="false" levelType="TimeMonths"/>
+            <Level name="Publication Date" column="dayOfMonth" uniqueMembers="false" levelType="TimeDays"/>
         </Hierarchy>
     </Dimension>
 
@@ -166,10 +166,10 @@
             </Hierarchy>
         </Dimension>
         <DimensionUsage name="Location" source="Extracted Location" foreignKey="extractedLocationId"/>
-        <DimensionUsage name="Extracted Date" source="Extracted Date" foreignKey="extractedDateId"/>
-        <DimensionUsage name="Publication date" source="Publication Date" foreignKey="publicationDateId"/>
-        <DimensionUsage name="Ingestion date" source="Ingest Date" foreignKey="ingestDateId"/>
-        <DimensionUsage name="Collection date" source="Collection Date" foreignKey="collectionDateId"/>
+        <DimensionUsage name="Date Mentioned in Document" source="Date of Mention" foreignKey="extractedDateId"/>
+        <DimensionUsage name="Date Document Published" source="Date of Publishing" foreignKey="publicationDateId"/>
+        <DimensionUsage name="Date Document Ingested" source="Date of Ingestion" foreignKey="ingestDateId"/>
+        <DimensionUsage name="Date Document Collected" source="Date of Collection" foreignKey="collectionDateId"/>
         <DimensionUsage name="Classification" source="Classification" foreignKey="classificationId"/>
         <DimensionUsage name="Source" source="Source" foreignKey="sourceId"/>
         <DimensionUsage name="Document Length" source="Document Length Group" foreignKey="documentLengthGroupId"/>
@@ -197,10 +197,10 @@
             </Hierarchy>
         </Dimension>
         <DimensionUsage name="Location" source="Extracted Location" foreignKey="extractedLocationId"/>
-        <DimensionUsage name="Extracted Date" source="Extracted Date" foreignKey="extractedDateId"/>
-        <DimensionUsage name="Publication date" source="Publication Date" foreignKey="publicationDateId"/>
-        <DimensionUsage name="Ingestion date" source="Ingest Date" foreignKey="ingestDateId"/>
-        <DimensionUsage name="Collection date" source="Collection Date" foreignKey="collectionDateId"/>
+        <DimensionUsage name="Date Mentioned in Document" source="Date of Mention" foreignKey="extractedDateId"/>
+        <DimensionUsage name="Date Document Published" source="Date of Publishing" foreignKey="publicationDateId"/>
+        <DimensionUsage name="Date Document Ingested" source="Date of Ingestion" foreignKey="ingestDateId"/>
+        <DimensionUsage name="Date Document Collected" source="Date of Collection" foreignKey="collectionDateId"/>
         <DimensionUsage name="Classification" source="Classification" foreignKey="classificationId"/>
         <DimensionUsage name="Source" source="Source" foreignKey="sourceId"/>
         <DimensionUsage name="Document Length" source="Document Length Group" foreignKey="documentLengthGroupId"/>
@@ -221,17 +221,19 @@
         <Dimension name="Organization" foreignKey="organizationId">
             <Hierarchy hasAll="true" primaryKey="id">
                 <Table name="organization"/>
-                <Level name="Organization Group: Large" column="mediumName" ordinalColumn="mediumId" uniqueMembers="false"/>
-                <Level name="Organization Group: Medium" column="fineName" ordinalColumn="fineId" uniqueMembers="false"/>
+                <Level name="Organization Group: Large" column="mediumName" ordinalColumn="mediumId"
+                       uniqueMembers="false"/>
+                <Level name="Organization Group: Medium" column="fineName" ordinalColumn="fineId"
+                       uniqueMembers="false"/>
                 <Level name="Organization Group: Small" column="concept" uniqueMembers="false"/>
                 <Level name="Organization Name" column="name" uniqueMembers="false"/>
             </Hierarchy>
         </Dimension>
         <DimensionUsage name="Location" source="Extracted Location" foreignKey="extractedLocationId"/>
-        <DimensionUsage name="Extracted Date" source="Extracted Date" foreignKey="extractedDateId"/>
-        <DimensionUsage name="Publication date" source="Publication Date" foreignKey="publicationDateId"/>
-        <DimensionUsage name="Ingestion date" source="Ingest Date" foreignKey="ingestDateId"/>
-        <DimensionUsage name="Collection date" source="Collection Date" foreignKey="collectionDateId"/>
+        <DimensionUsage name="Date Mentioned in Document" source="Date of Mention" foreignKey="extractedDateId"/>
+        <DimensionUsage name="Date Document Published" source="Date of Publishing" foreignKey="publicationDateId"/>
+        <DimensionUsage name="Date Document Ingested" source="Date of Ingestion" foreignKey="ingestDateId"/>
+        <DimensionUsage name="Date Document Collected" source="Date of Collection" foreignKey="collectionDateId"/>
         <DimensionUsage name="Classification" source="Classification" foreignKey="classificationId"/>
         <DimensionUsage name="Source" source="Source" foreignKey="sourceId"/>
         <DimensionUsage name="Document Length" source="Document Length Group" foreignKey="documentLengthGroupId"/>
@@ -252,10 +254,10 @@
         <Table name="documentFact"/>
         <DimensionUsage name="Document" source="Document" foreignKey="documentId"/>
         <DimensionUsage name="Location" source="Extracted Location" foreignKey="extractedLocationId"/>
-        <DimensionUsage name="Extracted Date" source="Extracted Date" foreignKey="extractedDateId"/>
-        <DimensionUsage name="Publication date" source="Publication Date" foreignKey="publicationDateId"/>
-        <DimensionUsage name="Ingestion date" source="Ingest Date" foreignKey="ingestDateId"/>
-        <DimensionUsage name="Collection date" source="Collection Date" foreignKey="collectionDateId"/>
+        <DimensionUsage name="Date Mentioned in Document" source="Date of Mention" foreignKey="extractedDateId"/>
+        <DimensionUsage name="Date Document Published" source="Date of Publishing" foreignKey="publicationDateId"/>
+        <DimensionUsage name="Date Document Ingested" source="Date of Ingestion" foreignKey="ingestDateId"/>
+        <DimensionUsage name="Date Document Collected" source="Date of Collection" foreignKey="collectionDateId"/>
         <DimensionUsage name="Classification" source="Classification" foreignKey="classificationId"/>
         <DimensionUsage name="Source" source="Source" foreignKey="sourceId"/>
         <DimensionUsage name="Document Length" source="Document Length Group" foreignKey="documentLengthGroupId"/>
