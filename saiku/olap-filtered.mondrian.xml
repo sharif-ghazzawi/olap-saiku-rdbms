@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<Schema name="Unfiltered">
+<Schema name="George Bush" description="Filtered on the terms 'George' and 'Bush'">
 
     <Dimension name="Classification">
         <Hierarchy hasAll="true" primaryKey="id">
@@ -50,7 +50,11 @@
 
     <Dimension name="Document">
         <Hierarchy hasAll="true" primaryKey="id">
-            <Table name="document"/>
+            <View alias="filteredDocs">
+                <SQL dialect="mysql">
+                    select * from document where title like '%george%' and title like '%bush%'
+                </SQL>
+            </View>
             <Level name="Title" column="title">
                 <Property name="DRSI ID" column="drsiDocId"/>
             </Level>
@@ -102,13 +106,13 @@
                 <KeyExpression>
                     <SQL dialect="mysql">
                         IF(subnationalClavinId=clavinId and countryClavinId=subnationalClavinId,
-                            concat(countryName, " (Other)"), subnationalName)
+                        concat(countryName, " (Other)"), subnationalName)
                     </SQL>
                 </KeyExpression>
                 <OrdinalExpression>
                     <SQL dialect="mysql">
                         IF(subnationalClavinId=clavinId and countryClavinId=subnationalClavinId,
-                            "ZZZZZ", subnationalName)
+                        "ZZZZZ", subnationalName)
                     </SQL>
                 </OrdinalExpression>
                 <Property name="State/Province Clavin ID" column="subnationalClavinId"/>
@@ -159,7 +163,12 @@
     </Dimension>
 
     <Cube name="Words" defaultMeasure="Document Count">
-        <Table name="wordFact"/>
+        <View alias="filteredOrg">
+            <SQL dialect="mysql">
+                select * from wordFact
+                where id in (select id from word where word like '%george%' and word like '%bush%')
+            </SQL>
+        </View>
         <Dimension name="Word" foreignKey="wordId">
             <Hierarchy hasAll="true" primaryKey="id">
                 <Table name="word"/>
@@ -192,7 +201,12 @@
     </Cube>
 
     <Cube name="People" defaultMeasure="Document Count">
-        <Table name="personFact"/>
+        <View alias="filteredOrg">
+            <SQL dialect="mysql">
+                select * from personFact
+                where id in (select id from person where name like '%george%' and name like '%bush%')
+            </SQL>
+        </View>
         <Dimension name="Person" foreignKey="personId">
             <Hierarchy hasAll="true" primaryKey="id">
                 <Table name="person"/>
@@ -225,7 +239,12 @@
     </Cube>
 
     <Cube name="Organizations" defaultMeasure="Document Count">
-        <Table name="organizationFact"/>
+        <View alias="filteredOrg">
+            <SQL dialect="mysql">
+                select * from organizationFact
+                where id in (select id from organization where name like '%george%' and name like '%bush%')
+            </SQL>
+        </View>
         <Dimension name="Organization" foreignKey="organizationId">
             <Hierarchy hasAll="true" primaryKey="id">
                 <Table name="organization"/>
@@ -261,7 +280,12 @@
     </Cube>
 
     <Cube name="Documents" defaultMeasure="Document Count">
-        <Table name="documentFact"/>
+        <View alias="filteredOrg">
+            <SQL dialect="mysql">
+                select * from documentFact
+                where id in (select id from document where title like '%george%' and title like '%bush%')
+            </SQL>
+        </View>
         <DimensionUsage name="Location Mentioned in Document" source="Location Mentioned in Document"
                         foreignKey="extractedLocationId"/>
         <DimensionUsage name="Date Mentioned in Document" source="Dates Mentioned in Document"
