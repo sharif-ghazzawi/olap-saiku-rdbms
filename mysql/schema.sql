@@ -43,6 +43,32 @@ CREATE TABLE `document` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+CREATE TABLE `documentFact` (
+  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
+  `documentId` int(10) unsigned DEFAULT NULL,
+  `extractedLocationId` int(10) unsigned DEFAULT NULL,
+  `extractedDateId` int(10) unsigned DEFAULT NULL,
+  `publicationDateId` int(10) unsigned DEFAULT NULL,
+  `ingestDateId` int(10) unsigned DEFAULT NULL,
+  `collectionDateId` int(10) unsigned DEFAULT NULL,
+  `classificationId` int(10) unsigned DEFAULT NULL,
+  `sourceId` int(10) unsigned DEFAULT NULL,
+  `documentLengthGroupId` int(10) unsigned DEFAULT NULL,
+  `documentLengthPercentileId` int(10) unsigned DEFAULT NULL,
+  `documentLengthWords` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `FK_Document_DocumentFact` FOREIGN KEY (documentId) REFERENCES document(id),
+  CONSTRAINT `FK_ExtractedLocation_DocumentFact` FOREIGN KEY (extractedLocationId) REFERENCES extractedLocation(id),
+  CONSTRAINT `FK_ExtractedDate_DocumentFact` FOREIGN KEY (extractedDateId) REFERENCES extractedDate(id),
+  CONSTRAINT `FK_PublicationDate_DocumentFact` FOREIGN KEY (publicationDateId) REFERENCES publicationDate(id),
+  CONSTRAINT `FK_IngestDate_DocumentFact` FOREIGN KEY (ingestDateId) REFERENCES ingestDate(id),
+  CONSTRAINT `FK_CollectionDate_DocumentFact` FOREIGN KEY (collectionDateId) REFERENCES collectionDate(id),
+  CONSTRAINT `FK_Classification_DocumentFact` FOREIGN KEY (classificationId) REFERENCES classification(id),
+  CONSTRAINT `FK_Source_DocumentFact` FOREIGN KEY (sourceId) REFERENCES source(id),
+  CONSTRAINT `FK_DocumentLengthGroup_DocumentFact` FOREIGN KEY (documentLengthGroupId) REFERENCES documentLengthGroup(id),
+  CONSTRAINT `FK_DocumentLengthPercentile_DocumentFact` FOREIGN KEY (documentLengthPercentileId) REFERENCES documentLengthPercentile(id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 CREATE TABLE `documentLengthGroup` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `fineName` varchar(20) DEFAULT NULL,
