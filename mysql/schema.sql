@@ -1,24 +1,18 @@
 USE OLAP;
 
 DROP TABLE IF EXISTS `classification`;
-DROP TABLE IF EXISTS `collectionDate`;
+DROP TABLE IF EXISTS `date`;
 DROP TABLE IF EXISTS `document`;
 DROP TABLE IF EXISTS `documentLengthGroup`;
-DROP TABLE IF EXISTS `documentLengthPercentile`;
-DROP TABLE IF EXISTS `extractedDate`;
 DROP TABLE IF EXISTS `extractedLocation`;
-DROP TABLE IF EXISTS `ingestDate`;
 DROP TABLE IF EXISTS `organization`;
 DROP TABLE IF EXISTS `organizationFact`;
-DROP TABLE IF EXISTS `organizationPercentile`;
+DROP TABLE IF EXISTS `percentile`;
 DROP TABLE IF EXISTS `person`;
 DROP TABLE IF EXISTS `personFact`;
-DROP TABLE IF EXISTS `personPercentile`;
-DROP TABLE IF EXISTS `publicationDate`;
 DROP TABLE IF EXISTS `source`;
 DROP TABLE IF EXISTS `word`;
 DROP TABLE IF EXISTS `wordFact`;
-DROP TABLE IF EXISTS `wordStemPercentile`;
 
 CREATE TABLE `classification` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
@@ -26,7 +20,7 @@ CREATE TABLE `classification` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-CREATE TABLE `collectionDate` (
+CREATE TABLE `date` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `year` smallint(4) unsigned DEFAULT NULL,
   `month` tinyint(2) unsigned DEFAULT NULL,
@@ -59,14 +53,14 @@ CREATE TABLE `documentFact` (
   PRIMARY KEY (`id`),
   CONSTRAINT `FK_Document_DocumentFact` FOREIGN KEY (documentId) REFERENCES document(id),
   CONSTRAINT `FK_ExtractedLocation_DocumentFact` FOREIGN KEY (extractedLocationId) REFERENCES extractedLocation(id),
-  CONSTRAINT `FK_ExtractedDate_DocumentFact` FOREIGN KEY (extractedDateId) REFERENCES extractedDate(id),
-  CONSTRAINT `FK_PublicationDate_DocumentFact` FOREIGN KEY (publicationDateId) REFERENCES publicationDate(id),
-  CONSTRAINT `FK_IngestDate_DocumentFact` FOREIGN KEY (ingestDateId) REFERENCES ingestDate(id),
-  CONSTRAINT `FK_CollectionDate_DocumentFact` FOREIGN KEY (collectionDateId) REFERENCES collectionDate(id),
+  CONSTRAINT `FK_ExtractedDate_DocumentFact` FOREIGN KEY (extractedDateId) REFERENCES date(id),
+  CONSTRAINT `FK_PublicationDate_DocumentFact` FOREIGN KEY (publicationDateId) REFERENCES date(id),
+  CONSTRAINT `FK_IngestDate_DocumentFact` FOREIGN KEY (ingestDateId) REFERENCES date(id),
+  CONSTRAINT `FK_CollectionDate_DocumentFact` FOREIGN KEY (collectionDateId) REFERENCES date(id),
   CONSTRAINT `FK_Classification_DocumentFact` FOREIGN KEY (classificationId) REFERENCES classification(id),
   CONSTRAINT `FK_Source_DocumentFact` FOREIGN KEY (sourceId) REFERENCES source(id),
   CONSTRAINT `FK_DocumentLengthGroup_DocumentFact` FOREIGN KEY (documentLengthGroupId) REFERENCES documentLengthGroup(id),
-  CONSTRAINT `FK_DocumentLengthPercentile_DocumentFact` FOREIGN KEY (documentLengthPercentileId) REFERENCES documentLengthPercentile(id)
+  CONSTRAINT `FK_DocumentLengthPercentile_DocumentFact` FOREIGN KEY (documentLengthPercentileId) REFERENCES percentile(id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `documentLengthGroup` (
@@ -77,15 +71,6 @@ CREATE TABLE `documentLengthGroup` (
   `coarseName` varchar(20) DEFAULT NULL,
   `coarseLower` int(10) unsigned DEFAULT NULL,
   `coarseUpper` int(10) unsigned DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-CREATE TABLE `documentLengthPercentile` (
-  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
-  `percentile` tinyint(3) unsigned NOT NULL,
-  `coarseName` varchar(20) DEFAULT NULL,
-  `coarseLower` tinyint(3) unsigned DEFAULT NULL,
-  `coarseUpper` tinyint(3) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -110,15 +95,6 @@ CREATE TABLE `extractedLocation` (
   `subnationalName` varchar(100) DEFAULT NULL,
   `latitude` float DEFAULT NULL,
   `longitude` float DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-CREATE TABLE `ingestDate` (
-  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
-  `year` smallint(4) unsigned DEFAULT NULL,
-  `month` tinyint(2) unsigned DEFAULT NULL,
-  `monthName` varchar(3) DEFAULT NULL,
-  `dayOfMonth` tinyint(2) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -159,18 +135,18 @@ CREATE TABLE `organizationFact` (
   CONSTRAINT `FK_Organization_OrganizationFact` FOREIGN KEY (organizationId) REFERENCES organization(id),
   CONSTRAINT `FK_Document_OrganizationFact` FOREIGN KEY (documentId) REFERENCES document(id),
   CONSTRAINT `FK_ExtractedLocation_OrganizationFact` FOREIGN KEY (extractedLocationId) REFERENCES extractedLocation(id),
-  CONSTRAINT `FK_ExtractedDate_OrganizationFact` FOREIGN KEY (extractedDateId) REFERENCES extractedDate(id),
-  CONSTRAINT `FK_PublicationDate_OrganizationFact` FOREIGN KEY (publicationDateId) REFERENCES publicationDate(id),
-  CONSTRAINT `FK_IngestDate_OrganizationFact` FOREIGN KEY (ingestDateId) REFERENCES ingestDate(id),
-  CONSTRAINT `FK_CollectionDate_OrganizationFact` FOREIGN KEY (collectionDateId) REFERENCES collectionDate(id),
+  CONSTRAINT `FK_ExtractedDate_OrganizationFact` FOREIGN KEY (extractedDateId) REFERENCES date(id),
+  CONSTRAINT `FK_PublicationDate_OrganizationFact` FOREIGN KEY (publicationDateId) REFERENCES date(id),
+  CONSTRAINT `FK_IngestDate_OrganizationFact` FOREIGN KEY (ingestDateId) REFERENCES date(id),
+  CONSTRAINT `FK_CollectionDate_OrganizationFact` FOREIGN KEY (collectionDateId) REFERENCES date(id),
   CONSTRAINT `FK_Classification_OrganizationFact` FOREIGN KEY (classificationId) REFERENCES classification(id),
   CONSTRAINT `FK_Source_OrganizationFact` FOREIGN KEY (sourceId) REFERENCES source(id),
   CONSTRAINT `FK_DocumentLengthGroup_OrganizationFact` FOREIGN KEY (documentLengthGroupId) REFERENCES documentLengthGroup(id),
-  CONSTRAINT `FK_DocumentLengthPercentile_OrganizationFact` FOREIGN KEY (documentLengthPercentileId) REFERENCES documentLengthPercentile(id),
-  CONSTRAINT `FK_OrganizationPercentile_OrganizationFact` FOREIGN KEY (orgPercentileId) REFERENCES organizationPercentile(id)
+  CONSTRAINT `FK_DocumentLengthPercentile_OrganizationFact` FOREIGN KEY (documentLengthPercentileId) REFERENCES percentile(id),
+  CONSTRAINT `FK_OrganizationPercentile_OrganizationFact` FOREIGN KEY (orgPercentileId) REFERENCES percentile(id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-CREATE TABLE `organizationPercentile` (
+CREATE TABLE `percentile` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `percentile` tinyint(3) unsigned NOT NULL,
   `coarseName` varchar(20) DEFAULT NULL,
@@ -216,33 +192,15 @@ CREATE TABLE `personFact` (
   CONSTRAINT `FK_Person_PersonFact` FOREIGN KEY (personId) REFERENCES person(id),
   CONSTRAINT `FK_Document_PersonFact` FOREIGN KEY (documentId) REFERENCES document(id),
   CONSTRAINT `FK_ExtractedLocation_PersonFact` FOREIGN KEY (extractedLocationId) REFERENCES extractedLocation(id),
-  CONSTRAINT `FK_ExtractedDate_PersonFact` FOREIGN KEY (extractedDateId) REFERENCES extractedDate(id),
-  CONSTRAINT `FK_PublicationDate_PersonFact` FOREIGN KEY (publicationDateId) REFERENCES publicationDate(id),
-  CONSTRAINT `FK_IngestDate_PersonFact` FOREIGN KEY (ingestDateId) REFERENCES ingestDate(id),
-  CONSTRAINT `FK_CollectionDate_PersonFact` FOREIGN KEY (collectionDateId) REFERENCES collectionDate(id),
+  CONSTRAINT `FK_ExtractedDate_PersonFact` FOREIGN KEY (extractedDateId) REFERENCES date(id),
+  CONSTRAINT `FK_PublicationDate_PersonFact` FOREIGN KEY (publicationDateId) REFERENCES date(id),
+  CONSTRAINT `FK_IngestDate_PersonFact` FOREIGN KEY (ingestDateId) REFERENCES date(id),
+  CONSTRAINT `FK_CollectionDate_PersonFact` FOREIGN KEY (collectionDateId) REFERENCES date(id),
   CONSTRAINT `FK_Classification_PersonFact` FOREIGN KEY (classificationId) REFERENCES classification(id),
   CONSTRAINT `FK_Source_PersonFact` FOREIGN KEY (sourceId) REFERENCES source(id),
   CONSTRAINT `FK_DocumentLengthGroup_PersonFact` FOREIGN KEY (documentLengthGroupId) REFERENCES documentLengthGroup(id),
-  CONSTRAINT `FK_DocumentLengthPercentile_PersonFact` FOREIGN KEY (documentLengthPercentileId) REFERENCES documentLengthPercentile(id),
-  CONSTRAINT `FK_PersonPercentile_PersonFact` FOREIGN KEY (personPercentileId) REFERENCES personPercentile(id)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-CREATE TABLE `personPercentile` (
-  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
-  `percentile` tinyint(3) unsigned NOT NULL,
-  `coarseName` varchar(20) DEFAULT NULL,
-  `coarseLower` tinyint(3) unsigned DEFAULT NULL,
-  `coarseUpper` tinyint(3) unsigned DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-CREATE TABLE `publicationDate` (
-  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
-  `year` smallint(4) unsigned DEFAULT NULL,
-  `month` tinyint(2) unsigned DEFAULT NULL,
-  `monthName` varchar(3) DEFAULT NULL,
-  `dayOfMonth` tinyint(2) unsigned DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  CONSTRAINT `FK_DocumentLengthPercentile_PersonFact` FOREIGN KEY (documentLengthPercentileId) REFERENCES percentile(id),
+  CONSTRAINT `FK_PersonPercentile_PersonFact` FOREIGN KEY (personPercentileId) REFERENCES percentile(id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `source` (
@@ -289,22 +247,13 @@ CREATE TABLE `wordFact` (
   CONSTRAINT `FK_Word_WordFact` FOREIGN KEY (wordId) REFERENCES word(id),
   CONSTRAINT `FK_Document_WordFact` FOREIGN KEY (documentId) REFERENCES document(id),
   CONSTRAINT `FK_ExtractedLocation_WordFact` FOREIGN KEY (extractedLocationId) REFERENCES extractedLocation(id),
-  CONSTRAINT `FK_ExtractedDate_WordFact` FOREIGN KEY (extractedDateId) REFERENCES extractedDate(id),
-  CONSTRAINT `FK_PublicationDate_WordFact` FOREIGN KEY (publicationDateId) REFERENCES publicationDate(id),
-  CONSTRAINT `FK_IngestDate_WordFact` FOREIGN KEY (ingestDateId) REFERENCES ingestDate(id),
-  CONSTRAINT `FK_CollectionDate_WordFact` FOREIGN KEY (collectionDateId) REFERENCES collectionDate(id),
+  CONSTRAINT `FK_ExtractedDate_WordFact` FOREIGN KEY (extractedDateId) REFERENCES date(id),
+  CONSTRAINT `FK_PublicationDate_WordFact` FOREIGN KEY (publicationDateId) REFERENCES date(id),
+  CONSTRAINT `FK_IngestDate_WordFact` FOREIGN KEY (ingestDateId) REFERENCES date(id),
+  CONSTRAINT `FK_CollectionDate_WordFact` FOREIGN KEY (collectionDateId) REFERENCES date(id),
   CONSTRAINT `FK_Classification_WordFact` FOREIGN KEY (classificationId) REFERENCES classification(id),
   CONSTRAINT `FK_Source_WordFact` FOREIGN KEY (sourceId) REFERENCES source(id),
   CONSTRAINT `FK_DocumentLengthGroup_WordFact` FOREIGN KEY (documentLengthGroupId) REFERENCES documentLengthGroup(id),
-  CONSTRAINT `FK_DocumentLengthPercentile_WordFact` FOREIGN KEY (documentLengthPercentileId) REFERENCES documentLengthPercentile(id),
-  CONSTRAINT `FK_WordStemPercentile_WordFact` FOREIGN KEY (wordStemPercentileId) REFERENCES wordStemPercentile(id)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-CREATE TABLE `wordStemPercentile` (
-  `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
-  `percentile` tinyint(3) unsigned NOT NULL,
-  `coarseName` varchar(20) DEFAULT NULL,
-  `coarseLower` tinyint(3) unsigned DEFAULT NULL,
-  `coarseUpper` tinyint(3) unsigned DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  CONSTRAINT `FK_DocumentLengthPercentile_WordFact` FOREIGN KEY (documentLengthPercentileId) REFERENCES percentile(id),
+  CONSTRAINT `FK_WordStemPercentile_WordFact` FOREIGN KEY (wordStemPercentileId) REFERENCES percentile(id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
