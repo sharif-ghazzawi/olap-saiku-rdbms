@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<Schema name="George Bush" description="Filtered on the terms 'George' and 'Bush'">
+<Schema name="Filtered" description="Filtered on the terms 'Terror*' and 'Women'">
 
     <Dimension name="Classification">
         <Hierarchy hasAll="true" primaryKey="id">
@@ -50,11 +50,7 @@
 
     <Dimension name="Document">
         <Hierarchy hasAll="true" primaryKey="id">
-            <View alias="filteredDocs">
-                <SQL dialect="mysql">
-                    select * from document where title like '%george%' and title like '%bush%'
-                </SQL>
-            </View>
+            <Table name="document"/>
             <Level name="Title" column="title">
                 <Property name="DRSI ID" column="drsiDocId"/>
             </Level>
@@ -73,7 +69,7 @@
     <Dimension name="Document Length Compared to Other Documents">
         <Hierarchy hasAll="true" primaryKey="id">
             <Table name="percentile"/>
-            <Level name="Coarse" column="coarseName" ordinalColumn="coarseNameLength"/>
+            <Level name="Coarse" column="coarseNameLength" ordinalColumn="coarseLower"/>
             <Level name="Percentile" column="percentile"/>
         </Hierarchy>
     </Dimension>
@@ -133,7 +129,7 @@
     <Dimension name="Organization Percentile">
         <Hierarchy hasAll="true" primaryKey="id">
             <Table name="percentile"/>
-            <Level name="Coarse" column="coarseName" ordinalColumn="coarseNameCommonness"/>
+            <Level name="Coarse" column="coarseNameCommonness" ordinalColumn="coarseLower"/>
             <Level name="Percentile" column="percentile"/>
         </Hierarchy>
     </Dimension>
@@ -141,7 +137,7 @@
     <Dimension name="Person Percentile">
         <Hierarchy hasAll="true" primaryKey="id">
             <Table name="percentile"/>
-            <Level name="Coarse" column="coarseName" ordinalColumn="coarseNameCommonness"/>
+            <Level name="Coarse" column="coarseNameCommonness" ordinalColumn="coarseLower"/>
             <Level name="Percentile" column="percentile"/>
         </Hierarchy>
     </Dimension>
@@ -166,7 +162,7 @@
         <View alias="filteredWord">
             <SQL dialect="mysql">
                 select * from wordFact
-                where wordId in (select id from word where word like '%george%' or word like '%bush%')
+                where wordId in (select id from word where word like '%terror%' or word like '%women%')
             </SQL>
         </View>
         <Dimension name="Word" foreignKey="wordId">
@@ -204,7 +200,7 @@
         <View alias="filteredPeople">
             <SQL dialect="mysql">
                 select * from personFact
-                where personId in (select id from person where name like '%george%' and name like '%bush%')
+                where personId in (select id from person where name like '%terror%' and name like '%women%')
             </SQL>
         </View>
         <Dimension name="Person" foreignKey="personId">
@@ -242,7 +238,7 @@
         <View alias="filteredOrg">
             <SQL dialect="mysql">
                 select * from organizationFact
-                where organizationId in (select id from organization where name like '%george%' and name like '%bush%')
+                where organizationId in (select id from organization where name like '%terror%' and name like '%women%')
             </SQL>
         </View>
         <Dimension name="Organization" foreignKey="organizationId">
@@ -283,8 +279,8 @@
         <View alias="filteredOrg">
             <SQL dialect="mysql">
                 select * from documentFact
-                where documentId in (select id from document where (title like '%george%' and title like '%bush%')
-                    or (body like '%george%' and body like '%bush%'))
+                where documentId in (select id from document where (title like '%terror%' and title like '%women%')
+                    or (body like '%terror%' and body like '%women%'))
             </SQL>
         </View>
         <DimensionUsage name="Geo Location Mentioned in Document" source="Geo Location Mentioned in Document"
