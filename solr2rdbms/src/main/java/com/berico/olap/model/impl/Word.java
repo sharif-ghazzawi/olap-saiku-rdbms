@@ -17,7 +17,6 @@ public class Word implements Dimension {
     private String mediumName;
     private Integer coarseId;
     private String coarseName;
-    private Float evImportance;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -100,14 +99,5 @@ public class Word implements Dimension {
 
     public void setCoarseName(String coarseName) {
         this.coarseName = coarseName;
-    }
-
-    @Column(name = "evImportance")
-    public Float getEvImportance() {
-        return evImportance;
-    }
-
-    public void setEvImportance(Float evImportance) {
-        this.evImportance = evImportance;
     }
 }

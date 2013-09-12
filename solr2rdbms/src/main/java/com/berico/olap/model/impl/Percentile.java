@@ -10,7 +10,9 @@ public class Percentile implements Dimension {
 
     private Integer id;
     private short percentile;
-    private String coarseName;
+    private String coarseNameLength;
+    private String coarseNamePosition;
+    private String coarseNameCommonness;
     private int coarseUpperBound;
     private int coarseLowerBound;
 
@@ -34,13 +36,31 @@ public class Percentile implements Dimension {
         this.percentile = percentile;
     }
 
-    @Column(name = "coarseName")
-    public String getCoarseName() {
-        return coarseName;
+    @Column(name = "coarseNameLength")
+    public String getCoarseNameLength() {
+        return coarseNameLength;
     }
 
-    public void setCoarseName(String coarseName) {
-        this.coarseName = coarseName;
+    public void setCoarseNameLength(String coarseNameLength) {
+        this.coarseNameLength = coarseNameLength;
+    }
+
+    @Column(name = "coarseNamePosition")
+    public String getCoarseNamePosition() {
+        return coarseNamePosition;
+    }
+
+    public void setCoarseNamePosition(String coarseNamePosition) {
+        this.coarseNamePosition = coarseNamePosition;
+    }
+
+    @Column(name = "coarseNameCommonness")
+    public String getCoarseNameCommonness() {
+        return coarseNameCommonness;
+    }
+
+    public void setCoarseNameCommonness(String coarseNameCommonness) {
+        this.coarseNameCommonness = coarseNameCommonness;
     }
 
     @Column(name = "coarseUpper")

@@ -149,7 +149,9 @@ CREATE TABLE `organizationFact` (
 CREATE TABLE `percentile` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `percentile` tinyint(3) unsigned NOT NULL,
-  `coarseName` varchar(20) DEFAULT NULL,
+  `coarseNameLength` varchar(24) DEFAULT NULL,
+  `coarseNamePosition` varchar(24) DEFAULT NULL,
+  `coarseNameCommonness` varchar(24) DEFAULT NULL,
   `coarseLower` tinyint(3) unsigned DEFAULT NULL,
   `coarseUpper` tinyint(3) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
