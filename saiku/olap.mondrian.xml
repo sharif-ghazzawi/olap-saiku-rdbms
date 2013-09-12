@@ -69,12 +69,12 @@
     <Dimension name="Document Length Compared to Other Documents">
         <Hierarchy hasAll="true" primaryKey="id">
             <Table name="percentile"/>
-            <Level name="Coarse" column="coarseName" ordinalColumn="coarseLower"/>
+            <Level name="Coarse" column="coarseName" ordinalColumn="coarseNameLength"/>
             <Level name="Percentile" column="percentile"/>
         </Hierarchy>
     </Dimension>
 
-    <Dimension name="Location Mentioned in Document">
+    <Dimension name="Geo Location Mentioned in Document">
         <Hierarchy hasAll="true" primaryKey="id">
             <Table name="extractedLocation"/>
             <Level name="Command" column="command">
@@ -129,7 +129,7 @@
     <Dimension name="Organization Percentile">
         <Hierarchy hasAll="true" primaryKey="id">
             <Table name="percentile"/>
-            <Level name="Coarse" column="coarseName" ordinalColumn="coarseLower"/>
+            <Level name="Coarse" column="coarseName" ordinalColumn="coarseNameCommonness"/>
             <Level name="Percentile" column="percentile"/>
         </Hierarchy>
     </Dimension>
@@ -137,7 +137,7 @@
     <Dimension name="Person Percentile">
         <Hierarchy hasAll="true" primaryKey="id">
             <Table name="percentile"/>
-            <Level name="Coarse" column="coarseName" ordinalColumn="coarseLower"/>
+            <Level name="Coarse" column="coarseName" ordinalColumn="coarseNameCommonness"/>
             <Level name="Percentile" column="percentile"/>
         </Hierarchy>
     </Dimension>
@@ -150,11 +150,11 @@
         </Hierarchy>
     </Dimension>
 
-    <Dimension name="Word Stem Percentile">
-        <Hierarchy hasAll="true" primaryKey="id">
+    <Dimension name="Word Stem Commonness">
+        <Hierarchy hasAll="false" primaryKey="id">
             <Table name="percentile"/>
-            <Level name="Coarse" column="coarseName" ordinalColumn="coarseLower"/>
-            <Level name="Percentile" column="percentile"/>
+            <Level name="Doc Length Compared: Score Group" column="coarseNameCommonness" ordinalColumn="coarseLower"/>
+            <Level name="Doc Length Compared: Score" column="percentile"/>
         </Hierarchy>
     </Dimension>
 
@@ -169,7 +169,7 @@
                 <Level name="Word" column="word" uniqueMembers="false"/>
             </Hierarchy>
         </Dimension>
-        <DimensionUsage name="Location Mentioned in Document" source="Location Mentioned in Document"
+        <DimensionUsage name="Geo Location Mentioned in Document" source="Geo Location Mentioned in Document"
                         foreignKey="extractedLocationId"/>
         <DimensionUsage name="Date Mentioned in Document" source="Dates Mentioned in Document"
                         foreignKey="extractedDateId"/>
@@ -181,7 +181,7 @@
         <DimensionUsage name="Document Length" source="Document Length" foreignKey="documentLengthGroupId"/>
         <DimensionUsage name="Document Length Compared to Other Documents"
                         source="Document Length Compared to Other Documents" foreignKey="documentLengthPercentileId"/>
-        <DimensionUsage name="Word Stem Percentile" source="Word Stem Percentile" foreignKey="wordStemPercentileId"/>
+        <DimensionUsage name="Word Stem Commonness" source="Word Stem Commonness" foreignKey="wordStemPercentileId"/>
 
         <Measure name="Document Count" column="documentId" aggregator="distinct-count" formatString="Standard"/>
         <Measure name="Document Length" column="documentLengthWords" aggregator="avg" formatString="Standard"/>
@@ -202,7 +202,7 @@
                 <Level name="Person Name" column="name" uniqueMembers="false"/>
             </Hierarchy>
         </Dimension>
-        <DimensionUsage name="Location Mentioned in Document" source="Location Mentioned in Document"
+        <DimensionUsage name="Geo Location Mentioned in Document" source="Geo Location Mentioned in Document"
                         foreignKey="extractedLocationId"/>
         <DimensionUsage name="Date Mentioned in Document" source="Dates Mentioned in Document"
                         foreignKey="extractedDateId"/>
@@ -237,7 +237,7 @@
                 <Level name="Organization Name" column="name" uniqueMembers="false"/>
             </Hierarchy>
         </Dimension>
-        <DimensionUsage name="Location Mentioned in Document" source="Location Mentioned in Document"
+        <DimensionUsage name="Geo Location Mentioned in Document" source="Geo Location Mentioned in Document"
                         foreignKey="extractedLocationId"/>
         <DimensionUsage name="Date Mentioned in Document" source="Dates Mentioned in Document"
                         foreignKey="extractedDateId"/>
@@ -262,7 +262,7 @@
 
     <Cube name="Documents" defaultMeasure="Document Count">
         <Table name="documentFact"/>
-        <DimensionUsage name="Location Mentioned in Document" source="Location Mentioned in Document"
+        <DimensionUsage name="Geo Location Mentioned in Document" source="Geo Location Mentioned in Document"
                         foreignKey="extractedLocationId"/>
         <DimensionUsage name="Date Mentioned in Document" source="Dates Mentioned in Document"
                         foreignKey="extractedDateId"/>
