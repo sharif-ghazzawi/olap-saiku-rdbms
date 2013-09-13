@@ -103,11 +103,11 @@ CREATE TABLE `organization` (
   `name` varchar(120) DEFAULT NULL,
   `concept` varchar(120) DEFAULT NULL,
   `fineId` int(10) unsigned DEFAULT NULL,
-  `fineName` varchar(120) DEFAULT NULL,
+  `fineName` varchar(200) DEFAULT NULL,
   `mediumId` int(10) unsigned DEFAULT NULL,
-  `mediumName` varchar(120) DEFAULT NULL,
+  `mediumName` varchar(200) DEFAULT NULL,
   `coarseId` int(10) unsigned DEFAULT NULL,
-  `coarseName` varchar(120) DEFAULT NULL,
+  `coarseName` varchar(200) DEFAULT NULL,
   `entityKey` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
