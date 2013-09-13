@@ -153,7 +153,7 @@
     <Dimension name="Word Stem Commonness">
         <Hierarchy hasAll="false" primaryKey="id">
             <Table name="percentile"/>
-            <Level name="Doc Length Compared: Score Group" column="coarseName" ordinalColumn="coarseNameCommonness"/>
+            <Level name="Doc Length Compared: Score Group" column="coarseNameCommonness" ordinalColumn="coarseLower"/>
             <Level name="Doc Length Compared: Score" column="percentile"/>
         </Hierarchy>
     </Dimension>
