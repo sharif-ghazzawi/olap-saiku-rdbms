@@ -222,7 +222,6 @@ CREATE TABLE `word` (
   `mediumName` varchar(80) DEFAULT NULL,
   `coarseId` int(10) unsigned DEFAULT NULL,
   `coarseName` varchar(80) DEFAULT NULL,
-  `evImportance` float unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 

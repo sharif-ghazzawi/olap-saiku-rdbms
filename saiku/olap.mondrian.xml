@@ -158,7 +158,7 @@
         </Hierarchy>
     </Dimension>
 
-    <Cube name="Words" defaultMeasure="Document Count">
+    <Cube name="Words" defaultMeasure="Total Word Mentions">
         <Table name="wordFact"/>
         <Dimension name="Word" foreignKey="wordId">
             <Hierarchy hasAll="true" primaryKey="id">
@@ -184,14 +184,44 @@
         <DimensionUsage name="Word Stem Commonness" source="Word Stem Commonness" foreignKey="wordStemPercentileId"/>
 
         <Measure name="Document Count" column="documentId" aggregator="distinct-count" formatString="Standard"/>
-        <Measure name="Document Length" column="documentLengthWords" aggregator="avg" formatString="Standard"/>
-        <Measure name="Frequency of Appearance" column="wordFrequency" aggregator="avg" formatString="Standard"/>
-        <Measure name="Frequency Share" column="wordFrequencyShare" aggregator="avg" formatString="Standard"/>
-        <Measure name="Position in Document" column="position" aggregator="avg" formatString="Standard"/>
-        <Measure name="Position Percentile" column="positionPercentile" aggregator="count" formatString="Standard"/>
+        <Measure name="Word Frequency" column="wordFrequency" aggregator="sum" formatString="Standard"/>
+        <Measure name="Word Frequency (Loc)" column="wordFrequencyShareLoc" aggregator="sum" formatString="Standard"/>
+        <Measure name="Word Frequency (Date)" column="wordFrequencyShareDate" aggregator="sum" formatString="Standard"/>
+        <Measure name="Word Frequency (Date and Loc)" column="wordFrequencyShare" aggregator="sum" formatString="Standard"/>
     </Cube>
 
-    <Cube name="People" defaultMeasure="Document Count">
+    <Cube name="Word2Vec" defaultMeasure="Total Word Mentions">
+        <Table name="wordFact"/>
+        <Dimension name="Word" foreignKey="wordId">
+            <Hierarchy hasAll="true" primaryKey="id">
+                <Table name="word2"/>
+                <Level name="Word Group: Large" column="fineName" ordinalColumn="fineId" uniqueMembers="false"/>
+                <Level name="Word Group: Small" column="stem" uniqueMembers="false"/>
+                <Level name="Word" column="word" uniqueMembers="false"/>
+            </Hierarchy>
+        </Dimension>
+        <DimensionUsage name="Geo Location Mentioned in Document" source="Geo Location Mentioned in Document"
+                        foreignKey="extractedLocationId"/>
+        <DimensionUsage name="Date Mentioned in Document" source="Dates Mentioned in Document"
+                        foreignKey="extractedDateId"/>
+        <DimensionUsage name="Date Document Published" source="Date Document Published" foreignKey="publicationDateId"/>
+        <DimensionUsage name="Date Document Ingested" source="Date Document Ingested" foreignKey="ingestDateId"/>
+        <DimensionUsage name="Date Document Collected" source="Date Document Collected" foreignKey="collectionDateId"/>
+        <DimensionUsage name="Classification" source="Classification" foreignKey="classificationId"/>
+        <DimensionUsage name="Source" source="Source" foreignKey="sourceId"/>
+        <DimensionUsage name="Document Length" source="Document Length" foreignKey="documentLengthGroupId"/>
+        <DimensionUsage name="Document Length Compared to Other Documents"
+                        source="Document Length Compared to Other Documents" foreignKey="documentLengthPercentileId"/>
+        <DimensionUsage name="Word Stem Commonness" source="Word Stem Commonness" foreignKey="wordStemPercentileId"/>
+
+        <Measure name="Document Count" column="documentId" aggregator="distinct-count" formatString="Standard"/>
+        <Measure name="Word Frequency" column="wordFrequency" aggregator="sum" formatString="Standard"/>
+        <Measure name="Word Frequency (Loc)" column="wordFrequencyShareLoc" aggregator="sum" formatString="Standard"/>
+        <Measure name="Word Frequency (Date)" column="wordFrequencyShareDate" aggregator="sum" formatString="Standard"/>
+        <Measure name="Word Frequency (Date and Loc)" column="wordFrequencyShare" aggregator="sum" formatString="Standard"/>
+    </Cube>
+
+    <Cube name="People" defaultMeasure="Total Person Mentions">
         <Table name="personFact"/>
         <Dimension name="Person" foreignKey="personId">
             <Hierarchy hasAll="true" primaryKey="id">
@@ -217,14 +247,10 @@
         <DimensionUsage name="Person Percentile" source="Person Percentile" foreignKey="personPercentileId"/>
 
         <Measure name="Document Count" column="documentId" aggregator="distinct-count" formatString="Standard"/>
-        <Measure name="Document Length" column="documentLengthWords" aggregator="avg" formatString="Standard"/>
-        <Measure name="Frequency of Appearance" column="personFrequency" aggregator="avg" formatString="Standard"/>
-        <Measure name="Frequency Share" column="personFrequencyShare" aggregator="avg" formatString="Standard"/>
-        <Measure name="Position in Document" column="position" aggregator="avg" formatString="Standard"/>
-        <Measure name="Position Percentile" column="positionPercentile" aggregator="count" formatString="Standard"/>
+        <Measure name="Total Person Mentions" column="personFrequencyShare" aggregator="sum" formatString="Standard"/>
     </Cube>
 
-    <Cube name="Organizations" defaultMeasure="Document Count">
+    <Cube name="Organizations" defaultMeasure="Total Organization Mentions">
         <Table name="organizationFact"/>
         <Dimension name="Organization" foreignKey="organizationId">
             <Hierarchy hasAll="true" primaryKey="id">
@@ -253,11 +279,8 @@
                         foreignKey="organizationPercentileId"/>
 
         <Measure name="Document Count" column="documentId" aggregator="distinct-count" formatString="Standard"/>
-        <Measure name="Document Length" column="documentLengthWords" aggregator="avg" formatString="Standard"/>
-        <Measure name="Frequency of Appearance" column="orgFrequency" aggregator="avg" formatString="Standard"/>
-        <Measure name="Frequency Share" column="orgFrequencyShare" aggregator="avg" formatString="Standard"/>
-        <Measure name="Position in Document" column="position" aggregator="avg" formatString="Standard"/>
-        <Measure name="Position Percentile" column="positionPercentile" aggregator="count" formatString="Standard"/>
+        <Measure name="Total Organization Mentions" column="orgFrequencyShare" aggregator="sum"
+                 formatString="Standard"/>
     </Cube>
 
     <Cube name="Documents" defaultMeasure="Document Count">
