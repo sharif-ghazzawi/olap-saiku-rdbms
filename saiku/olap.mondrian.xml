@@ -237,7 +237,7 @@
                  formatString="Standard"/>
         <Measure name="Unique Person Count" aggregator="distinct-count" column="person_id" visible="false"
                  formatString="Standard"/>
-        <CalculatedMember name="Total Person Mentions" dimension="Measures">
+        <CalculatedMember name="Person Impact" dimension="Measures">
             <Formula>
                 [Measures].[Summed Frequencies] * [Measures].[Unique Person Count] / [Measures].[Total Person Count]
             </Formula>
@@ -282,7 +282,7 @@
                  formatString="Standard"/>
         <Measure name="Unique Org Count" aggregator="distinct-count" column="organization_id" visible="false"
                  formatString="Standard"/>
-        <CalculatedMember name="Total Organization Mentions" dimension="Measures">
+        <CalculatedMember name="Organization Impact" dimension="Measures">
             <Formula>
                 [Measures].[Summed Frequencies] * [Measures].[Unique Org Count] / [Measures].[Total Org Count]
             </Formula>
