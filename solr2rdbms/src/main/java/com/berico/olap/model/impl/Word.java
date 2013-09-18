@@ -65,7 +65,7 @@ public class Word implements Dimension {
         this.fineName = fineName;
     }
 
-    @Column(name = "mediumId")
+    /*@Column(name = "mediumId")
     public Integer getMediumId() {
         return mediumId;
     }
@@ -99,5 +99,5 @@ public class Word implements Dimension {
 
     public void setCoarseName(String coarseName) {
         this.coarseName = coarseName;
-    }
+    }*/
 }

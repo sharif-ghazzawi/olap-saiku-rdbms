@@ -104,10 +104,6 @@ CREATE TABLE `organization` (
   `concept` varchar(120) DEFAULT NULL,
   `fineId` int(10) unsigned DEFAULT NULL,
   `fineName` varchar(200) DEFAULT NULL,
-  `mediumId` int(10) unsigned DEFAULT NULL,
-  `mediumName` varchar(200) DEFAULT NULL,
-  `coarseId` int(10) unsigned DEFAULT NULL,
-  `coarseName` varchar(200) DEFAULT NULL,
   `entityKey` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -163,10 +159,6 @@ CREATE TABLE `person` (
   `concept` varchar(160) DEFAULT NULL,
   `fineId` int(10) unsigned DEFAULT NULL,
   `fineName` varchar(160) DEFAULT NULL,
-  `mediumId` int(10) unsigned DEFAULT NULL,
-  `mediumName` varchar(160) DEFAULT NULL,
-  `coarseId` int(10) unsigned DEFAULT NULL,
-  `coarseName` varchar(160) DEFAULT NULL,
   `entityKey` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -218,10 +210,6 @@ CREATE TABLE `word` (
   `stem` varchar(40) DEFAULT NULL,
   `fineId` int(10) unsigned DEFAULT NULL,
   `fineName` varchar(80) DEFAULT NULL,
-  `mediumId` int(10) unsigned DEFAULT NULL,
-  `mediumName` varchar(80) DEFAULT NULL,
-  `coarseId` int(10) unsigned DEFAULT NULL,
-  `coarseName` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
