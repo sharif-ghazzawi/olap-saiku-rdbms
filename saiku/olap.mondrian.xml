@@ -153,48 +153,16 @@
     <Dimension name="Word Stem Commonness">
         <Hierarchy hasAll="false" primaryKey="id">
             <Table name="percentile"/>
-            <Level name="Doc Length Compared: Score Group" column="coarseNameCommonness" ordinalColumn="coarseLower"/>
-            <Level name="Doc Length Compared: Score" column="percentile"/>
+            <Level name="Word Stem Commonness: Score Group" column="coarseNameCommonness" ordinalColumn="coarseLower"/>
+            <Level name="Word Stem Commonness: Score" column="percentile"/>
         </Hierarchy>
     </Dimension>
 
-    <Cube name="Words" defaultMeasure="Total Word Mentions">
+    <Cube name="Words" defaultMeasure="Word Impact">
         <Table name="wordFact"/>
         <Dimension name="Word" foreignKey="wordId">
             <Hierarchy hasAll="true" primaryKey="id">
                 <Table name="word"/>
-                <Level name="Word Group: Large" column="mediumName" ordinalColumn="mediumId" uniqueMembers="false"/>
-                <Level name="Word Group: Medium" column="fineName" ordinalColumn="fineId" uniqueMembers="false"/>
-                <Level name="Word Group: Small" column="stem" uniqueMembers="false"/>
-                <Level name="Word" column="word" uniqueMembers="false"/>
-            </Hierarchy>
-        </Dimension>
-        <DimensionUsage name="Geo Location Mentioned in Document" source="Geo Location Mentioned in Document"
-                        foreignKey="extractedLocationId"/>
-        <DimensionUsage name="Date Mentioned in Document" source="Dates Mentioned in Document"
-                        foreignKey="extractedDateId"/>
-        <DimensionUsage name="Date Document Published" source="Date Document Published" foreignKey="publicationDateId"/>
-        <DimensionUsage name="Date Document Ingested" source="Date Document Ingested" foreignKey="ingestDateId"/>
-        <DimensionUsage name="Date Document Collected" source="Date Document Collected" foreignKey="collectionDateId"/>
-        <DimensionUsage name="Classification" source="Classification" foreignKey="classificationId"/>
-        <DimensionUsage name="Source" source="Source" foreignKey="sourceId"/>
-        <DimensionUsage name="Document Length" source="Document Length" foreignKey="documentLengthGroupId"/>
-        <DimensionUsage name="Document Length Compared to Other Documents"
-                        source="Document Length Compared to Other Documents" foreignKey="documentLengthPercentileId"/>
-        <DimensionUsage name="Word Stem Commonness" source="Word Stem Commonness" foreignKey="wordStemPercentileId"/>
-
-        <Measure name="Document Count" column="documentId" aggregator="distinct-count" formatString="Standard"/>
-        <Measure name="Word Frequency" column="wordFrequency" aggregator="sum" formatString="Standard"/>
-        <Measure name="Word Frequency (Loc)" column="wordFrequencyShareLoc" aggregator="sum" formatString="Standard"/>
-        <Measure name="Word Frequency (Date)" column="wordFrequencyShareDate" aggregator="sum" formatString="Standard"/>
-        <Measure name="Word Frequency (Date and Loc)" column="wordFrequencyShare" aggregator="sum" formatString="Standard"/>
-    </Cube>
-
-    <Cube name="Word2Vec" defaultMeasure="Total Word Mentions">
-        <Table name="wordFact"/>
-        <Dimension name="Word" foreignKey="wordId">
-            <Hierarchy hasAll="true" primaryKey="id">
-                <Table name="word2"/>
                 <Level name="Word Group: Large" column="fineName" ordinalColumn="fineId" uniqueMembers="false"/>
                 <Level name="Word Group: Small" column="stem" uniqueMembers="false"/>
                 <Level name="Word" column="word" uniqueMembers="false"/>
@@ -215,19 +183,30 @@
         <DimensionUsage name="Word Stem Commonness" source="Word Stem Commonness" foreignKey="wordStemPercentileId"/>
 
         <Measure name="Document Count" column="documentId" aggregator="distinct-count" formatString="Standard"/>
-        <Measure name="Word Frequency" column="wordFrequency" aggregator="sum" formatString="Standard"/>
-        <Measure name="Word Frequency (Loc)" column="wordFrequencyShareLoc" aggregator="sum" formatString="Standard"/>
-        <Measure name="Word Frequency (Date)" column="wordFrequencyShareDate" aggregator="sum" formatString="Standard"/>
-        <Measure name="Word Frequency (Date and Loc)" column="wordFrequencyShare" aggregator="sum" formatString="Standard"/>
+        <Measure name="Document Length" column="documentLengthWords" aggregator="avg" formatString="Standard"/>
+        <Measure name="Average Position in Document" column="position" aggregator="avg" formatString="Standard"/>
+        <Measure name="Average Position in Document Compared to Other Documents" column="position-percentile"
+                 aggregator="avg" formatString="Standard"/>
+
+        <Measure name="Summed Frequencies" column="orgFrequency" aggregator="sum" visible="false"
+                 formatString="Standard"/>
+        <Measure name="Total Word Count" aggregator="count" column="wordId" visible="false"
+                 formatString="Standard"/>
+        <Measure name="Unique Word Count" aggregator="distinct-count" column="wordId" visible="false"
+                 formatString="Standard"/>
+        <CalculatedMember name="Word Impact" dimension="Measures">
+            <Formula>
+                [Measures].[Summed Frequencies] * [Measures].[Unique Word Count] / [Measures].[Total Word Count]
+            </Formula>
+        </CalculatedMember>
     </Cube>
 
-    <Cube name="People" defaultMeasure="Total Person Mentions">
+    <Cube name="People" defaultMeasure="Person Impact">
         <Table name="personFact"/>
         <Dimension name="Person" foreignKey="personId">
             <Hierarchy hasAll="true" primaryKey="id">
                 <Table name="person"/>
-                <Level name="Person Group: Large" column="mediumName" ordinalColumn="mediumId" uniqueMembers="false"/>
-                <Level name="Person Group: Medium" column="fineName" ordinalColumn="fineId" uniqueMembers="false"/>
+                <Level name="Person Group: Large" column="fineName" ordinalColumn="fineId" uniqueMembers="false"/>
                 <Level name="Person Group: Small" column="concept" uniqueMembers="false"/>
                 <Level name="Person Name" column="name" uniqueMembers="false"/>
             </Hierarchy>
@@ -247,17 +226,30 @@
         <DimensionUsage name="Person Percentile" source="Person Percentile" foreignKey="personPercentileId"/>
 
         <Measure name="Document Count" column="documentId" aggregator="distinct-count" formatString="Standard"/>
-        <Measure name="Total Person Mentions" column="personFrequencyShare" aggregator="sum" formatString="Standard"/>
+        <Measure name="Document Length" column="documentLengthWords" aggregator="avg" formatString="Standard"/>
+        <Measure name="Average Position in Document" column="position" aggregator="avg" formatString="Standard"/>
+        <Measure name="Average Position in Document Compared to Other Documents" column="position-percentile"
+                 aggregator="avg" formatString="Standard"/>
+
+        <Measure name="Summed Frequencies" column="orgFrequency" aggregator="sum" visible="false"
+                 formatString="Standard"/>
+        <Measure name="Total Person Count" aggregator="count" column="personId" visible="false"
+                 formatString="Standard"/>
+        <Measure name="Unique Person Count" aggregator="distinct-count" column="personId" visible="false"
+                 formatString="Standard"/>
+        <CalculatedMember name="Total Person Mentions" dimension="Measures">
+            <Formula>
+                [Measures].[Summed Frequencies] * [Measures].[Unique Person Count] / [Measures].[Total Person Count]
+            </Formula>
+        </CalculatedMember>
     </Cube>
 
-    <Cube name="Organizations" defaultMeasure="Total Organization Mentions">
+    <Cube name="Organizations" defaultMeasure="Organization Impact">
         <Table name="organizationFact"/>
         <Dimension name="Organization" foreignKey="organizationId">
             <Hierarchy hasAll="true" primaryKey="id">
                 <Table name="organization"/>
-                <Level name="Organization Group: Large" column="mediumName" ordinalColumn="mediumId"
-                       uniqueMembers="false"/>
-                <Level name="Organization Group: Medium" column="fineName" ordinalColumn="fineId"
+                <Level name="Organization Group: Large" column="fineName" ordinalColumn="fineId"
                        uniqueMembers="false"/>
                 <Level name="Organization Group: Small" column="concept" uniqueMembers="false"/>
                 <Level name="Organization Name" column="name" uniqueMembers="false"/>
@@ -279,8 +271,22 @@
                         foreignKey="organizationPercentileId"/>
 
         <Measure name="Document Count" column="documentId" aggregator="distinct-count" formatString="Standard"/>
-        <Measure name="Total Organization Mentions" column="orgFrequencyShare" aggregator="sum"
+        <Measure name="Document Length" column="documentLengthWords" aggregator="avg" formatString="Standard"/>
+        <Measure name="Average Position in Document" column="position" aggregator="avg" formatString="Standard"/>
+        <Measure name="Average Position in Document Compared to Other Documents" column="position-percentile"
+                 aggregator="avg" formatString="Standard"/>
+
+        <Measure name="Summed Frequencies" column="orgFrequency" aggregator="sum" visible="false"
                  formatString="Standard"/>
+        <Measure name="Total Org Count" aggregator="count" column="organizationId" visible="false"
+                 formatString="Standard"/>
+        <Measure name="Unique Org Count" aggregator="distinct-count" column="organizationId" visible="false"
+                 formatString="Standard"/>
+        <CalculatedMember name="Total Organization Mentions" dimension="Measures">
+            <Formula>
+                [Measures].[Summed Frequencies] * [Measures].[Unique Org Count] / [Measures].[Total Org Count]
+            </Formula>
+        </CalculatedMember>
     </Cube>
 
     <Cube name="Documents" defaultMeasure="Document Count">
