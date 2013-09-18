@@ -8,7 +8,7 @@ import org.hibernate.annotations.ForeignKey;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "wordFact")
+@Table(name = "word_fact")
 public class WordFact implements Cube {
 
     private Integer id;
@@ -70,7 +70,7 @@ public class WordFact implements Cube {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "wordId")
+    @JoinColumn(name = "word_id")
     @ForeignKey(name = Constants.FK_WORD_WORDFACT)
     public Word getWord() {
         return word;
@@ -81,7 +81,7 @@ public class WordFact implements Cube {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "documentId")
+    @JoinColumn(name = "document_id")
     @ForeignKey(name = Constants.FK_DOCUMENT_WORDFACT)
     public Document getDocument() {
         return document;
@@ -92,7 +92,7 @@ public class WordFact implements Cube {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "extractedLocationId")
+    @JoinColumn(name = "extracted_location_id")
     @ForeignKey(name = Constants.FK_EXLOCATION_WORDFACT)
     public ExtractedLocation getExtractedLocation() {
         return extractedLocation;
@@ -103,7 +103,7 @@ public class WordFact implements Cube {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "extractedDateId")
+    @JoinColumn(name = "extracted_date_id")
     @ForeignKey(name = Constants.FK_EXDATE_WORDFACT)
     public Date getExtractedDate() {
         return extractedDate;
@@ -114,7 +114,7 @@ public class WordFact implements Cube {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "publicationDateId")
+    @JoinColumn(name = "publication_date_id")
     @ForeignKey(name = Constants.FK_PUBDATE_WORDFACT)
     public Date getPublicationDate() {
         return publicationDate;
@@ -125,7 +125,7 @@ public class WordFact implements Cube {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "ingestDateId")
+    @JoinColumn(name = "ingest_date_id")
     @ForeignKey(name = Constants.FK_INGDATE_WORDFACT)
     public Date getIngestDate() {
         return ingestDate;
@@ -136,7 +136,7 @@ public class WordFact implements Cube {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "collectionDateId")
+    @JoinColumn(name = "collection_date_id")
     @ForeignKey(name = Constants.FK_COLDATE_WORDFACT)
     public Date getCollectionDate() {
         return collectionDate;
@@ -147,7 +147,7 @@ public class WordFact implements Cube {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "classificationId")
+    @JoinColumn(name = "classification_id")
     @ForeignKey(name = Constants.FK_CLASSIFICATION_WORDFACT)
     public Classification getClassification() {
         return classification;
@@ -158,7 +158,7 @@ public class WordFact implements Cube {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "sourceId")
+    @JoinColumn(name = "source_id")
     @ForeignKey(name = Constants.FK_SOURCE_WORDFACT)
     public Source getSource() {
         return source;
@@ -169,7 +169,7 @@ public class WordFact implements Cube {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "documentLengthGroupId")
+    @JoinColumn(name = "document_length_group_id")
     @ForeignKey(name = Constants.FK_DOCLENGTHGROUP_WORDFACT)
     public DocumentLengthGroup getDocumentLengthGroup() {
         return documentLengthGroup;
@@ -180,7 +180,7 @@ public class WordFact implements Cube {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "documentLengthPercentileId")
+    @JoinColumn(name = "document_length_percentile_id")
     @ForeignKey(name = Constants.FK_DOCLENGTHPERCENTILE_WORDFACT)
     public Percentile getDocumentLengthPercentile() {
         return documentLengthPercentile;
@@ -191,7 +191,7 @@ public class WordFact implements Cube {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "wordStemPercentileId")
+    @JoinColumn(name = "word_stem_percentile_id")
     @ForeignKey(name = Constants.FK_WORDSTEMPERCENTILE_WORDFACT)
     public Percentile getWordStemPercentile() {
         return wordStemPercentile;
@@ -201,7 +201,7 @@ public class WordFact implements Cube {
         this.wordStemPercentile = wordStemPercentile;
     }
 
-    @Column(name = "documentLengthWords")
+    @Column(name = "document_length_words")
     public Integer getDocumentLengthWords() {
         return documentLengthWords;
     }
@@ -210,7 +210,7 @@ public class WordFact implements Cube {
         this.documentLengthWords = docLengthWords;
     }
 
-    @Column(name = "wordFrequency")
+    @Column(name = "word_frequency")
     public Integer getWordFrequency() {
         return wordFrequency;
     }
@@ -219,7 +219,7 @@ public class WordFact implements Cube {
         this.wordFrequency = wordDocCount;
     }
 
-    @Column(name = "wordFrequencyShare")
+    @Column(name = "word_frequency_share")
     public Float getWordFrequencyShare() {
         return wordFrequencyShare;
     }
@@ -237,7 +237,7 @@ public class WordFact implements Cube {
         this.position = position;
     }
 
-    @Column(name = "positionPercentile")
+    @Column(name = "position_percentile")
     public Integer getPositionPercentile() {
         return positionPercentile;
     }

@@ -7,7 +7,7 @@ import org.joda.time.DateTimeZone;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "date")
+@Table(name = "full_date")
 public class Date implements Dimension {
 
     private Integer id;
@@ -36,7 +36,7 @@ public class Date implements Dimension {
         this.year = year;
     }
 
-    @Column(name = "monthName")
+    @Column(name = "month_name")
     public String getMonthName() {
         return monthName;
     }
@@ -54,7 +54,7 @@ public class Date implements Dimension {
         this.month = month;
     }
 
-    @Column(name = "dayOfMonth")
+    @Column(name = "day_of_month")
     public Short getDayOfMonth() {
         return dayOfMonth;
     }

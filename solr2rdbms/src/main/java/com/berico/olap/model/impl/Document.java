@@ -24,7 +24,7 @@ public class Document implements Dimension {
         this.id = id;
     }
 
-    @Column(name = "drsiDocId")
+    @Column(name = "drsi_doc_id")
     public String getDrsiId() {
         return drsiId;
     }

@@ -5,7 +5,7 @@ import com.berico.olap.model.Dimension;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "documentLengthGroup")
+@Table(name = "document_length_group")
 public class DocumentLengthGroup implements Dimension {
 
     private Integer id;
@@ -27,7 +27,7 @@ public class DocumentLengthGroup implements Dimension {
         this.id = id;
     }
 
-    @Column(name = "fineName")
+    @Column(name = "fine_name")
     public String getFineName() {
         return fineName;
     }
@@ -36,7 +36,7 @@ public class DocumentLengthGroup implements Dimension {
         this.fineName = fineName;
     }
 
-    @Column(name = "fineLower")
+    @Column(name = "fine_lower")
     public Integer getFineLowerBound() {
         return fineLowerBound;
     }
@@ -45,7 +45,7 @@ public class DocumentLengthGroup implements Dimension {
         this.fineLowerBound = upperBound;
     }
 
-    @Column(name = "fineUpper")
+    @Column(name = "fine_upper")
     public Integer getFineUpperBound() {
         return fineUpperBound;
     }
@@ -54,7 +54,7 @@ public class DocumentLengthGroup implements Dimension {
         this.fineUpperBound = lowerBound;
     }
 
-    @Column(name = "coarseName")
+    @Column(name = "coarse_name")
     public String getCoarseName() {
         return coarseName;
     }
@@ -63,7 +63,7 @@ public class DocumentLengthGroup implements Dimension {
         this.coarseName = coarseName;
     }
 
-    @Column(name = "coarseLower")
+    @Column(name = "coarse_lower")
     public Integer getCoarseLowerBound() {
         return coarseLowerBound;
     }
@@ -72,7 +72,7 @@ public class DocumentLengthGroup implements Dimension {
         this.coarseLowerBound = coarseLowerBound;
     }
 
-    @Column(name = "coarseUpper")
+    @Column(name = "coarse_upper")
     public Integer getCoarseUpperBound() {
         return coarseUpperBound;
     }

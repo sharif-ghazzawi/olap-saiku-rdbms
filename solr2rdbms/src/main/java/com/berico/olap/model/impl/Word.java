@@ -13,10 +13,6 @@ public class Word implements Dimension {
     private String stem;
     private Integer fineId;
     private String fineName;
-    private Integer mediumId;
-    private String mediumName;
-    private Integer coarseId;
-    private String coarseName;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,7 +43,7 @@ public class Word implements Dimension {
         this.stem = concept;
     }
 
-    @Column(name = "fineId")
+    @Column(name = "fine_id")
     public Integer getFineId() {
         return fineId;
     }
@@ -56,7 +52,7 @@ public class Word implements Dimension {
         this.fineId = fineId;
     }
 
-    @Column(name = "fineName")
+    @Column(name = "fine_name")
     public String getFineName() {
         return fineName;
     }
@@ -64,40 +60,4 @@ public class Word implements Dimension {
     public void setFineName(String fineName) {
         this.fineName = fineName;
     }
-
-    /*@Column(name = "mediumId")
-    public Integer getMediumId() {
-        return mediumId;
-    }
-
-    public void setMediumId(Integer mediumId) {
-        this.mediumId = mediumId;
-    }
-
-    @Column(name = "mediumName")
-    public String getMediumName() {
-        return mediumName;
-    }
-
-    public void setMediumName(String mediumName) {
-        this.mediumName = mediumName;
-    }
-
-    @Column(name = "coarseId")
-    public Integer getCoarseId() {
-        return coarseId;
-    }
-
-    public void setCoarseId(Integer coarseId) {
-        this.coarseId = coarseId;
-    }
-
-    @Column(name = "coarseName")
-    public String getCoarseName() {
-        return coarseName;
-    }
-
-    public void setCoarseName(String coarseName) {
-        this.coarseName = coarseName;
-    }*/
 }

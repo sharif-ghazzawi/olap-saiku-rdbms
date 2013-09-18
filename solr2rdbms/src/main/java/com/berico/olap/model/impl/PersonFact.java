@@ -8,7 +8,7 @@ import org.hibernate.annotations.ForeignKey;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "personFact")
+@Table(name = "person_fact")
 public class PersonFact implements Cube {
 
     private Integer id;
@@ -70,7 +70,7 @@ public class PersonFact implements Cube {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "personId")
+    @JoinColumn(name = "person_id")
     @ForeignKey(name = Constants.FK_PERSON_PERSONFACT)
     public Person getPerson() {
         return person;
@@ -81,7 +81,7 @@ public class PersonFact implements Cube {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "documentId")
+    @JoinColumn(name = "document_id")
     @ForeignKey(name = Constants.FK_DOCUMENT_PERSONFACT)
     public Document getDocument() {
         return document;
@@ -92,7 +92,7 @@ public class PersonFact implements Cube {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "extractedLocationId")
+    @JoinColumn(name = "extracted_location_id")
     @ForeignKey(name = Constants.FK_EXLOCATION_PERSONFACT)
     public ExtractedLocation getExtractedLocation() {
         return extractedLocation;
@@ -103,7 +103,7 @@ public class PersonFact implements Cube {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "extractedDateId")
+    @JoinColumn(name = "extracted_date_id")
     @ForeignKey(name = Constants.FK_EXDATE_PERSONFACT)
     public Date getExtractedDate() {
         return extractedDate;
@@ -114,7 +114,7 @@ public class PersonFact implements Cube {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "publicationDateId")
+    @JoinColumn(name = "publication_date_id")
     @ForeignKey(name = Constants.FK_PUBDATE_PERSONFACT)
     public Date getPublicationDate() {
         return publicationDate;
@@ -125,7 +125,7 @@ public class PersonFact implements Cube {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "ingestDateId")
+    @JoinColumn(name = "ingest_date_id")
     @ForeignKey(name = Constants.FK_INGDATE_PERSONFACT)
     public Date getIngestDate() {
         return ingestDate;
@@ -136,7 +136,7 @@ public class PersonFact implements Cube {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "collectionDateId")
+    @JoinColumn(name = "collection_date_id")
     @ForeignKey(name = Constants.FK_COLDATE_PERSONFACT)
     public Date getCollectionDate() {
         return collectionDate;
@@ -147,7 +147,7 @@ public class PersonFact implements Cube {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "classificationId")
+    @JoinColumn(name = "classification_id")
     @ForeignKey(name = Constants.FK_CLASSIFICATION_PERSONFACT)
     public Classification getClassification() {
         return classification;
@@ -158,7 +158,7 @@ public class PersonFact implements Cube {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "sourceId")
+    @JoinColumn(name = "source_id")
     @ForeignKey(name = Constants.FK_SOURCE_PERSONFACT)
     public Source getSource() {
         return source;
@@ -169,7 +169,7 @@ public class PersonFact implements Cube {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "documentLengthGroupId")
+    @JoinColumn(name = "document_length_group_id")
     @ForeignKey(name = Constants.FK_DOCLENGTHGROUP_PERSONFACT)
     public DocumentLengthGroup getDocumentLengthGroup() {
         return documentLengthGroup;
@@ -180,7 +180,7 @@ public class PersonFact implements Cube {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "documentLengthPercentileId")
+    @JoinColumn(name = "document_length_percentile_id")
     @ForeignKey(name = Constants.FK_DOCLENGTHPERCENTILE_PERSONFACT)
     public Percentile getDocumentLengthPercentile() {
         return documentLengthPercentile;
@@ -191,7 +191,7 @@ public class PersonFact implements Cube {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "personPercentileId")
+    @JoinColumn(name = "person_percentile_id")
     @ForeignKey(name = Constants.FK_PERSONPERCENTILE_PERSONFACT)
     public Percentile getPersonPercentile() {
         return personPercentile;
@@ -201,7 +201,7 @@ public class PersonFact implements Cube {
         this.personPercentile = personPercentile;
     }
 
-    @Column(name = "documentLengthWords")
+    @Column(name = "document_length_words")
     public Integer getDocumentLengthWords() {
         return documentLengthWords;
     }
@@ -210,7 +210,7 @@ public class PersonFact implements Cube {
         this.documentLengthWords = docLengthWords;
     }
 
-    @Column(name = "personFrequency")
+    @Column(name = "person_frequency")
     public Integer getPersonFrequency() {
         return personFrequency;
     }
@@ -219,7 +219,7 @@ public class PersonFact implements Cube {
         this.personFrequency = wordDocCount;
     }
 
-    @Column(name = "personFrequencyShare")
+    @Column(name = "person_frequency_share")
     public Float getPersonFrequencyShare() {
         return personFrequencyShare;
     }
@@ -237,7 +237,7 @@ public class PersonFact implements Cube {
         this.position = position;
     }
 
-    @Column(name = "positionPercentile")
+    @Column(name = "position_percentile")
     public Integer getPositionPercentile() {
         return positionPercentile;
     }

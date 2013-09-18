@@ -5,7 +5,7 @@ import com.berico.olap.model.Dimension;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "extractedLocation")
+@Table(name = "extracted_location")
 public class ExtractedLocation implements Dimension {
 
     private Integer id;
@@ -31,7 +31,7 @@ public class ExtractedLocation implements Dimension {
         this.id = id;
     }
 
-    @Column(name = "clavinId")
+    @Column(name = "clavin_id")
     public Integer getClavinId() {
         return this.clavinId;
     }
@@ -40,7 +40,7 @@ public class ExtractedLocation implements Dimension {
         this.clavinId = clavinId;
     }
 
-    @Column(name = "locationName")
+    @Column(name = "location_name")
     public String getName() {
         return name;
     }
@@ -49,7 +49,7 @@ public class ExtractedLocation implements Dimension {
         this.name = name;
     }
 
-    @Column(name = "countryClavinId")
+    @Column(name = "country_clavin_id")
     public Integer getCountryClavinId() {
         return countryClavinId;
     }
@@ -58,7 +58,7 @@ public class ExtractedLocation implements Dimension {
         this.countryClavinId = countryClavinId;
     }
 
-    @Column(name = "countryIso")
+    @Column(name = "country_iso")
     public String getCountryIso() {
         return countryIso;
     }
@@ -67,7 +67,7 @@ public class ExtractedLocation implements Dimension {
         this.countryIso = countryIso;
     }
 
-    @Column(name = "countryName")
+    @Column(name = "country_name")
     public String getCountryName() {
         return countryName;
     }
@@ -85,7 +85,7 @@ public class ExtractedLocation implements Dimension {
         this.command = command;
     }
 
-    @Column(name = "subnationalClavinId")
+    @Column(name = "subnational_clavin_id")
     public Integer getSubnationalClavinId() {
         return this.subnationalClavinId;
     }
@@ -94,7 +94,7 @@ public class ExtractedLocation implements Dimension {
         this.subnationalClavinId = subnationalClavinId;
     }
 
-    @Column(name = "subnationalName")
+    @Column(name = "subnational_name")
     public String getSubnationalName() {
         return subnationalName;
     }
