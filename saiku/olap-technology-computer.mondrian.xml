@@ -12,20 +12,10 @@
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
             <Table name="full_date"/>
             <Level name="Collection Year" column="year" uniqueMembers="true" levelType="TimeYears"/>
-            <Level name="Collection Month" ordinalColumn="month" uniqueMembers="false" levelType="TimeMonths">
-                <KeyExpression>
-                    <SQL dialect="mysql">
-                        CONCAT(month_name, " ", CAST(year AS CHAR))
-                    </SQL>
-                </KeyExpression>
-            </Level>
-            <Level name="Collection Date" column="day_of_month" uniqueMembers="false" levelType="TimeDays">
-                <KeyExpression>
-                    <SQL dialect="mysql">
-                        CONCAT(CAST(day_of_month AS CHAR), " ", month_name, " ", CAST(year AS CHAR))
-                    </SQL>
-                </KeyExpression>
-            </Level>
+            <Level name="Collection Month" column="month_name" ordinalColumn="month_ordinal" uniqueMembers="false"
+                   levelType="TimeMonths"/>
+            <Level name="Collection Date" column="day_of_month" ordinalColumn="day_ordinal" uniqueMembers="false"
+                   levelType="TimeDays"/>
         </Hierarchy>
     </Dimension>
 
@@ -33,20 +23,10 @@
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
             <Table name="full_date"/>
             <Level name="Ingestion Year" column="year" uniqueMembers="true" levelType="TimeYears"/>
-            <Level name="Ingestion Month" ordinalColumn="month" uniqueMembers="false" levelType="TimeMonths">
-                <KeyExpression>
-                    <SQL dialect="mysql">
-                        CONCAT(month_name, " ", CAST(year AS CHAR))
-                    </SQL>
-                </KeyExpression>
-            </Level>
-            <Level name="Ingestion Date" column="day_of_month" uniqueMembers="false" levelType="TimeDays">
-                <KeyExpression>
-                    <SQL dialect="mysql">
-                        CONCAT(CAST(day_of_month AS CHAR), " ", month_name, " ", CAST(year AS CHAR))
-                    </SQL>
-                </KeyExpression>
-            </Level>
+            <Level name="Ingestion Month" column="month_name" ordinalColumn="month_ordinal" uniqueMembers="false"
+                   levelType="TimeMonths"/>
+            <Level name="Ingestion Date" column="day_of_month" ordinalColumn="day_ordinal" uniqueMembers="false"
+                   levelType="TimeDays"/>
         </Hierarchy>
     </Dimension>
 
@@ -54,20 +34,10 @@
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
             <Table name="full_date"/>
             <Level name="Publication Year" column="year" uniqueMembers="true" levelType="TimeYears"/>
-            <Level name="Publication Month" ordinalColumn="month" uniqueMembers="false" levelType="TimeMonths">
-                <KeyExpression>
-                    <SQL dialect="mysql">
-                        CONCAT(month_name, " ", CAST(year AS CHAR))
-                    </SQL>
-                </KeyExpression>
-            </Level>
-            <Level name="Publication Date" column="day_of_month" uniqueMembers="false" levelType="TimeDays">
-                <KeyExpression>
-                    <SQL dialect="mysql">
-                        CONCAT(CAST(day_of_month AS CHAR), " ", month_name, " ", CAST(year AS CHAR))
-                    </SQL>
-                </KeyExpression>
-            </Level>
+            <Level name="Publication Month" column="month_name" ordinalColumn="month_ordinal" uniqueMembers="false"
+                   levelType="TimeMonths"/>
+            <Level name="Publication Date" column="day_of_month" ordinalColumn="day_ordinal" uniqueMembers="false"
+                   levelType="TimeDays"/>
         </Hierarchy>
     </Dimension>
 
@@ -75,20 +45,10 @@
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
             <Table name="full_date"/>
             <Level name="Mentioned Year" column="year" uniqueMembers="true" levelType="TimeYears"/>
-            <Level name="Mentioned Month" ordinalColumn="month" uniqueMembers="false" levelType="TimeMonths">
-                <KeyExpression>
-                    <SQL dialect="mysql">
-                        CONCAT(month_name, " ", CAST(year AS CHAR))
-                    </SQL>
-                </KeyExpression>
-            </Level>
-            <Level name="Mentioned Date" column="day_of_month" uniqueMembers="false" levelType="TimeDays">
-                <KeyExpression>
-                    <SQL dialect="mysql">
-                        CONCAT(CAST(day_of_month AS CHAR), " ", month_name, " ", CAST(year AS CHAR))
-                    </SQL>
-                </KeyExpression>
-            </Level>
+            <Level name="Mentioned Month" column="month_name" ordinalColumn="month_ordinal" uniqueMembers="false"
+                   levelType="TimeMonths"/>
+            <Level name="Mentioned Date" column="day_of_month" ordinalColumn="day_ordinal" uniqueMembers="false"
+                   levelType="TimeDays"/>
         </Hierarchy>
     </Dimension>
 

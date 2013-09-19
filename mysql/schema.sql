@@ -84,9 +84,10 @@ CREATE TABLE `extracted_location` (
 CREATE TABLE `full_date` (
   `id` int(10) unsigned AUTO_INCREMENT UNIQUE NOT NULL,
   `year` smallint(4) unsigned DEFAULT NULL,
-  `month` tinyint(2) unsigned DEFAULT NULL,
-  `month_name` varchar(3) DEFAULT NULL,
-  `day_of_month` tinyint(2) unsigned DEFAULT NULL,
+  `month_name` varchar(8) DEFAULT NULL,
+  `day_of_month` tinyint(12) unsigned DEFAULT NULL,
+  `month_ordinal` int(8) DEFAULT NULL,
+  `day_ordinal` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
