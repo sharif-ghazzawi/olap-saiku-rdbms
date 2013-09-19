@@ -113,8 +113,8 @@
     <Dimension name="Document Length Compared to Other Documents">
         <Hierarchy hasAll="true" primaryKey="id">
             <Table name="percentile"/>
-            <Level name="Coarse" column="coarse_name_length" ordinalColumn="coarse_lower"/>
-            <Level name="Percentile" column="percentile"/>
+            <Level name="Comparative Doc Length: Coarse" column="coarse_name_length" ordinalColumn="coarse_lower"/>
+            <Level name="Comparative Doc Length: Percentile" column="percentile"/>
         </Hierarchy>
     </Dimension>
 
@@ -170,19 +170,20 @@
         </Hierarchy>
     </Dimension>
 
-    <Dimension name="Organization Percentile">
+    <Dimension name="Organization Commonness">
         <Hierarchy hasAll="true" primaryKey="id">
             <Table name="percentile"/>
-            <Level name="Coarse" column="coarse_name_commonness" ordinalColumn="coarse_lower"/>
-            <Level name="Percentile" column="percentile"/>
+            <Level name="Organization Commonness: Score Group" column="coarse_name_commonness"
+                   ordinalColumn="coarse_lower"/>
+            <Level name="Organization Commonness: Score" column="percentile"/>
         </Hierarchy>
     </Dimension>
 
-    <Dimension name="Person Percentile">
+    <Dimension name="Person Commonness">
         <Hierarchy hasAll="true" primaryKey="id">
             <Table name="percentile"/>
-            <Level name="Coarse" column="coarse_name_commonness" ordinalColumn="coarse_lower"/>
-            <Level name="Percentile" column="percentile"/>
+            <Level name="Person Commonness: Score Group" column="coarse_name_commonness" ordinalColumn="coarse_lower"/>
+            <Level name="Person Commonness: Score" column="percentile"/>
         </Hierarchy>
     </Dimension>
 
@@ -283,7 +284,7 @@
                         foreignKey="document_length_group_id"/>
         <DimensionUsage name="Document Length Compared to Other Documents"
                         source="Document Length Compared to Other Documents" foreignKey="document_length_percentile_id"/>
-        <DimensionUsage name="Person Percentile" source="Person Percentile" foreignKey="person_percentile_id"/>
+        <DimensionUsage name="Person Commonness" source="Person Commonness" foreignKey="person_percentile_id"/>
 
         <Measure name="Document Count" column="document_id" aggregator="distinct-count" formatString="Standard"/>
         <Measure name="Document Length: Average" column="document_length_words" aggregator="avg"
@@ -336,8 +337,8 @@
                         foreignKey="document_length_group_id"/>
         <DimensionUsage name="Document Length Compared to Other Documents"
                         source="Document Length Compared to Other Documents" foreignKey="document_length_percentile_id"/>
-        <DimensionUsage name="Organization Percentile" source="Organization Percentile"
-                        foreignKey="organization_percentile_id"/>
+        <DimensionUsage name="Organization Commonness" source="Organization Commonness"
+                        foreignKey="org_percentile_id"/>
 
         <Measure name="Document Count" column="document_id" aggregator="distinct-count" formatString="Standard"/>
         <Measure name="Document Length: Average" column="document_length_words" aggregator="avg"
