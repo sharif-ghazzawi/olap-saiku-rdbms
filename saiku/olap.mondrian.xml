@@ -15,14 +15,14 @@
             <Level name="Collection Month" ordinalColumn="month" uniqueMembers="false" levelType="TimeMonths">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        CONCAT(month_name, " " year)
+                        CONCAT(month_name, " ", CAST(year AS CHAR))
                     </SQL>
                 </KeyExpression>
             </Level>
             <Level name="Collection Date" column="day_of_month" uniqueMembers="false" levelType="TimeDays">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        CONCAT(day_of_month, " ", month_name, " " year)
+                        CONCAT(CAST(day_of_month AS CHAR), " ", month_name, " ", CAST(year AS CHAR))
                     </SQL>
                 </KeyExpression>
             </Level>
@@ -36,14 +36,14 @@
             <Level name="Ingestion Month" ordinalColumn="month" uniqueMembers="false" levelType="TimeMonths">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        CONCAT(month_name, " " year)
+                        CONCAT(month_name, " ", CAST(year AS CHAR))
                     </SQL>
                 </KeyExpression>
             </Level>
             <Level name="Ingestion Date" column="day_of_month" uniqueMembers="false" levelType="TimeDays">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        CONCAT(day_of_month, " ", month_name, " " year)
+                        CONCAT(CAST(day_of_month AS CHAR), " ", month_name, " ", CAST(year AS CHAR))
                     </SQL>
                 </KeyExpression>
             </Level>
@@ -57,14 +57,14 @@
             <Level name="Publication Month" ordinalColumn="month" uniqueMembers="false" levelType="TimeMonths">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        CONCAT(month_name, " " year)
+                        CONCAT(month_name, " ", CAST(year AS CHAR))
                     </SQL>
                 </KeyExpression>
             </Level>
             <Level name="Publication Date" column="day_of_month" uniqueMembers="false" levelType="TimeDays">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        CONCAT(day_of_month, " ", month_name, " " year)
+                        CONCAT(CAST(day_of_month AS CHAR), " ", month_name, " ", CAST(year AS CHAR))
                     </SQL>
                 </KeyExpression>
             </Level>
@@ -78,14 +78,14 @@
             <Level name="Mentioned Month" ordinalColumn="month" uniqueMembers="false" levelType="TimeMonths">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        CONCAT(month_name, " " year)
+                        CONCAT(month_name, " ", CAST(year AS CHAR))
                     </SQL>
                 </KeyExpression>
             </Level>
             <Level name="Mentioned Date" column="day_of_month" uniqueMembers="false" levelType="TimeDays">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        CONCAT(day_of_month, " ", month_name, " " year)
+                        CONCAT(CAST(day_of_month AS CHAR), " ", month_name, " ", CAST(year AS CHAR))
                     </SQL>
                 </KeyExpression>
             </Level>
