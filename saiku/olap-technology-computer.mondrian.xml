@@ -10,41 +10,85 @@
 
     <Dimension name="Date Document Collected" type="TimeDimension">
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
-            <Table name="date"/>
+            <Table name="full_date"/>
             <Level name="Collection Year" column="year" uniqueMembers="true" levelType="TimeYears"/>
-            <Level name="Collection Month" column="monthName" ordinalColumn="month" uniqueMembers="false"
-                   levelType="TimeMonths"/>
-            <Level name="Collection Date" column="dayOfMonth" uniqueMembers="false" levelType="TimeDays"/>
+            <Level name="Collection Month" ordinalColumn="month" uniqueMembers="false" levelType="TimeMonths">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        CONCAT(month_name, " " year)
+                    </SQL>
+                </KeyExpression>
+            </Level>
+            <Level name="Collection Date" column="day_of_month" uniqueMembers="false" levelType="TimeDays">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        CONCAT(day_of_month, " ", month_name, " " year)
+                    </SQL>
+                </KeyExpression>
+            </Level>
         </Hierarchy>
     </Dimension>
 
     <Dimension name="Date Document Ingested" type="TimeDimension">
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
-            <Table name="date"/>
+            <Table name="full_date"/>
             <Level name="Ingestion Year" column="year" uniqueMembers="true" levelType="TimeYears"/>
-            <Level name="Ingestion Month" column="monthName" ordinalColumn="month" uniqueMembers="false"
-                   levelType="TimeMonths"/>
-            <Level name="Ingestion Date" column="dayOfMonth" uniqueMembers="false" levelType="TimeDays"/>
+            <Level name="Ingestion Month" ordinalColumn="month" uniqueMembers="false" levelType="TimeMonths">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        CONCAT(month_name, " " year)
+                    </SQL>
+                </KeyExpression>
+            </Level>
+            <Level name="Ingestion Date" column="day_of_month" uniqueMembers="false" levelType="TimeDays">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        CONCAT(day_of_month, " ", month_name, " " year)
+                    </SQL>
+                </KeyExpression>
+            </Level>
         </Hierarchy>
     </Dimension>
 
     <Dimension name="Date Document Published" type="TimeDimension">
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
-            <Table name="date"/>
+            <Table name="full_date"/>
             <Level name="Publication Year" column="year" uniqueMembers="true" levelType="TimeYears"/>
-            <Level name="Publication Month" column="monthName" ordinalColumn="month" uniqueMembers="false"
-                   levelType="TimeMonths"/>
-            <Level name="Publication Date" column="dayOfMonth" uniqueMembers="false" levelType="TimeDays"/>
+            <Level name="Publication Month" ordinalColumn="month" uniqueMembers="false" levelType="TimeMonths">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        CONCAT(month_name, " " year)
+                    </SQL>
+                </KeyExpression>
+            </Level>
+            <Level name="Publication Date" column="day_of_month" uniqueMembers="false" levelType="TimeDays">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        CONCAT(day_of_month, " ", month_name, " " year)
+                    </SQL>
+                </KeyExpression>
+            </Level>
         </Hierarchy>
     </Dimension>
 
     <Dimension name="Dates Mentioned in Document" type="TimeDimension">
         <Hierarchy hasAll="true" allMemberName="All Periods" primaryKey="id">
-            <Table name="date"/>
+            <Table name="full_date"/>
             <Level name="Mentioned Year" column="year" uniqueMembers="true" levelType="TimeYears"/>
-            <Level name="Mentioned Month" column="monthName" ordinalColumn="month" uniqueMembers="false"
-                   levelType="TimeMonths"/>
-            <Level name="Mentioned Date" column="dayOfMonth" uniqueMembers="false" levelType="TimeDays"/>
+            <Level name="Mentioned Month" ordinalColumn="month" uniqueMembers="false" levelType="TimeMonths">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        CONCAT(month_name, " " year)
+                    </SQL>
+                </KeyExpression>
+            </Level>
+            <Level name="Mentioned Date" column="day_of_month" uniqueMembers="false" levelType="TimeDays">
+                <KeyExpression>
+                    <SQL dialect="mysql">
+                        CONCAT(day_of_month, " ", month_name, " " year)
+                    </SQL>
+                </KeyExpression>
+            </Level>
         </Hierarchy>
     </Dimension>
 
@@ -52,31 +96,31 @@
         <Hierarchy hasAll="true" primaryKey="id">
             <Table name="document"/>
             <Level name="Title" column="title">
-                <Property name="DRSI ID" column="drsiDocId"/>
+                <Property name="DRSI ID" column="drsi_doc_id"/>
             </Level>
             <Level name="Full Text" column="body" visible="false"/>
         </Hierarchy>
     </Dimension>
 
-    <Dimension name="Document Length">
+    <Dimension name="Document Length in Words">
         <Hierarchy hasAll="true" primaryKey="id">
-            <Table name="documentLengthGroup"/>
-            <Level name="Document Length: Coarse" column="coarseName" ordinalColumn="coarseLower"/>
-            <Level name="Document Length: Fine" column="fineName" ordinalColumn="fineLower"/>
+            <Table name="document_length_group"/>
+            <Level name="Document Length: Coarse" column="coarse_name" ordinalColumn="coarse_lower"/>
+            <Level name="Document Length: Fine" column="fine_name" ordinalColumn="fine_lower"/>
         </Hierarchy>
     </Dimension>
 
     <Dimension name="Document Length Compared to Other Documents">
         <Hierarchy hasAll="true" primaryKey="id">
             <Table name="percentile"/>
-            <Level name="Coarse" column="coarseNameLength" ordinalColumn="coarseLower"/>
+            <Level name="Coarse" column="coarse_name_length" ordinalColumn="coarse_lower"/>
             <Level name="Percentile" column="percentile"/>
         </Hierarchy>
     </Dimension>
 
     <Dimension name="Geo Location Mentioned in Document">
         <Hierarchy hasAll="true" primaryKey="id">
-            <Table name="extractedLocation"/>
+            <Table name="extracted_location"/>
             <Level name="Command" column="command">
                 <OrdinalExpression>
                     <SQL dialect="mysql">
@@ -87,39 +131,39 @@
             <Level name="Country">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        IF(countryName="No Man's Land", "No Associated Country", countryName)
+                        IF(country_name="No Man's Land", "No Associated Country", country_name)
                     </SQL>
                 </KeyExpression>
                 <OrdinalExpression>
                     <SQL dialect="mysql">
-                        IF(countryName="No Man's Land", "ZZZZZ", countryName)
+                        IF(country_name="No Man's Land", "ZZZZZ", country_name)
                     </SQL>
                 </OrdinalExpression>
-                <Property name="Country Clavin ID" column="countryClavinId"/>
-                <Property name="Country Code (ISO)" column="countryIso"/>
+                <Property name="Country Clavin ID" column="country_clavin_id"/>
+                <Property name="Country Code (ISO)" column="country_iso"/>
             </Level>
             <Level name="State/Province">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        IF(subnationalClavinId=clavinId and countryClavinId=subnationalClavinId,
-                        concat(countryName, " (Other)"), subnationalName)
+                        IF(subnational_clavin_id=clavin_id and country_clavin_id=subnational_clavin_id,
+                        concat(country_name, " (Other)"), subnational_name)
                     </SQL>
                 </KeyExpression>
                 <OrdinalExpression>
                     <SQL dialect="mysql">
-                        IF(subnationalClavinId=clavinId and countryClavinId=subnationalClavinId,
-                        "ZZZZZ", subnationalName)
+                        IF(subnational_clavin_id=clavin_id and country_clavin_id=subnational_clavin_id,
+                        "ZZZZZ", subnational_name)
                     </SQL>
                 </OrdinalExpression>
-                <Property name="State/Province Clavin ID" column="subnationalClavinId"/>
+                <Property name="State/Province Clavin ID" column="subnational_clavin_id"/>
             </Level>
             <Level name="Location">
                 <KeyExpression>
                     <SQL dialect="mysql">
-                        IF(clavinId=countryClavinId, countryName, locationName)
+                        IF(clavin_id=country_clavin_id, country_name, location_name)
                     </SQL>
                 </KeyExpression>
-                <Property name="Clavin ID" column="clavinId"/>
+                <Property name="Clavin ID" column="clavin_id"/>
                 <Property name="Latitude" column="latitude"/>
                 <Property name="Longitude" column="longitude"/>
             </Level>
@@ -129,7 +173,7 @@
     <Dimension name="Organization Percentile">
         <Hierarchy hasAll="true" primaryKey="id">
             <Table name="percentile"/>
-            <Level name="Coarse" column="coarseNameCommonness" ordinalColumn="coarseLower"/>
+            <Level name="Coarse" column="coarse_name_commonness" ordinalColumn="coarse_lower"/>
             <Level name="Percentile" column="percentile"/>
         </Hierarchy>
     </Dimension>
@@ -137,7 +181,7 @@
     <Dimension name="Person Percentile">
         <Hierarchy hasAll="true" primaryKey="id">
             <Table name="percentile"/>
-            <Level name="Coarse" column="coarseNameCommonness" ordinalColumn="coarseLower"/>
+            <Level name="Coarse" column="coarse_name_commonness" ordinalColumn="coarse_lower"/>
             <Level name="Percentile" column="percentile"/>
         </Hierarchy>
     </Dimension>
@@ -153,150 +197,194 @@
     <Dimension name="Word Stem Commonness">
         <Hierarchy hasAll="false" primaryKey="id">
             <Table name="percentile"/>
-            <Level name="Doc Length Compared: Score Group" column="coarseNameCommonness" ordinalColumn="coarseLower"/>
-            <Level name="Doc Length Compared: Score" column="percentile"/>
+            <Level name="Word Stem Commonness: Score Group" column="coarse_name_commonness" ordinalColumn="coarse_lower"/>
+            <Level name="Word Stem Commonness: Score" column="percentile"/>
         </Hierarchy>
     </Dimension>
 
-    <Cube name="Words" defaultMeasure="Document Count">
-        <View alias="filteredWord">
+    <Cube name="Words" defaultMeasure="Word Impact">
+        <View alias="filteredWords">
             <SQL dialect="mysql">
-                select * from wordFact
-                where wordId in (select id from word where word like '%technology%' or word like '%computer%')
+                select * from word_fact
+                where document_id in
+                    (select id from document where body like '%technology%' or body like '%computer%')
             </SQL>
         </View>
-        <Dimension name="Word" foreignKey="wordId">
+        <Dimension name="Word" foreignKey="word_id">
             <Hierarchy hasAll="true" primaryKey="id">
                 <Table name="word"/>
-                <Level name="Word Group: Large" column="mediumName" ordinalColumn="mediumId" uniqueMembers="false"/>
-                <Level name="Word Group: Medium" column="fineName" ordinalColumn="fineId" uniqueMembers="false"/>
+                <Level name="Word Group: Large" column="fine_name" ordinalColumn="fine_id" uniqueMembers="false"/>
                 <Level name="Word Group: Small" column="stem" uniqueMembers="false"/>
                 <Level name="Word" column="word" uniqueMembers="false"/>
             </Hierarchy>
         </Dimension>
         <DimensionUsage name="Geo Location Mentioned in Document" source="Geo Location Mentioned in Document"
-                        foreignKey="extractedLocationId"/>
+                        foreignKey="extracted_location_id"/>
         <DimensionUsage name="Date Mentioned in Document" source="Dates Mentioned in Document"
-                        foreignKey="extractedDateId"/>
-        <DimensionUsage name="Date Document Published" source="Date Document Published" foreignKey="publicationDateId"/>
-        <DimensionUsage name="Date Document Ingested" source="Date Document Ingested" foreignKey="ingestDateId"/>
-        <DimensionUsage name="Date Document Collected" source="Date Document Collected" foreignKey="collectionDateId"/>
-        <DimensionUsage name="Classification" source="Classification" foreignKey="classificationId"/>
-        <DimensionUsage name="Source" source="Source" foreignKey="sourceId"/>
-        <DimensionUsage name="Document Length" source="Document Length" foreignKey="documentLengthGroupId"/>
+                        foreignKey="extracted_date_id"/>
+        <DimensionUsage name="Date Document Published" source="Date Document Published" foreignKey="publication_date_id"/>
+        <DimensionUsage name="Date Document Ingested" source="Date Document Ingested" foreignKey="ingest_date_id"/>
+        <DimensionUsage name="Date Document Collected" source="Date Document Collected" foreignKey="collection_date_id"/>
+        <DimensionUsage name="Classification" source="Classification" foreignKey="classification_id"/>
+        <DimensionUsage name="Source" source="Source" foreignKey="source_id"/>
+        <DimensionUsage name="Document Length in Words" source="Document Length in Words"
+                        foreignKey="document_length_group_id"/>
         <DimensionUsage name="Document Length Compared to Other Documents"
-                        source="Document Length Compared to Other Documents" foreignKey="documentLengthPercentileId"/>
-        <DimensionUsage name="Word Stem Commonness" source="Word Stem Commonness" foreignKey="wordStemPercentileId"/>
+                        source="Document Length Compared to Other Documents" foreignKey="document_length_percentile_id"/>
+        <DimensionUsage name="Word Stem Commonness" source="Word Stem Commonness" foreignKey="word_stem_percentile_id"/>
 
-        <Measure name="Document Count" column="documentId" aggregator="distinct-count" formatString="Standard"/>
-        <Measure name="Document Length" column="documentLengthWords" aggregator="avg" formatString="Standard"/>
-        <Measure name="Frequency of Appearance" column="wordFrequency" aggregator="avg" formatString="Standard"/>
-        <Measure name="Frequency Share" column="wordFrequencyShare" aggregator="avg" formatString="Standard"/>
-        <Measure name="Position in Document" column="position" aggregator="avg" formatString="Standard"/>
-        <Measure name="Position Percentile" column="positionPercentile" aggregator="count" formatString="Standard"/>
+        <Measure name="Document Count" column="document_id" aggregator="distinct-count" formatString="Standard"/>
+        <Measure name="Document Length: Average" column="document_length_words" aggregator="avg"
+                 formatString="Standard"/>
+        <Measure name="Document Length: Total" column="document_length_words" aggregator="sum" formatString="Standard"/>
+        <Measure name="Average Position in Document" column="position" aggregator="avg" formatString="Standard"/>
+        <Measure name="Average Position in Document (Percentile)" column="position_percentile"
+                 aggregator="avg" formatString="Standard"/>
+
+        <Measure name="Summed Frequencies" column="word_frequency" aggregator="sum" visible="false"
+                 formatString="Standard"/>
+        <Measure name="Total Word Count" aggregator="count" column="word_id" visible="false"
+                 formatString="Standard"/>
+        <Measure name="Unique Word Count" aggregator="distinct-count" column="word_id" visible="false"
+                 formatString="Standard"/>
+        <CalculatedMember name="Word Impact" dimension="Measures">
+            <Formula>
+                [Measures].[Summed Frequencies] * [Measures].[Unique Word Count] / [Measures].[Total Word Count]
+            </Formula>
+        </CalculatedMember>
     </Cube>
 
-    <Cube name="People" defaultMeasure="Document Count">
+    <Cube name="People" defaultMeasure="Person Impact">
         <View alias="filteredPeople">
             <SQL dialect="mysql">
-                select * from personFact
-                where personId in (select id from person where name like '%technology%' or name like '%computer%')
+                select * from person_fact
+                where document_id in
+                    (select id from document where body like '%technology%' or body like '%computer%')
             </SQL>
         </View>
-        <Dimension name="Person" foreignKey="personId">
+        <Dimension name="Person" foreignKey="person_id">
             <Hierarchy hasAll="true" primaryKey="id">
                 <Table name="person"/>
-                <Level name="Person Group: Large" column="mediumName" ordinalColumn="mediumId" uniqueMembers="false"/>
-                <Level name="Person Group: Medium" column="fineName" ordinalColumn="fineId" uniqueMembers="false"/>
+                <Level name="Person Group: Large" column="fine_name" ordinalColumn="fine_id" uniqueMembers="false"/>
                 <Level name="Person Group: Small" column="concept" uniqueMembers="false"/>
                 <Level name="Person Name" column="name" uniqueMembers="false"/>
             </Hierarchy>
         </Dimension>
         <DimensionUsage name="Geo Location Mentioned in Document" source="Geo Location Mentioned in Document"
-                        foreignKey="extractedLocationId"/>
+                        foreignKey="extracted_location_id"/>
         <DimensionUsage name="Date Mentioned in Document" source="Dates Mentioned in Document"
-                        foreignKey="extractedDateId"/>
-        <DimensionUsage name="Date Document Published" source="Date Document Published" foreignKey="publicationDateId"/>
-        <DimensionUsage name="Date Document Ingested" source="Date Document Ingested" foreignKey="ingestDateId"/>
-        <DimensionUsage name="Date Document Collected" source="Date Document Collected" foreignKey="collectionDateId"/>
-        <DimensionUsage name="Classification" source="Classification" foreignKey="classificationId"/>
-        <DimensionUsage name="Source" source="Source" foreignKey="sourceId"/>
-        <DimensionUsage name="Document Length" source="Document Length" foreignKey="documentLengthGroupId"/>
+                        foreignKey="extracted_date_id"/>
+        <DimensionUsage name="Date Document Published" source="Date Document Published" foreignKey="publication_date_id"/>
+        <DimensionUsage name="Date Document Ingested" source="Date Document Ingested" foreignKey="ingest_date_id"/>
+        <DimensionUsage name="Date Document Collected" source="Date Document Collected" foreignKey="collection_date_id"/>
+        <DimensionUsage name="Classification" source="Classification" foreignKey="classification_id"/>
+        <DimensionUsage name="Source" source="Source" foreignKey="source_id"/>
+        <DimensionUsage name="Document Length in Words" source="Document Length in Words"
+                        foreignKey="document_length_group_id"/>
         <DimensionUsage name="Document Length Compared to Other Documents"
-                        source="Document Length Compared to Other Documents" foreignKey="documentLengthPercentileId"/>
-        <DimensionUsage name="Person Percentile" source="Person Percentile" foreignKey="personPercentileId"/>
+                        source="Document Length Compared to Other Documents" foreignKey="document_length_percentile_id"/>
+        <DimensionUsage name="Person Percentile" source="Person Percentile" foreignKey="person_percentile_id"/>
 
-        <Measure name="Document Count" column="documentId" aggregator="distinct-count" formatString="Standard"/>
-        <Measure name="Document Length" column="documentLengthWords" aggregator="avg" formatString="Standard"/>
-        <Measure name="Frequency of Appearance" column="personFrequency" aggregator="avg" formatString="Standard"/>
-        <Measure name="Frequency Share" column="personFrequencyShare" aggregator="avg" formatString="Standard"/>
-        <Measure name="Position in Document" column="position" aggregator="avg" formatString="Standard"/>
-        <Measure name="Position Percentile" column="positionPercentile" aggregator="count" formatString="Standard"/>
+        <Measure name="Document Count" column="document_id" aggregator="distinct-count" formatString="Standard"/>
+        <Measure name="Document Length: Average" column="document_length_words" aggregator="avg"
+                 formatString="Standard"/>
+        <Measure name="Document Length: Total" column="document_length_words" aggregator="sum" formatString="Standard"/>
+        <Measure name="Average Position in Document" column="position" aggregator="avg" formatString="Standard"/>
+        <Measure name="Average Position in Document (Percentile)" column="position_percentile"
+                 aggregator="avg" formatString="Standard"/>
+
+        <Measure name="Summed Frequencies" column="person_frequency" aggregator="sum" visible="false"
+                 formatString="Standard"/>
+        <Measure name="Total Person Count" aggregator="count" column="person_id" visible="false"
+                 formatString="Standard"/>
+        <Measure name="Unique Person Count" aggregator="distinct-count" column="person_id" visible="false"
+                 formatString="Standard"/>
+        <CalculatedMember name="Person Impact" dimension="Measures">
+            <Formula>
+                [Measures].[Summed Frequencies] * [Measures].[Unique Person Count] / [Measures].[Total Person Count]
+            </Formula>
+        </CalculatedMember>
     </Cube>
 
-    <Cube name="Organizations" defaultMeasure="Document Count">
-        <View alias="filteredOrg">
+    <Cube name="Organizations" defaultMeasure="Organization Impact">
+        <View alias="filteredOrgs">
             <SQL dialect="mysql">
-                select * from organizationFact
-                where organizationId in (select id from organization where name like '%technology%' or name like '%computer%')
+                select * from organization_fact
+                where document_id in
+                    (select id from document where body like '%technology%' or body like '%computer%')
             </SQL>
         </View>
-        <Dimension name="Organization" foreignKey="organizationId">
+        <Dimension name="Organization" foreignKey="organization_id">
             <Hierarchy hasAll="true" primaryKey="id">
                 <Table name="organization"/>
-                <Level name="Organization Group: Large" column="mediumName" ordinalColumn="mediumId"
-                       uniqueMembers="false"/>
-                <Level name="Organization Group: Medium" column="fineName" ordinalColumn="fineId"
+                <Level name="Organization Group: Large" column="fine_name" ordinalColumn="fine_id"
                        uniqueMembers="false"/>
                 <Level name="Organization Group: Small" column="concept" uniqueMembers="false"/>
                 <Level name="Organization Name" column="name" uniqueMembers="false"/>
             </Hierarchy>
         </Dimension>
         <DimensionUsage name="Geo Location Mentioned in Document" source="Geo Location Mentioned in Document"
-                        foreignKey="extractedLocationId"/>
+                        foreignKey="extracted_location_id"/>
         <DimensionUsage name="Date Mentioned in Document" source="Dates Mentioned in Document"
-                        foreignKey="extractedDateId"/>
-        <DimensionUsage name="Date Document Published" source="Date Document Published" foreignKey="publicationDateId"/>
-        <DimensionUsage name="Date Document Ingested" source="Date Document Ingested" foreignKey="ingestDateId"/>
-        <DimensionUsage name="Date Document Collected" source="Date Document Collected" foreignKey="collectionDateId"/>
-        <DimensionUsage name="Classification" source="Classification" foreignKey="classificationId"/>
-        <DimensionUsage name="Source" source="Source" foreignKey="sourceId"/>
-        <DimensionUsage name="Document Length" source="Document Length" foreignKey="documentLengthGroupId"/>
+                        foreignKey="extracted_date_id"/>
+        <DimensionUsage name="Date Document Published" source="Date Document Published" foreignKey="publication_date_id"/>
+        <DimensionUsage name="Date Document Ingested" source="Date Document Ingested" foreignKey="ingest_date_id"/>
+        <DimensionUsage name="Date Document Collected" source="Date Document Collected" foreignKey="collection_date_id"/>
+        <DimensionUsage name="Classification" source="Classification" foreignKey="classification_id"/>
+        <DimensionUsage name="Source" source="Source" foreignKey="source_id"/>
+        <DimensionUsage name="Document Length in Words in Words" source="Document Length in Words"
+                        foreignKey="document_length_group_id"/>
         <DimensionUsage name="Document Length Compared to Other Documents"
-                        source="Document Length Compared to Other Documents" foreignKey="documentLengthPercentileId"/>
+                        source="Document Length Compared to Other Documents" foreignKey="document_length_percentile_id"/>
         <DimensionUsage name="Organization Percentile" source="Organization Percentile"
-                        foreignKey="organizationPercentileId"/>
+                        foreignKey="organization_percentile_id"/>
 
-        <Measure name="Document Count" column="documentId" aggregator="distinct-count" formatString="Standard"/>
-        <Measure name="Document Length" column="documentLengthWords" aggregator="avg" formatString="Standard"/>
-        <Measure name="Frequency of Appearance" column="orgFrequency" aggregator="avg" formatString="Standard"/>
-        <Measure name="Frequency Share" column="orgFrequencyShare" aggregator="avg" formatString="Standard"/>
-        <Measure name="Position in Document" column="position" aggregator="avg" formatString="Standard"/>
-        <Measure name="Position Percentile" column="positionPercentile" aggregator="count" formatString="Standard"/>
+        <Measure name="Document Count" column="document_id" aggregator="distinct-count" formatString="Standard"/>
+        <Measure name="Document Length: Average" column="document_length_words" aggregator="avg"
+                 formatString="Standard"/>
+        <Measure name="Document Length: Total" column="document_length_words" aggregator="sum" formatString="Standard"/>
+        <Measure name="Average Position in Document" column="position" aggregator="avg" formatString="Standard"/>
+        <Measure name="Average Position in Document (Percentile)" column="position_percentile"
+                 aggregator="avg" formatString="Standard"/>
+
+        <Measure name="Summed Frequencies" column="org_frequency" aggregator="sum" visible="false"
+                 formatString="Standard"/>
+        <Measure name="Total Org Count" aggregator="count" column="organization_id" visible="false"
+                 formatString="Standard"/>
+        <Measure name="Unique Org Count" aggregator="distinct-count" column="organization_id" visible="false"
+                 formatString="Standard"/>
+        <CalculatedMember name="Organization Impact" dimension="Measures">
+            <Formula>
+                [Measures].[Summed Frequencies] * [Measures].[Unique Org Count] / [Measures].[Total Org Count]
+            </Formula>
+        </CalculatedMember>
     </Cube>
 
     <Cube name="Documents" defaultMeasure="Document Count">
-        <View alias="filteredOrg">
+        <View alias="filteredDocs">
             <SQL dialect="mysql">
-                select * from documentFact
-                where documentId in (select id from document where (title like '%technology%' or title like '%computer%')
-                    or (body like '%technology%' or body like '%computer%'))
+                select * from document_fact
+                where document_id in
+                    (select id from document where body like '%technology%' or body like '%computer%')
             </SQL>
         </View>
         <DimensionUsage name="Geo Location Mentioned in Document" source="Geo Location Mentioned in Document"
-                        foreignKey="extractedLocationId"/>
+                        foreignKey="extracted_location_id"/>
         <DimensionUsage name="Date Mentioned in Document" source="Dates Mentioned in Document"
-                        foreignKey="extractedDateId"/>
-        <DimensionUsage name="Date Document Published" source="Date Document Published" foreignKey="publicationDateId"/>
-        <DimensionUsage name="Date Document Ingested" source="Date Document Ingested" foreignKey="ingestDateId"/>
-        <DimensionUsage name="Date Document Collected" source="Date Document Collected" foreignKey="collectionDateId"/>
-        <DimensionUsage name="Classification" source="Classification" foreignKey="classificationId"/>
-        <DimensionUsage name="Source" source="Source" foreignKey="sourceId"/>
-        <DimensionUsage name="Document Length" source="Document Length" foreignKey="documentLengthGroupId"/>
+                        foreignKey="extracted_date_id"/>
+        <DimensionUsage name="Date Document Published" source="Date Document Published" foreignKey="publication_date_id"/>
+        <DimensionUsage name="Date Document Ingested" source="Date Document Ingested" foreignKey="ingest_date_id"/>
+        <DimensionUsage name="Date Document Collected" source="Date Document Collected" foreignKey="collection_date_id"/>
+        <DimensionUsage name="Classification" source="Classification" foreignKey="classification_id"/>
+        <DimensionUsage name="Source" source="Source" foreignKey="source_id"/>
+        <DimensionUsage name="Document Length in Words" source="Document Length in Words"
+                        foreignKey="document_length_group_id"/>
         <DimensionUsage name="Document Length Compared to Other Documents"
-                        source="Document Length Compared to Other Documents" foreignKey="documentLengthPercentileId"/>
+                        source="Document Length Compared to Other Documents" foreignKey="document_length_percentile_id"/>
 
-        <Measure name="Document Count" column="documentId" aggregator="distinct-count" formatString="Standard"/>
-        <Measure name="Document Length" column="documentLengthWords" aggregator="avg" formatString="Standard"/>
+        <Measure name="Document Count" column="document_id" aggregator="distinct-count" formatString="Standard"/>
+        <Measure name="Document Length: Average" column="document_length_words" aggregator="avg"
+                 formatString="Standard"/>
+        <Measure name="Document Length: Total" column="document_length_words" aggregator="sum" formatString="Standard"/>
     </Cube>
 </Schema>
