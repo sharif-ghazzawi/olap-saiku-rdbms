@@ -12,9 +12,10 @@ public class Date implements Dimension {
 
     private Integer id;
     private Integer year;
-    private Short month;
     private String monthName;
-    private Short dayOfMonth;
+    private String dayOfMonth;
+    private Integer monthOrdinal;
+    private Integer dayOrdinal;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -45,33 +46,43 @@ public class Date implements Dimension {
         this.monthName = monthName;
     }
 
-    @Column(name = "month")
-    public Short getMonth() {
-        return month;
-    }
-
-    public void setMonth(Short month) {
-        this.month = month;
-    }
-
     @Column(name = "day_of_month")
-    public Short getDayOfMonth() {
+    public String getDayOfMonth() {
         return dayOfMonth;
     }
 
-    public void setDayOfMonth(Short dayOfMonth) {
+    public void setDayOfMonth(String dayOfMonth) {
         this.dayOfMonth = dayOfMonth;
+    }
+
+    @Column(name = "month_ordinal")
+    public Integer getMonthOrdinal() {
+        return monthOrdinal;
+    }
+
+    public void setMonthOrdinal(Integer monthOrdinal) {
+        this.monthOrdinal = monthOrdinal;
+    }
+
+    @Column(name = "day_ordinal")
+    public Integer getDayOrdinal() {
+        return dayOrdinal;
+    }
+
+    public void setDayOrdinal(Integer dayOrdinal) {
+        this.dayOrdinal = dayOrdinal;
     }
 
     @Transient
     public DateTime getDate() {
-        return new DateTime(year, month, dayOfMonth, 0, 0, 0, 0, DateTimeZone.UTC);
+        return new DateTime(year, monthOrdinal % 100, dayOrdinal % 100, 0, 0, 0, 0, DateTimeZone.UTC);
     }
 
     public void setDate(DateTime date) {
         this.year = date.getYear();
-        this.month = (short) date.getMonthOfYear();
-        this.dayOfMonth = (short) date.getDayOfMonth();
-        this.monthName = date.toString("MMM");
+        this.monthName = date.toString("MMM yyyy");
+        this.dayOfMonth = date.toString("MMM dd, yyyy");
+        this.monthOrdinal = (date.getYear() * 100) + date.getMonthOfYear();
+        this.monthOrdinal = (date.getYear() * 10000) + (date.getMonthOfYear() * 100) + date.getDayOfMonth();
     }
 }
