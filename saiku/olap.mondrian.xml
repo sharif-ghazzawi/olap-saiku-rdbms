@@ -163,7 +163,7 @@
         </Hierarchy>
     </Dimension>
 
-    <Cube name="Words" defaultMeasure="Word Impact">
+    <Cube name="Word Base" visible="false">
         <Table name="word_fact"/>
         <Dimension name="Word" foreignKey="word_id">
             <Hierarchy hasAll="true" primaryKey="id">
@@ -209,7 +209,7 @@
         </CalculatedMember>
     </Cube>
 
-    <Cube name="People" defaultMeasure="Person Impact">
+    <Cube name="People Base" visible="false">
         <Table name="person_fact"/>
         <Dimension name="Person" foreignKey="person_id">
             <Hierarchy hasAll="true" primaryKey="id">
@@ -255,7 +255,7 @@
         </CalculatedMember>
     </Cube>
 
-    <Cube name="Organizations" defaultMeasure="Organization Impact">
+    <Cube name="Organization Base" visible="false">
         <Table name="organization_fact"/>
         <Dimension name="Organization" foreignKey="organization_id">
             <Hierarchy hasAll="true" primaryKey="id">
@@ -275,7 +275,7 @@
         <DimensionUsage name="Date Document Collected" source="Date Document Collected" foreignKey="collection_date_id"/>
         <DimensionUsage name="Classification" source="Classification" foreignKey="classification_id"/>
         <DimensionUsage name="Source" source="Source" foreignKey="source_id"/>
-        <DimensionUsage name="Document Length in Words in Words" source="Document Length in Words"
+        <DimensionUsage name="Document Length in Words" source="Document Length in Words"
                         foreignKey="document_length_group_id"/>
         <DimensionUsage name="Document Length Compared to Other Documents"
                         source="Document Length Compared to Other Documents" foreignKey="document_length_percentile_id"/>
@@ -303,7 +303,7 @@
         </CalculatedMember>
     </Cube>
 
-    <Cube name="Documents" defaultMeasure="Document Count">
+    <Cube name="Document Base" visible="false">
         <Table name="document_fact"/>
         <DimensionUsage name="Geo Location Mentioned in Document" source="Geo Location Mentioned in Document"
                         foreignKey="extracted_location_id"/>
@@ -324,4 +324,92 @@
                  formatString="Standard"/>
         <Measure name="Document Length: Total" column="document_length_words" aggregator="sum" formatString="Standard"/>
     </Cube>
+
+    <VirtualCube name="Words" defaultMeasure="Word Impact">
+        <CubeUsages>
+            <CubeUsage cubeName="Word Base"/>
+        </CubeUsages>
+        <VirtualCubeDimension cubeName="Word Base" name="Word"/>
+        <VirtualCubeDimension cubeName="Word Base" name="Geo Location Mentioned in Document"/>
+        <VirtualCubeDimension cubeName="Word Base" name="Date Mentioned in Document"/>
+        <VirtualCubeDimension cubeName="Word Base" name="Date Document Published"/>
+        <VirtualCubeDimension cubeName="Word Base" name="Date Document Ingested"/>
+        <VirtualCubeDimension cubeName="Word Base" name="Date Document Collected"/>
+        <VirtualCubeDimension cubeName="Word Base" name="Classification"/>
+        <VirtualCubeDimension cubeName="Word Base" name="Source"/>
+        <VirtualCubeDimension cubeName="Word Base" name="Document Length in Words"/>
+        <VirtualCubeDimension cubeName="Word Base" name="Document Length Compared to Other Documents"/>
+        <VirtualCubeDimension cubeName="Word Base" name="Word Stem Commonness"/>
+
+        <VirtualCubeMeasure cubeName="Word Base" name="[Measures].[Word Impact]"/>
+        <VirtualCubeMeasure cubeName="Word Base" name="[Measures].[Document Length: Average]"/>
+        <VirtualCubeMeasure cubeName="Word Base" name="[Measures].[Document Length: Total]"/>
+        <VirtualCubeMeasure cubeName="Word Base" name="[Measures].[Average Position in Document]"/>
+        <VirtualCubeMeasure cubeName="Word Base" name="[Measures].[Average Position in Document (Percentile)]"/>
+    </VirtualCube>
+
+    <VirtualCube name="People" defaultMeasure="Person Impact">
+        <CubeUsages>
+            <CubeUsage cubeName="People Base"/>
+        </CubeUsages>
+        <VirtualCubeDimension cubeName="People Base" name="Person"/>
+        <VirtualCubeDimension cubeName="People Base" name="Geo Location Mentioned in Document"/>
+        <VirtualCubeDimension cubeName="People Base" name="Date Mentioned in Document"/>
+        <VirtualCubeDimension cubeName="People Base" name="Date Document Published"/>
+        <VirtualCubeDimension cubeName="People Base" name="Date Document Ingested"/>
+        <VirtualCubeDimension cubeName="People Base" name="Date Document Collected"/>
+        <VirtualCubeDimension cubeName="People Base" name="Classification"/>
+        <VirtualCubeDimension cubeName="People Base" name="Source"/>
+        <VirtualCubeDimension cubeName="People Base" name="Document Length in Words"/>
+        <VirtualCubeDimension cubeName="People Base" name="Document Length Compared to Other Documents"/>
+        <VirtualCubeDimension cubeName="People Base" name="Person Commonness"/>
+
+        <VirtualCubeMeasure cubeName="People Base" name="[Measures].[Person Impact]"/>
+        <VirtualCubeMeasure cubeName="People Base" name="[Measures].[Document Length: Average]"/>
+        <VirtualCubeMeasure cubeName="People Base" name="[Measures].[Document Length: Total]"/>
+        <VirtualCubeMeasure cubeName="People Base" name="[Measures].[Average Position in Document]"/>
+        <VirtualCubeMeasure cubeName="People Base" name="[Measures].[Average Position in Document (Percentile)]"/>
+    </VirtualCube>
+
+    <VirtualCube name="Organizations" defaultMeasure="Organization Impact">
+        <CubeUsages>
+            <CubeUsage cubeName="Organization Base"/>
+        </CubeUsages>
+        <VirtualCubeDimension cubeName="Organization Base" name="Organization"/>
+        <VirtualCubeDimension cubeName="Organization Base" name="Geo Location Mentioned in Document"/>
+        <VirtualCubeDimension cubeName="Organization Base" name="Date Mentioned in Document"/>
+        <VirtualCubeDimension cubeName="Organization Base" name="Date Document Published"/>
+        <VirtualCubeDimension cubeName="Organization Base" name="Date Document Ingested"/>
+        <VirtualCubeDimension cubeName="Organization Base" name="Date Document Collected"/>
+        <VirtualCubeDimension cubeName="Organization Base" name="Classification"/>
+        <VirtualCubeDimension cubeName="Organization Base" name="Source"/>
+        <VirtualCubeDimension cubeName="Organization Base" name="Document Length in Words"/>
+        <VirtualCubeDimension cubeName="Organization Base" name="Document Length Compared to Other Documents"/>
+        <VirtualCubeDimension cubeName="Organization Base" name="Organization Commonness"/>
+
+        <VirtualCubeMeasure cubeName="Organization Base" name="[Measures].[Organization Impact]"/>
+        <VirtualCubeMeasure cubeName="Organization Base" name="[Measures].[Document Length: Average]"/>
+        <VirtualCubeMeasure cubeName="Organization Base" name="[Measures].[Document Length: Total]"/>
+        <VirtualCubeMeasure cubeName="Organization Base" name="[Measures].[Average Position in Document]"/>
+        <VirtualCubeMeasure cubeName="Organization Base" name="[Measures].[Average Position in Document (Percentile)]"/>
+    </VirtualCube>
+
+    <VirtualCube name="Documents" defaultMeasure="Document Count">
+        <CubeUsages>
+            <CubeUsage cubeName="Document Base"/>
+        </CubeUsages>
+        <VirtualCubeDimension cubeName="Document Base" name="Geo Location Mentioned in Document"/>
+        <VirtualCubeDimension cubeName="Document Base" name="Date Mentioned in Document"/>
+        <VirtualCubeDimension cubeName="Document Base" name="Date Document Published"/>
+        <VirtualCubeDimension cubeName="Document Base" name="Date Document Ingested"/>
+        <VirtualCubeDimension cubeName="Document Base" name="Date Document Collected"/>
+        <VirtualCubeDimension cubeName="Document Base" name="Classification"/>
+        <VirtualCubeDimension cubeName="Document Base" name="Source"/>
+        <VirtualCubeDimension cubeName="Document Base" name="Document Length in Words"/>
+        <VirtualCubeDimension cubeName="Document Base" name="Document Length Compared to Other Documents"/>
+
+        <VirtualCubeMeasure cubeName="Document Base" name="[Measures].[Document Count]"/>
+        <VirtualCubeMeasure cubeName="Document Base" name="[Measures].[Document Length: Average]"/>
+        <VirtualCubeMeasure cubeName="Document Base" name="[Measures].[Document Length: Total]"/>
+    </VirtualCube>
 </Schema>
